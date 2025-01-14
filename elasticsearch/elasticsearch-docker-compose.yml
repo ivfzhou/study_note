@@ -1,0 +1,89 @@
+version: "3.9"
+services:
+  elasticsearch_0:
+    image: elasticsearch:7.17.4
+    container_name: elasticsearch_0
+    hostname: elasticsearch_0
+    networks:
+      network:
+        ipv4_address: 220.254.1.28
+    privileged: true
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9201:9201"
+      - "9301:9301"
+    volumes:
+      - /home/ivfzhou/volumes/elk/0/config:/usr/share/elasticsearch/config:rwx
+      - /home/ivfzhou/volumes/elk/0/data:/usr/share/elasticsearch/data:rw
+      - /home/ivfzhou/volumes/elk/0/logs:/usr/share/elasticsearch/logs:rw
+      - /home/ivfzhou/volumes/elk/0/plugins:/usr/share/elasticsearch/plugins:rw
+    command:
+      - elasticsearch
+      - -v
+  elasticsearch_1:
+    image: elasticsearch:7.17.4
+    container_name: elasticsearch_1
+    hostname: elasticsearch_1
+    privileged: true
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9202:9201"
+      - "9302:9301"
+    volumes:
+      - /home/ivfzhou/volumes/elk/1/config:/usr/share/elasticsearch/config:rw
+      - /home/ivfzhou/volumes/elk/1/data:/usr/share/elasticsearch/data:rw
+      - /home/ivfzhou/volumes/elk/1/logs:/usr/share/elasticsearch/logs:rw
+      - /home/ivfzhou/volumes/elk/1/plugins:/usr/share/elasticsearch/plugins:rw
+    networks:
+      network:
+        ipv4_address: 220.254.1.29
+    command:
+      - elasticsearch
+      - -v
+  elasticsearch_2:
+    image: elasticsearch:7.17.4
+    container_name: elasticsearch_2
+    hostname: elasticsearch_2
+    privileged: true
+    networks:
+      network:
+        ipv4_address: 220.254.1.30
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9203:9201"
+      - "9303:9301"
+    volumes:
+      - /home/ivfzhou/volumes/elk/2/config:/usr/share/elasticsearch/config:rw
+      - /home/ivfzhou/volumes/elk/2/data:/usr/share/elasticsearch/data:rw
+      - /home/ivfzhou/volumes/elk/2/logs:/usr/share/elasticsearch/logs:rw
+      - /home/ivfzhou/volumes/elk/2/plugins:/usr/share/elasticsearch/plugins:rw
+    command:
+      - elasticsearch
+      - -v
+  kibana:
+    image: kibana:7.17.4
+    container_name: kibana
+    hostname: kibana
+    networks:
+      network:
+        ipv4_address: 220.254.1.31
+    privileged: true
+    ports:
+      - "5602:5602"
+    volumes:
+      - /home/ivfzhou/volumes/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:rw
+      - /home/ivfzhou/volumes/kibana/logs:/usr/share/kibana/logs:rw
+      - /home/ivfzhou/volumes/kibana/data:/usr/share/kibana/data:rw
+      - /home/ivfzhou/volumes/kibana/plugins:/usr/share/kibana/plugins:rw
+    entrypoint: "kibana serve"
+networks:
+  network:
+    driver: bridge
+    attachable: true
+    ipam:
+      config:
+        - subnet: 220.254.1.0/24
+          gateway: 220.254.1.1

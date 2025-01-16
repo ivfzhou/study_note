@@ -2,7 +2,7 @@
 
 1. [ABNF](./abnf/abnf.md)
 1. [CMAKE](./cmake/cmake.md)
-1. [C++/C](./cpp/cpp.md)
+1. [C/C++](./cpp/cpp.md)
 1. [CSS](./css/css.md)
 1. [Docker](./docker/docker.md)
 1. [DOS](./dos/dos.md)

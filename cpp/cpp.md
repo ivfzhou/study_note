@@ -58,84 +58,84 @@
 | 运算符 | 结合性 | 含义 |
 |:-:|:-:|:-|
 | 优先级 1 组 |
-| `::` | | 作用域解析运算符 |
+| :: | | 作用域解析运算符 |
 | 优先级 2 组 |
-| `(表达式)` | | 分组 |
-| `()` | L-R | 函数调用 |
-| `()` | | 值构造，即 type(expr) |
-| `[]` | | 数组下标 |
-| `->` | | 间接成员运算符 |
-| `.` | | 直接成员运算符 |
-| `const_cast` | | 专用的类型转换 |
-| `dynamic_cast` | | 专用的类型转换 |
-| `reinterpret_cast` | | 专用的类型转换 |
-| `static_cast` | | 专用的类型转换 |
-| `typeid` | | 类型标识 |
-| `++` | | 加一运算符，后缀 |
-| `--` | | 减一运算符，后缀 |
+| (表达式) | | 分组 |
+| () | L-R | 函数调用 |
+| () | | 值构造，即 type(expr) |
+| [] | | 数组下标 |
+| -> | | 间接成员运算符 |
+| . | | 直接成员运算符 |
+| const_cast | | 专用的类型转换 |
+| dynamic_cast | | 专用的类型转换 |
+| reinterpret_cast | | 专用的类型转换 |
+| static_cast | | 专用的类型转换 |
+| typeid | | 类型标识 |
+| ++ | | 加一运算符，后缀 |
+| -- | | 减一运算符，后缀 |
 | 优先级 3 组，全是一元运算符 |
-| `!` | R-L | 逻辑非 |
-| `~` | | 位非 |
-| `+` | | 一元加号，正号 |
-| `-` | | 一元减号，负号 |
-| `++` | | 加一运算符，前缀 |
-| `--` | | 减一运算符，前缀 |
-| `&` | | 地址 |
-| `*` | | 解除引用，间接值 |
-| `()` | | 类型转换，即 type(expr) |
-| `sizeof` | | 长度，以字节为单位 |
-| `new` | | 动态分配内存 |
-| `new[]` | | 动态分配数组 |
-| `delete` | | 动态释放内存 |
-| `delete[]` | | 动态释放数组 |
+| ! | R-L | 逻辑非 |
+| ~ | | 位非 |
+| + | | 一元加号，正号 |
+| - | | 一元减号，负号 |
+| ++ | | 加一运算符，前缀 |
+| -- | | 减一运算符，前缀 |
+| & | | 地址 |
+| * | | 解除引用，间接值 |
+| () | | 类型转换，即 type(expr) |
+| sizeof | | 长度，以字节为单位 |
+| new | | 动态分配内存 |
+| new[] | | 动态分配数组 |
+| delete | | 动态释放内存 |
+| delete[] | | 动态释放数组 |
 | 优先级 4 组 |
-| `.*` | L-R | 成员解除引用 |
-| `->*` | | 间接成员解除引用 |
+| .* | L-R | 成员解除引用 |
+| ->* | | 间接成员解除引用 |
 | 优先级 5 组，全是二元运算符 |
-| `*` | L-R | 乘 |
-| `/` | | 除 |
-| `^` | | 模，余数 |
+| * | L-R | 乘 |
+| / | | 除 |
+| ^ | | 模，余数 |
 | 优先级 6 组，全是二元运算符 |
-| `+` | L-R | 加 |
-| `-` | | 减 |
+| + | L-R | 加 |
+| - | | 减 |
 | 优先级 7 组 |
-| `<<` | L-R | 左移 |
-| `>>` | | 右移 |
+| << | L-R | 左移 |
+| >> | | 右移 |
 | 优先级 8 组 |
-| `<` | L-R | 小于 |
-| `<=` | | 小于或等于 |
-| `>=` | | 大于或等于 |
-| `>` | | 大于 |
+| < | L-R | 小于 |
+| <= | | 小于或等于 |
+| >= | | 大于或等于 |
+| > | | 大于 |
 | 优先级 9 组 |
-| `==` | L-R | 等于 |
-| `!=` | | 不等于 |
+| == | L-R | 等于 |
+| != | | 不等于 |
 | 优先级 10 组，一元运算符 |
-| `&` | L-R | 按位 AND |
+| & | L-R | 按位 AND |
 | 优先级 11 组 |
-| `^` | L-R | 按位 XOF，异或 |
+| ^ | L-R | 按位 XOF，异或 |
 | 优先级 12 组 |
-| `\|` | L-R | 按位 OR |
+| \| | L-R | 按位 OR |
 | 优先级 13 组 |
-| `&&` | L-R | 逻辑 AND |
+| && | L-R | 逻辑 AND |
 | 优先级 14 组 |
-| `\|\|` | L-R | 逻辑 OR |
+| \|\| | L-R | 逻辑 OR |
 | 优先级 15 组 |
-| `:?` | R-L | 条件 |
+| :? | R-L | 条件 |
 | 优先级 16 组 |
-| `=` | R-L | 简单赋值 |
-| `*=` | | 乘并赋值 |
-| `/=` | | 乘并赋值 |
-| `%=` | | 乘并赋值 |
-| `+=` | | 乘并赋值 |
-| `&=` | | 按位 AND 并赋值 |
-| `^=` | | 按位 XOR 并赋值 |
-| `\|=` | | 按位 OR 并赋值 |
-| `<<=` | | 左移并赋值 |
-| `>>=` | | 右移并赋值 |
+| = | R-L | 简单赋值 |
+| *= | | 乘并赋值 |
+| /= | | 乘并赋值 |
+| %= | | 乘并赋值 |
+| += | | 乘并赋值 |
+| &= | | 按位 AND 并赋值 |
+| ^= | | 按位 XOR 并赋值 |
+| \|= | | 按位 OR 并赋值 |
+| <<= | | 左移并赋值 |
+| >>= | | 右移并赋值 |
 | 优先级 17 组 |
-| `throw` | L-R | 引发异常 |
+| throw | L-R | 引发异常 |
 | 优先级 18 组 |
-| `,` | L-R | 将两个表达式合并成一个 |
+| , | L-R | 将两个表达式合并成一个 |
 
 # C++ 成员函数属性
 
@@ -185,8 +185,28 @@
     - `\[0]77` 八进制值
     - `\xff` 十六进制值
 1. scanf 输入格式中的空白表示跳过空白寻找下一个字符，%c 除外，%c 前面的空白表示跳过空白，前面的非空白会匹配。
+    ```c
+    int x = 0;
+    int res = scanf(" \t \n \r %d", &x); // 输入 3。
+    printf("%d, %d\n", res, x); // 1, 3
+    ```
+    ```c
+    char str[2] = {0};
+    int res = scanf("\tq %c", str); // 输入 \t q \t w。
+    printf("%d, %s\n", res, str); // 1, w
+    ```
 1. const 表示修饰的变量不能通过这个变量修改值，但可以通过别的变量修改。
-1. 不允许数组作为一个单元赋值给另一个数组，除初始化以外不允许使用大括号列表形式赋值。变长数组不能初始化
+1. 不允许数组作为一个单元赋值给另一个数组，除初始化以外不允许使用大括号列表形式赋值。变长数组不能初始化。
+    ```c
+    char str[2];
+    str = {0}; // 无法编译。
+
+    struct s {
+        int x;
+        char str[];
+    };
+    struct s s = {.x = 1, .str = "hello world"}; // 无法编译。
+    ```
 1. short 占用的存储空间不能多于 int，long 占用的存储空间不能少于 int。
 1. 使用 `\` 和多对双引号表示字符串断行。
 1. 扩展字符：
@@ -228,7 +248,7 @@
 1. 变量和标记的名称使用了不同的共享名称空间。
     ```c
     struct rect { double x; double y; };
-    int rect; // 在C中不会产生冲突。
+    int rect; // 在 C 中不会产生冲突。
     ```
 1. 复杂的声明：
     ```c
@@ -277,22 +297,22 @@ C11 新增：_Alignas、_Alignof、_Atomic、_Bool、_Complex、_Generic、_Imag
 
 | 运算符，优先级从高到低 | 结合律 |
 |:-|:-:|
-| `++后缀`、`--后缀`、`()函数调用`、`[]`、`{}复合字面量`、`.`、`->` | L-R |
-| `++前缀`、`--前缀`、`-`、`+`、`~`、`!`、`*解引用`、`&取址`、`sizeof`、`_Alignof(类型名)` 都是一元运算符 | R-L |
-| `(类型名)` | R-L |
-| `*`、`/`、`%` | L-R |
-| `+`、`-` 都是二元运算符 | L-R |
-| `<<`、`>>` | L-R |
-| `<`、`>`、`>=`、`<=` | L-R |
-| `==`、`!=` | L-R |
-| `&` | L-R |
-| `^` | L-R |
-| `|` | L-R |
-| `&&` | L-R |
-| `||` | L-R |
-| `?:` | R-L |
-| `=`、`*=`、`/=`、`+=`、`-=`、`<<=`、`>>=`、`&=`、`|=`、`^=` | R-L |
-| `,` | L-R |
+| ++后缀、--后缀、()函数调用、[]、{}复合字面量、.、-> | L-R |
+| ++前缀、--前缀、-、+、~、!、*解引用、&取址、sizeof、_Alignof(类型名) 都是一元运算符 | R-L |
+| (类型名) | R-L |
+| *、/、% | L-R |
+| +、- 都是二元运算符 | L-R |
+| <<、>> | L-R |
+| <、>、>=、<= | L-R |
+| ==、!= | L-R |
+| & | L-R |
+| ^ | L-R |
+| \| | L-R |
+| && | L-R |
+| \|\| | L-R |
+| ?: | R-L |
+| =、*=、/=、+=、-=、<<=、>>=、&=、\|=、^= | R-L |
+| , | L-R |
 
 # C 存储类别
 
@@ -310,106 +330,106 @@ C11 新增：_Alignas、_Alignof、_Atomic、_Bool、_Complex、_Generic、_Imag
 # C 标准头文件
 
 1. C89/C90 标准头文件
-    - <assert.h> - 断言宏
-    - <ctype.h> - 字符类型函数
-    - <errno.h> - 错误码
-    - <float.h> - 浮点数特性
-    - <limits.h> - 整数特性
-    - <locale.h> - 本地化
-    - <math.h> - 数学函数
-    - <setjmp.h> - 非本地跳转
-    - <signal.h> - 信号处理
-    - <stdarg.h> - 可变参数列表
-    - <stddef.h> - 常用类型和宏
-    - <stdio.h> - 标准输入输出
-    - <stdlib.h> - 通用工具函数
-    - <string.h> - 字符串处理
-    - <time.h> - 时间和日期函数
+    - assert.h：断言宏
+    - ctype.h：字符类型函数
+    - errno.h：错误码
+    - float.h：浮点数特性
+    - limits.h：整数特性
+    - locale.h：本地化
+    - math.h：数学函数
+    - setjmp.h：非本地跳转
+    - signal.h：信号处理
+    - stdarg.h：可变参数列表
+    - stddef.h：常用类型和宏
+    - stdio.h：标准输入输出
+    - stdlib.h：通用工具函数
+    - string.h：字符串处理
+    - time.h：时间和日期函数
 1. C99 标准新增头文件
-    - <complex.h> - 复数运算
-    - <fenv.h> - 浮点环境
-    - <inttypes.h> - 格式化输入输出
-    - <stdbool.h> - 布尔类型和值
-    - <stdint.h> - 定宽整数类型
-    - <tgmath.h> - 泛型数学函数
+    - complex.h：复数运算
+    - fenv.h：浮点环境
+    - inttypes.h：格式化输入输出
+    - stdbool.h：布尔类型和值
+    - stdint.h：定宽整数类型
+    - tgmath.h：泛型数学函数
 1. C11 标准新增头文件
-    - <stdalign.h> - 对齐支持
-    - <stdatomic.h> - 原子操作
-    - <stdnoreturn.h> - noreturn 函数
-    - <threads.h> - 线程支持
-    - <uchar.h> - Unicode 字符类型
+    - stdalign.h：对齐支持
+    - stdatomic.h：原子操作
+    - stdnoreturn.h：noreturn 函数
+    - threads.h：线程支持
+    - uchar.h：Unicode 字符类型
 
 # C++ 标准头文件
 
 1. C++98/C++03 标准头文件
-    - <algorithm> - 常用算法
-    - <bitset> - 位集容器
-    - <complex> - 复数类
-    - <deque> - 双端队列容器
-    - <exception> - 异常处理类
-    - <fstream> - 文件流类
-    - <functional> - 函数对象和绑定器
-    - <iomanip> - 输入输出操纵器
-    - <ios> - 基本输入输出支持
-    - <iosfwd> - 输入输出前向声明
-    - <iostream> - 标准输入输出流
-    - <istream> - 输入流类
-    - <iterator> - 迭代器支持
-    - <limits> - 数值极限
-    - <list> - 双向链表容器
-    - <locale> - 本地化支持
-    - <map> - 映射容器
-    - <memory> - 动态内存管理
-    - <new> - 动态内存分配
-    - <numeric> - 数值操作
-    - <ostream> - 输出流类
-    - <queue> - 队列容器
-    - <set> - 集合容器
-    - <sstream> - 字符串流类
-    - <stack> - 栈容器
-    - <stdexcept> - 标准异常类
-    - <streambuf> - 流缓冲区
-    - <string> - 字符串类
-    - <typeinfo> - 运行时类型信息
-    - <utility> - 通用工具类
-    - <valarray> - 数组类
-    - <vector> - 动态数组容器
+    - algorithm：常用算法
+    - bitset：位集容器
+    - complex：复数类
+    - deque：双端队列容器
+    - exception：异常处理类
+    - fstream：文件流类
+    - functional：函数对象和绑定器
+    - iomanip：输入输出操纵器
+    - ios：基本输入输出支持
+    - iosfwd：输入输出前向声明
+    - iostream：标准输入输出流
+    - istream：输入流类
+    - iterator：迭代器支持
+    - limits：数值极限
+    - list：双向链表容器
+    - locale：本地化支持
+    - map：映射容器
+    - memory：动态内存管理
+    - new：动态内存分配
+    - numeric：数值操作
+    - ostream：输出流类
+    - queue：队列容器
+    - set：集合容器
+    - sstream：字符串流类
+    - stack：栈容器
+    - stdexcept：标准异常类
+    - streambuf：流缓冲区
+    - string：字符串类
+    - typeinfo：运行时类型信息
+    - utility：通用工具类
+    - valarray：数组类
+    - vector：动态数组容器
 1. C++11 标准新增头文件
-    - <array> - 定长数组容器
-    - <atomic> - 原子操作
-    - <chrono> - 时间库
-    - <codecvt> - Unicode 转换工具
-    - <condition_variable> - 条件变量
-    - <forward_list> - 单向链表容器
-    - <future> - 异步操作支持
-    - <initializer_list> - 初始化列表
-    - <mutex> - 互斥锁
-    - <random> - 随机数库
-    - <ratio> - 编译时有理数算术
-    - <regex> - 正则表达式
-    - <scoped_allocator> - 作用域分配器
-    - <system_error> - 系统错误支持
-    - <thread> - 线程支持
-    - <tuple> - 元组类
-    - <typeindex> - 类型索引
-    - <type_traits> - 类型特性
-    - <unordered_map> - 无序映射容器
-    - <unordered_set> - 无序集合容器
+    - array：定长数组容器
+    - atomic：原子操作
+    - chrono：时间库
+    - codecvt：Unicode 转换工具
+    - condition_variable：条件变量
+    - forward_list：单向链表容器
+    - future：异步操作支持
+    - initializer_list：初始化列表
+    - mutex：互斥锁
+    - random：随机数库
+    - ratio：编译时有理数算术
+    - regex：正则表达式
+    - scoped_allocator：作用域分配器
+    - system_error：系统错误支持
+    - thread：线程支持
+    - tuple：元组类
+    - typeindex：类型索引
+    - type_traits：类型特性
+    - unordered_map：无序映射容器
+    - unordered_set：无序集合容器
 1. C++17 标准新增头文件
-    - <any> - 类型安全的通用容器
-    - <charconv> - 字符串转换
-    - <filesystem> - 文件系统库
-    - <memory_resource> - 多态内存资源
-    - <optional> - 可选值
-    - <string_view> - 字符串视图
-    - <variant> - 类型安全的联合体
+    - any：类型安全的通用容器
+    - charconv：字符串转换
+    - filesystem：文件系统库
+    - memory_resource：多态内存资源
+    - optional：可选值
+    - string_view：字符串视图
+    - variant：类型安全的联合体
 1. C++20 标准新增头文件
-    - <barrier> - 屏障同步
-    - <bit> - 位操作
-    - <compare> - 三向比较
-    - <concepts> - 概念
-    - <coroutine> - 协程支持
-    - <latch> - 闭锁同步
-    - <numbers> - 数学常量
-    - <ranges> - 范围库
-    - <semaphore> - 信号量
+    - barrier：屏障同步
+    - bit：位操作
+    - compare：三向比较
+    - concepts：概念
+    - coroutine：协程支持
+    - latch：闭锁同步
+    - numbers：数学常量
+    - ranges：范围库
+    - semaphore：信号量

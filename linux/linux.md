@@ -572,3 +572,9 @@ sudo iptables -F # 清空规则，机器重启后失效。
 
 - find：搜索文件
     - sudo find / -name xxx -type f：搜索文件。
+
+## uname
+
+- uname
+    - uname -s：Linux
+    - uname -r：6.1.0-28-amd64

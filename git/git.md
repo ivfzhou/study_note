@@ -21,6 +21,17 @@
 `git config --global https.proxy https://proxyuser:password@proxyserver:port`  
 `git config --global http.proxy http://proxyuser:password@proxyserver:port`：配置网络代理。
 
+### 配置 ssh 网络代理
+
+1. sudo apt install connect-proxy
+1. vim .ssh/config
+1. 添加：
+    ```config
+    Host github.com
+    User git
+    ProxyCommand connect-proxy -S 127.0.0.1:1089 %h %p
+    ```
+
 ## 初始化仓库
 
 `git init <dir>`：初始化仓库。  

@@ -17,7 +17,9 @@
 `git config --global user.email <email>`  
 `git config --global init.defaultBranch <name>`：设置初始化仓库默认分支名。  
 `git config --global http.sslVerify false`  
-`git config -l`：查看配置信息。
+`git config -l`：查看配置信息。  
+`git config --global https.proxy https://proxyuser:password@proxyserver:port`  
+`git config --global http.proxy http://proxyuser:password@proxyserver:port`：配置网络代理。
 
 ## 初始化仓库
 

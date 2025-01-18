@@ -13,6 +13,7 @@
 - 运算写法 `` `expr x op y` ``、`$((x op y))`、`$[ x op y ]`。
 - 单引号字符串中不识别变量，不能转义。双引号字符串中可解析变量可转义。
 - 获取字符串长度 `${#string}`。字符串拼接 `""$string""`。
+- `command -v bash > /dev/null 2>&1 && echo yes || echo no`：检测系统中是否安装了 bash，并根据检测结果输出 yes 或 no。
 
 # 特殊字符
 

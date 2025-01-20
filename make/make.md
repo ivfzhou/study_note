@@ -67,3 +67,9 @@
     $(patsubst %.c,%.o,x.c.c bar.c)
     $(error Unsupported platform: $(PLATFORM))
     ```
+
+# 使用 PREFIX
+
+在 Makefile 中定义：`PREFIX ?= /path/to/dir`，将成为 PREFIX 的默认值。  
+然后在命令行中指定：`make PREFIX=/path/to/dir`，修改 PREFIX 的值。  
+或者通过环境变量修改 PREFIX 默认值，例如：`export PREFIX=/path/to/dir`。

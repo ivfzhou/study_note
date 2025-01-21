@@ -69,3 +69,4 @@
 
 - `function name(){}`：function 可省略。
 - `local 变量名`：声明函数内部变量。
+– `${filename%.c}.o`：替换文件后缀。

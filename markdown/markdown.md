@@ -1,3 +1,8 @@
+# 笔记
+
+1. [CommonMark](https://commonmark.org/) 标准文档。
+2. [GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/) 标准文档。
+
 # 语法
 
 ## 标题
@@ -30,27 +35,43 @@
 
 文本前后三个星号：`***文本***`。
 
+### 删除线
+
+文本两边两个波浪线：`~~文本~~`。
+
 ## 引用
 
 行首左尖括号，后跟一个空格：`> 文本`。
 
 ### 块引用
 
-引用行之间加一行，行首左尖括号。
+每行行首左尖括号。在其中可以结合使用代码块和列表。
+
+```markdown
+> 文本
+>
+> 文本
+```
 
 ### 嵌套块引用
 
 块引用行首再加一个左尖括号。
 
+```markdown
+> 文本
+>
+> > 文本
+```
+
 ## 列表
 
 ### 有序列表
 
-行首数字 1，后跟小数点和空格：`1. 有序列表`。
+行首数字 1，后跟小数点和空格：`1. 文本`。
 
 ### 无序列表
 
-行首中划线，后跟一个空格：`- 无序列表`。
+行首中划线，后跟一个空格：`- 文本`。
 
 ### 列表中可使用其他语法
 
@@ -64,8 +85,129 @@
 
 ### 代码块
 
-行首缩进四个空格或者一个制表符。  
-使用三个反引号包围也可以形成代码块，并可在前反引号后指定一种语言。
+- 行首缩进四个空格或者一个制表符。
+
+- 使用三个反引号包围也可以形成代码块，并可在前反引号后指定一种语言。
+
+    ```markdown
+    ​```golang
+    文本
+    ​```
+    ```
+
+#### Mermaid 图
+
+##### 流程图
+
+```markdown
+​```mermaid
+graph TD;
+    A[开始] --> B{判断};
+    B -->|是| C[执行A];
+    B -->|否| D[执行B];
+    C --> E[结束];
+    D --> E;
+​```
+```
+
+```mermaid
+graph TD;
+    A[开始] --> B{判断};
+    B -->|是| C[执行A];
+    B -->|否| D[执行B];
+    C --> E[结束];
+    D --> E;
+```
+
+##### 序列图
+
+```markdown
+​```mermaid
+sequenceDiagram;
+    Alice->>John: 你好 John, 你好吗？
+    John-->>Alice: 我很好，谢谢！
+​```
+```
+
+```mermaid
+sequenceDiagram;
+    Alice->>John: 你好 John, 你好吗？
+    John-->>Alice: 我很好，谢谢！
+```
+
+##### 甘特图
+
+```markdown
+​```mermaid
+gantt
+    title 项目进度
+    dateFormat  YYYY-MM-DD
+    section 设计
+    设计阶段 :a1, 2023-01-01, 30d
+    section 开发
+    开发阶段 :after a1, 60d
+​```
+```
+
+```mermaid
+gantt
+    title 项目进度
+    dateFormat  YYYY-MM-DD
+    section 设计
+    设计阶段 :a1, 2023-01-01, 30d
+    section 开发
+    开发阶段 :after a1, 60d
+```
+
+##### 类图
+
+```markdown
+​```mermaid
+classDiagram
+    Class01 <|-- AveryLongClass : Cool
+    Class03 *-- Class04
+    Class05 o-- Class06
+​```
+```
+
+```mermaid
+classDiagram
+    Class01 <|-- AveryLongClass : Cool
+    Class03 *-- Class04
+    Class05 o-- Class06
+```
+
+##### 状态图
+
+```markdown
+stateDiagram-v2
+    [*] --> 状态1
+    状态1 --> 状态2
+    状态2 --> [*]
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> 状态1
+    状态1 --> 状态2
+    状态2 --> [*]
+```
+
+##### 饼图
+
+```markdown
+pie
+    title 饼图示例
+    "部分1": 30
+    "部分2": 70
+```
+
+```mermaid
+pie
+    title 饼图示例
+    "部分1": 30
+    "部分2": 70
+```
 
 ## 分割线
 
@@ -86,20 +228,12 @@
 语法：`![图片 alt](图片链接 "图片 title")`。  
 图片形式的链接：`[![图片 alt](图片链接 "图片 title")](链接)`。
 
-## 需转义的字符
-
-`` \ ` * _ { } [ ] ( ) # + - . ! | ``。
-
-## 删除线
-
-文本两边两个波浪线：`~~文本~~`。
-
 ## 表格
 
-三个中划线生成列，一个管道符生成行，使用冒号表示对齐方式。  
+三个中划线生成列，一个管道符生成行，使用冒号表示对齐方式。表格中的 `|` 符号需要转义。  
 语法：
 
-```
+```markdown
 |  |  |
 | :---: | :---: |
 |  |  |

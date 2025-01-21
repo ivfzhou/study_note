@@ -53,18 +53,13 @@
     endif
 
     # 循环语句。
-    for i in var; do \
-        ...; \
-    done
-    for i in v1 v2 v3; do \
-        ...; \
-    done
+    LIST = $(foreach i, $(list), $.ext)
 
     # 函数调用。
     srcfiles := $(shell echo src/{00..99}.txt)
     srcfiles := $(wildcard src/*.txt)
     $(subst ee,EE,feet on the street)
-    $(patsubst %.c,%.o,x.c.c bar.c)
+    $(patsubst %.c,%.o,x.c bar.c)
     $(error Unsupported platform: $(PLATFORM))
     ```
 

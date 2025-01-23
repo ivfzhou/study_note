@@ -1,6 +1,7 @@
 # 笔记
 
 1. `make -f makefile -C dir target`
+1. `make -n` 打印命令执行语句，不实际执行。
 1. 依赖文件的修改时间大于目标文件的修改时间，或者目标项文件不存在，就执行该目标。依赖可以是其他目标。
 1. `#` 号开头为注释。
 1. `.ONESHELL:`，目标变成在一个 shell 环境下运行，使用换行符 `\` 或者分号 `;` 分割命令能达到同样的效果。
@@ -21,27 +22,27 @@
     ```Makefile
     目标: 依赖
         命令
-
+    
     # 第一个目标为默认目标。
     all: 
-
+    
     # clean 变成伪目标，伪目标不会当作成文件。
     .PHONY: clean all install
     clean: 
         rm -f *.o
-
+    
     # 所有命令在一个环境下运行。
     .ONESHELL:
     your_target:
-
+    
     # 命令开始不用 tab 而用 >。
     .RECIPEPEFIX = >
     your_target:
-
+    
     # 编译所有 .c 文件，生成 .o 文件。
     %.o: %.c
         $(CC) $(CFLAGS) -c $< -o $@
-
+    
     # 判断语句
     ifeq ($(DEBUG), 1)
         CFLAGS += -g
@@ -50,10 +51,10 @@
     else
         ...
     endif
-
+    
     # 循环语句。
     LIST = $(foreach i, $(list), $.ext)
-
+    
     # 函数调用。
     srcfiles := $(shell echo src/{00..99}.txt)
     srcfiles := $(wildcard src/*.txt)

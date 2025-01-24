@@ -1,11 +1,12 @@
 # 笔记
 
-1. 删除数据卷文件可能导致 run 失败，systemctl restart docker 即可
-1. 指定的文件数据卷，目录下生成随机文件夹名
-1. 数据卷默认路径：/var/lib/docker/volumes
-1. 配置文件路径：/etc/docker/daemon.json
-1. 数据卷有文件就覆盖容器的，没有就复制容器的
-1. 配置文件增加字段 "insecure-registries":[ *host* ]，表示 push 时不使用 ssl
+1. 删除数据卷文件可能导致 run 失败，systemctl restart docker 即可。
+1. 指定的文件数据卷，目录下生成随机文件夹名。
+1. 数据卷默认路径：/var/lib/docker/volumes。
+1. 配置文件路径：/etc/docker/daemon.json。
+1. 数据卷有文件就覆盖容器的，没有就复制容器的。
+1. 配置文件增加字段 "insecure-registries":[ *host* ]，表示 push 时不使用 ssl。
+1. [Dockerfile](./Dockerfile)
 
 # 命令
 
@@ -80,7 +81,7 @@
 1. docker-compose stop：停止容器
 1. docker-compose down：停止容器并删除
 
-# 安装
+# Apt 安装
 
 ```shell
 sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -123,14 +124,14 @@ sudo systemctl restart docker
 1. apache/rocketmq:5.1.3
 1. openzipkin/zipkin:2.24.3
 1. sonatype/nexus3:3.60.0
-1. redis:7.2.1，ip[9-17]
+1. redis:7.2.1
 1. rabbitmq:3.12.5-management
 1. tusproject/tusd:v2.3.0
 1. jaspeen/oracle-11g:latest
 
 # 网络代理配置
 
-在 /etc/docker/daemon.json 里添加  
+在 /etc/docker/daemon.json 里添加：
 ```json
 {
 	"proxies": {
@@ -139,6 +140,6 @@ sudo systemctl restart docker
 	}
 }
 ```
-然后运行  
+然后运行：  
 sudo systemctl daemon-reload  
 sudo systemctl restart docker

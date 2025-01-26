@@ -110,7 +110,7 @@ go env -w GOPRIVATE=gitee.com/ivfzhou,github.com/ivfzhou
 
 ```bash
 go env -w GOPROXY=goproxy.cn,direct
-go env -w GOSUMDB='sum.golang.google.cn goproxy.cn/sumdb/sum.golang.org'
+go env -w GOSUMDB="sum.golang.org https://goproxy.cn/sumdb/sum.golang.org"
 ```
 
 # 三、GOPROXY protocol

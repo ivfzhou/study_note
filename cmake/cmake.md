@@ -11,7 +11,7 @@
         - AUTHOR_WARNING：输出一条作者警告消息，用于指示重要的问题或不兼容的更改。
         - SEND_ERROR：输出一条错误消息，并停止 CMake 构建过程。
         - FATAL_ERROR：输出一条致命错误消息，并终止 CMake 构建过程。
-    
+
 1. **set**(*variable* <*value* ...> [ CACHE *type* "desc" [ FORCE ] ])：用于设置变量的值。
     - *variable*：是要设置的变量名。
     - *value*：是要为变量设置的值。可以将字符串、数字、布尔值等作为变量的值。
@@ -26,7 +26,7 @@
     - `set(CMAKE_THREAD_PREFER_PTHREAD TRUE)`：寻找线程库时优先选择 Pthreads（POSIX threads）。
     - `set(CMAKE_CXX_STANDARD_REQUIRED ON)`：编译器必须支持该语言标准，否则不构建。
     - `set(CMAKE_CXX_EXTENSIONS OFF)`：表示禁用编译器特定的扩展，这可以确保代码具有更好的可移植性。
-    
+
 1. **string**(*command* *output_variable* [ *input_string* ... ])：用于处理字符串的命令，它提供了多种字符串操作和转换的功能。
     - *command*：是要执行的字符串操作命令。
         - LENGTH：获取字符串的长度。
@@ -40,7 +40,7 @@
     - *input_string*：是要操作的输入字符串。
     - `string(TIMESTAMP BUILT_TIME "%Y-%m-%d %H:%M:%S")`
     - `string(REPLACE "/MD" "/MT" ${CompilerFlag} "${${CompilerFlag}}")`
-    
+
 1. **list**(*command* <*args* ...>)：用于对列表进行操作和管理。
 
     - *command*：
@@ -89,15 +89,15 @@
 
 1. **target_include_directories**：来为特定的目标添加头文件路径。
 
-     1. `target_include_directories(MyExecutable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)`：`PRIVATE` 关键字表示这个头文件只对 `MyExecutable` 目标可见。
+      1. `target_include_directories(MyExecutable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)`：`PRIVATE` 关键字表示这个头文件只对 `MyExecutable` 目标可见。
 
 1. **target_compile_features**(*target* PRIVATE cxx_std_11)：为特定的目标设置语言标准版本。
 
 1. **install**：
 
-     1. `install(TARGETS MyLibrary DESTINATION /usr/local/lib)`：安装库、头文件和可执行文件到 /usr/local。
-     1. `install(FILES include/my_header.h DESTINATION /usr/local/include)`
-     1. `install(TARGETS MyExecutable DESTINATION /usr/local/bin)`
+      1. `install(TARGETS MyLibrary DESTINATION /usr/local/lib)`：安装库、头文件和可执行文件到 /usr/local。
+      1. `install(FILES include/my_header.h DESTINATION /usr/local/include)`
+      1. `install(TARGETS MyExecutable DESTINATION /usr/local/bin)`
 
 1. **find_package**()：用于加载和使用外部项目（通常是库）的命令。
 
@@ -106,71 +106,79 @@
 1. **aux_source_directory**(*path* *var*)：将文件夹下文件名保存在变量中。
 
 1. **execute_process**(COMMAND *command* [ *args* ... ]  
-     [ WORKING_DIRECTORY *dir* ]  
-     [ RESULT_VARIABLE *var* ]  
-     [ OUTPUT_VARIABLE *var* ]  
-     [ ERROR_VARIABLE *var* ]  
-     [ OUTPUT_STRIP_TRAILING_WHITESPACE ]  
-     [ ERROR_STRIP_TRAILING_WHITESPACE ]  
-     [ OUTPUT_QUIET ]  
-     [ ERROR_QUIET ])：用于在构建过程中执行外部进程。
+      [ WORKING_DIRECTORY *dir* ]  
+      [ RESULT_VARIABLE *var* ]  
+      [ OUTPUT_VARIABLE *var* ]  
+      [ ERROR_VARIABLE *var* ]  
+      [ OUTPUT_STRIP_TRAILING_WHITESPACE ]  
+      [ ERROR_STRIP_TRAILING_WHITESPACE ]  
+      [ OUTPUT_QUIET ]  
+      [ ERROR_QUIET ])：用于在构建过程中执行外部进程。
 
-     - RESULT_VARIABLE：用于存储命令的返回值。
-     - OUTPUT_VARIABLE：用于存储命令的标准输出。
-     - ERROR_VARIABLE：用于存储命令的标准错误输出。
-     - OUTPUT_QUIET、ERROR_QUIET：用于禁止将命令的标准输出或错误输出打印到 CMake 的输出中。
-     - OUTPUT_STRIP_TRAILING_WHITESPACE、ERROR_STRIP_TRAILING_WHITESPACE：去除标准输出或错误输出的末尾空白字符。
+      - RESULT_VARIABLE：用于存储命令的返回值。
+      - OUTPUT_VARIABLE：用于存储命令的标准输出。
+      - ERROR_VARIABLE：用于存储命令的标准错误输出。
+      - OUTPUT_QUIET、ERROR_QUIET：用于禁止将命令的标准输出或错误输出打印到 CMake 的输出中。
+      - OUTPUT_STRIP_TRAILING_WHITESPACE、ERROR_STRIP_TRAILING_WHITESPACE：去除标准输出或错误输出的末尾空白字符。
 
 1. **find_path**(*variable*  
-    NAMES *head.h*  
-    PATHS *path*  
-    NO_DEFAULT_PATH)：用于查找指定文件或目录的路径，路径储存到变量中 *variable*。NO_DEFAULT_PATH 确保只在 PATHS 下搜索。
-    
+     NAMES *head.h*  
+     PATHS *path*  
+     NO_DEFAULT_PATH)：用于查找指定文件或目录的路径，路径储存到变量中 *variable*。NO_DEFAULT_PATH 确保只在 PATHS 下搜索。
+
 1. **find_library**(*var*  
-    NAMES *file*  
-    PATHS *path*  
-    NO_DEFAULT_PATH)：用于查找指定库文件的路径，路径储存到变量中 *variable*。
-    
+     NAMES *file*  
+     PATHS *path*  
+     NO_DEFAULT_PATH)：用于查找指定库文件的路径，路径储存到变量中 *variable*。
+
 1. **ExternalProject_Add**(*name*  
-    PREFIX *value*  
-    GIT_REPOSITORY *value*  
-    GIT_TAG *value*  
-    CONFIGURE_COMMAND *value*  
-    BUILD_COMMAND *value*  
-    CMAKE_ARGS *value*  
-    INSTALL_COMMAND *value*)：用于在构建过程中添加外部项目作为依赖。
-    
+     PREFIX *value*  
+     GIT_REPOSITORY *value*  
+     GIT_TAG *value*  
+     CONFIGURE_COMMAND *value*  
+     BUILD_COMMAND *value*  
+     CMAKE_ARGS *value*  
+     INSTALL_COMMAND *value*)：用于在构建过程中添加外部项目作为依赖。
+
 1. **FetchContent_Declare**(*name* GIT_REPOSITORY *value*)
 
 1. **FetchContent_MakeAvailable**(*name*)：用于下载和构建在 CMake 项目中声明的内容。
 
+1. **target_sources**
+
+     1. `target_sources(MyExecutable PRIVATE $<TARGET_OBJECTS:${obj_name}>)`
+
+1. **target_compile_options**
+
+     1. `target_compile_options(MyExecutable PRIVATE -Wall)`
+
 1. 分支语句：
-    ```cmake
-    if( ... )
-    ...
-    elseif ( ... )
-    ...
-    else()
-    ...
-    endif()
-    ```
-    
+     ```cmake
+     if( ... )
+     ...
+     elseif ( ... )
+     ...
+     else()
+     ...
+     endif()
+     ```
+
 1. 判断表达式：
-    ```cmake
-    EQUAL
-    STREQUAL
-    NOT DEFINED
-    AND
-    MATCHES
-    VERSION_LESS
-    ```
-    
+     ```cmake
+     EQUAL
+     STREQUAL
+     NOT DEFINED
+     AND
+     MATCHES
+     VERSION_LESS
+     ```
+
 1. 循环语句：
-    ```cmake
-    foreach(v list_var)
-    ...
-    endforeach()
-    ```
+     ```cmake
+     foreach(v list_var)
+     ...
+     endforeach()
+     ```
 
 # 变量
 

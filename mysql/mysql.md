@@ -564,7 +564,7 @@ networks:
 - DATE_SUB('时间', INTERVAL 数 关键字) 返回日期减上间隔时间的结果，如：SELECT DATE_SUB(CURRENT_DATE，INTERVAL 6 MONTH);
 - PERIOD_ADD(时间, 数字) 增加月数到时间（以格式YYMM或YYYYMM)，以格式YYYYMM返回值，注意参数时间不是日期值
 - CONVERT_TZ('时间', 原时区, 转成时区) 转换时区
-- DATE_FORMAT('时间', 格式) 依照指定格式格式化日期时间值，DATA_FROMAT(NOW()，’%Y%m%d’);#20200118
+- DATE_FORMAT('时间', 格式) 依照指定格式格式化日期时间值，DATE_FROMAT(NOW()，’%Y%m%d’);#20200118
 - TIME_FORMAT('时间', 格式) 依照格式格式化时间值
 - FROM_UNIXTIME(时间戳, 格式) 根据指定的格式，格式化UNIX时间戳
 - UNIX_TIMESTAMP() 返回unix时间戳，毫秒数

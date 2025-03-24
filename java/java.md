@@ -31,7 +31,7 @@
 # 注解
 
 // 单行注解。  
-/**/ 多行注解。  
+/** 多行注解。  
 /** @author @version @since @see @param @return
 \*/ 文档注释。
 
@@ -97,8 +97,8 @@ abstract boolean break byte case catch char class const continue default do doub
 1. [a-zA-Z]：a 到 z 或 A 到 Z，两头的字母包括在内（范围）。
 1. [a-d[m-p]]：a 到 d 或 m 到 p，[a-dm-p]（并集）。
 1. [a-z&&[def]]：d、e 或 f（交集）。
-1. [a-z&&[^bc]]：a 到 z，除了 b 和 c，[ad-z]（减去）。
-1. [a-z&&[^m-p]]：a 到 z，且非 m 到 p，[a-lq-z]（减去）。
+1. [a-z&&\[^bc]]：a 到 z，除了 b 和 c，[ad-z]（减去）。
+1. [a-z&&\[^m-p]]：a 到 z，且非 m 到 p，[a-lq-z]（减去）。
 1. (red|blue|green)：查找任何指定的选项。
 1. .：任意字符（与行结束符可能匹配也可能不匹配）。
 1. \\d：数字 [0-9]。

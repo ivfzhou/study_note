@@ -52,73 +52,73 @@ networks:
 
 # 注释
 
-\# 单行注释  
--- 单行注释  
-/**/ 多行注释
+\#：单行注释。  
+--：单行注释。   
+/**/：多行注释。
 
 # 数据类型
 
-1. TINYINT(l)：1 字节。范围：有符号 [-128, 127]，无符号 [0, 255]。后加 unsigned 表示为无符号范围。后加 zerofill 表示数值不足指定的位数时以 0 来填充
-1. SMALLINT(l)：2 字节。范围：有符号 [-32768, 32767]，无符号 [0, 65535]
-1. MEDIUMINT(l)：3 字节。范围：有符号 [-8388608, 8388607]，无符号 [0, 16777215]
-1. INT|INTERGE(l)：4 个字节。范围：有符号 [-2147483648, 2147483647]，无符号 [0, 4294967295]
-1. BIGINT(l)：8 字节。范围：有符号 [-9233372036854775808, 9223372036854775807]，无符号 [0, 18446744073709551615]
-1. FLOAT(总位数 m, 小数位数 d)：4 字节。浮点数类型
-1. DOUBLE(m, d)：8 个字节。浮点数类型
-1. DECIMAL(m, d)：大小：如果 M>D,为 M+2 否则为 D+2。(精度 1-255 默认 10，标度 1-30 默认 0)。定点数类型。例如 decimal(5,2) 能够存储具有总共五位数有两位小数的任何值
-1. CHAR(n)：大小：字符数大小，范围 [0, 255] 字符。固定内存空间大小存值
-1. VARCHAR(n)：大小：范围 [0, 65535] 字节。如字符编码为 UTF-8，则大小范围 [0, 16383] 字符。GBK 为 [0, 32767] 字符。会额外用一两个字节储存数据长度
-1. TINYTEXT：大小：[0, 255] 字节。只对 max_sort_length 个字节排序
-1. TEXT：大小：[0, 65535] 字节
-1. MEDIUMTEXT：大小：[0, 16777215] 字节（16MB）
-1. LONGTEXT：大小：[0, 4294967295] 字节（4GB）
-1. ENUM('elem1', 'elem2', ...)：枚举类型。插入数据时可以选下标也可指定值。最多 65535 个成员。成员尾部空格自动删除。默认值为 NULL。如果字段为 NOT NULL 则默认值为枚举第 1 个成员
-1. SET('elem1', 'elem2', ...)：去重集合。插入数据时可以选下标也可指定值，插入多个值时，值之间用逗号分割，可以插入多个值。值尾部空格自动删除。默认值为 NULL
-1. BIT(x)：位数据类型。最大 64 位，默认 1 位。值不足位数前面补 0
-1. BINARY(字节)
-1. VARBINATY(字节)：最大数为 65535
-1. TINYBLOB：大小：[0, 255] 字节。只对 max_sort_length 个字节排序
-1. BLOB：大小：[0, 65535] 字节
-1. MEDIUMBLOB：大小：[0, 16777215] 字节
-1. LONGBLOB：大小：[0, 4294967295] 字节
-1. YEAR：1字节。格式：YYYY，范围 [1901, 2155]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999。字符 0 表示 2000，而整型 0 表示 0000
-1. DATE：3字节。格式：YYYY-MM-dd，范围 [0000-01-01,9999-12-31]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999  
-   字符型格式：'YYYY-MM-dd'、'YY-MM-dd'、'YYYYMMdd'、'YYMMdd'。中间分割符-可以替换成 ./@+*  
+1. TINYINT(*n*)：1 字节。范围：有符号 [-128, 127]，无符号 [0, 255]。后加 unsigned 表示为无符号范围。后加 zerofill 表示数值不足指定的位数时以 0 来填充。
+1. SMALLINT(*n*)：2 字节。范围：有符号 [-32768, 32767]，无符号 [0, 65535]。
+1. MEDIUMINT(*n*)：3 字节。范围：有符号 [-8388608, 8388607]，无符号 [0, 16777215]。
+1. INT | INTERGE(*n*)：4 个字节。范围：有符号 [-2147483648, 2147483647]，无符号 [0, 4294967295]。
+1. BIGINT(*n*)：8 字节。范围：有符号 [-9233372036854775808, 9223372036854775807]，无符号 [0, 18446744073709551615]
+1. FLOAT(*总位数 m*, *小数位数 d*)：4 字节。浮点数类型。
+1. DOUBLE(*m*, *d*)：8 个字节。浮点数类型。
+1. DECIMAL(*m*, *d*)：大小：如果 M>D，为 M+2 否则为 D+2。(精度 1-255 默认 10，标度 1-30 默认 0)。定点数类型。例如 decimal(5, 2) 能够存储具有总共五位数有两位小数的任何值。
+1. CHAR(*n*)：大小：字符数大小，范围 [0, 255] 字符。固定内存空间大小存值。
+1. VARCHAR(n)：大小：范围 [0, 65535] 字节。如字符编码为 UTF-8，则大小范围 [0, 16383] 字符。GBK 为 [0, 32767] 字符。会额外用一两个字节储存数据长度。
+1. TINYTEXT：大小：[0, 255] 字节。只对 max_sort_length 个字节排序。
+1. TEXT：大小：[0, 65535] 字节。
+1. MEDIUMTEXT：大小：[0, 16777215] 字节（16MB）。
+1. LONGTEXT：大小：[0, 4294967295] 字节（4GB）。
+1. ENUM('elem1', 'elem2', ...)：枚举类型。插入数据时可以选下标也可指定值。最多 65535 个成员。成员尾部空格自动删除。默认值为 NULL。如果字段为 NOT NULL 则默认值为枚举第 1 个成员。
+1. SET('elem1', 'elem2', ...)：去重集合。插入数据时可以选下标也可指定值，插入多个值时，值之间用逗号分割，可以插入多个值。值尾部空格自动删除。默认值为 NULL。
+1. BIT(*x*)：位数据类型。最大 64 位，默认 1 位。值不足位数前面补 0。
+1. BINARY(*字节*)。
+1. VARBINATY(*字节*)：最大数为 65535。
+1. TINYBLOB：大小：[0, 255] 字节。只对 max_sort_length 个字节排序。
+1. BLOB：大小：[0, 65535] 字节。
+1. MEDIUMBLOB：大小：[0, 16777215] 字节。
+1. LONGBLOB：大小：[0, 4294967295] 字节。
+1. YEAR：1 字节。格式：YYYY，范围 [1901, 2155]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999。字符 0 表示 2000，而整型 0 表示 0000。
+1. DATE：3 字节。格式：YYYY-MM-dd，范围 [0000-01-01,9999-12-31]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999。  
+   字符型格式：'YYYY-MM-dd'、'YY-MM-dd'、'YYYYMMdd'、'YYMMdd'。中间分割符 - 可以替换成 ./@+*  
    整形格式：YYYYMMdd、YYMMdd、(00)MMdd
-1. TIME(i)：3 字节。格式：HHH:mm:ss，范围 [-838:59:59, 838:59:59]
+1. TIME(*i*)：3 字节。格式：HHH:mm:ss，范围 [-838:59:59, 838:59:59]。
    字符型格式：'D HH:mm:ss'、'HHH:mm:ss'、'HH:mm'、'D HH'、'HHHmmss'、'mmss'、'ss'  
    整型格式：HHHmmss、mmss、ss
-1. TIMESTAMP(i)：4 字节。格式：YYYY-MM-dd hh:mm:ss UTC，范围 (1970-01-01 08:00:00, 2038-1-19 11:14:07]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999
+1. TIMESTAMP(*i*)：4 字节。格式：YYYY-MM-dd hh:mm:ss UTC，范围 (1970-01-01 08:00:00, 2038-1-19 11:14:07]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999。
    字符型格式：'YYYY-MM-dd HH:mm:ss'、'YYYY-MM-dd'、'YY-MM-dd'、'YYMMddHHmmss'、'YYMMddHHmm'、'YYYYMMdd'、'YYMMdd'  
    整形格式：YYYYMMddHHmmss、YYMMddHHmmss、YYYYMMdd、YYMMdd、00MMdd
-1. DATETIME(i)：8 字节。格式：YYYY-MM-dd HH:mm:ss，范围 [0000-01-01 00:00:00, 9999-12-31 23:59:59]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999
+1. DATETIME(*i*)：8 字节。格式：YYYY-MM-dd HH:mm:ss，范围 [0000-01-01 00:00:00, 9999-12-31 23:59:59]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999。
    字符型格式：'YYYY-MM-dd HH:mm:ss'、'YYYY-MM-dd'、'YY-MM-dd'、'YYMMddHHmmss'、'YYMMddHHmm'、'YYYYMMdd'、'YYMMdd'  
    整形格式：YYYYMMddHHmmss、YYMMddHHmmss、YYYYMMdd、YYMMdd、00MMdd
 
 # 约束
 
-- PRIMARY KEY 主键约束，不能重复，不能为null
-- UNIQUE KEY 唯一约束，不能重复，可以为null
-- NOT NULL 非空约束
-- DEFAULT 默认约束
-- FOREGIN KEY 外键约束
-- AUTO_INCREMENT 自动增长
-- CHECK 选择约束。check(sex='男' or sex='女')、check(sex in ('男', '女'))
-- ON DELETE|UPDATE RESTRICT 不允许父表删除更新有后代的元组
-- ON DELETE|UPDATE CASCADE 同步删除和更新
-- ON DELETE|UPDATE SET NULL 对应元组属性设置为空值
-- ON DELETE|UPDATE SET DEFAULT 对应元组属性置位默认值
-- CREATE ASSERTION 名 CHECK (条件) 定义断言
+- PRIMARY KEY：主键约束，不能重复，不能为 null。
+- UNIQUE KEY：唯一约束，不能重复，可以为 null。
+- NOT NULL：非空约束
+- DEFAULT：默认约束
+- FOREGIN KEY：外键约束
+- AUTO_INCREMENT：自动增长
+- CHECK：选择约束。check(sex='男' or sex='女')、check(sex in ('男', '女'))
+- ON DELETE | UPDATE RESTRICT：不允许父表删除更新有后代的元组。
+- ON DELETE | UPDATE CASCADE：同步删除和更新。
+- ON DELETE | UPDATE SET NULL：对应元组属性设置为空值。
+- ON DELETE | UPDATE SET DEFAULT：对应元组属性置位默认值。
+- CREATE ASSERTION *名* CHECK (*条件*)：定义断言。
 
 # 库
 
-- CREATE DATABASE [IF NOT EXISTS] `数据库名` [DEFAULT CHARACTER SET `字符名`] [DEFAULT COLLATE utf8mb4_unicode_ci]; 新建数据库
-- ALTER DATABASE|SCHEMA `数据库名`（省略表示选择当前的数据库）[DEFAULT CHARACTER SET `字符名`] [DEFAULT COLLATE utf8mb4_unicode_ci]; 修改数据库字符编码
-- DROP DATABASE [IF EXISTS] `数据库名`; 删除数据库
-- USE `数据库名`; 进入数据库
-- SHOW DATABASES [LIKE '数据库名']; 显示数据库
-- SHOW CREATE DATABASE `数据库名`; 查看创建数据库的语句
-- SELECT DATABASE(); 查看当前数据库
+- CREATE DATABASE [IF NOT EXISTS] `数据库名` [DEFAULT CHARACTER SET `字符名`] [DEFAULT COLLATE utf8mb4_unicode_ci]; 新建数据库。
+- ALTER DATABASE|SCHEMA `数据库名`（省略表示选择当前的数据库）[DEFAULT CHARACTER SET `字符名`] [DEFAULT COLLATE utf8mb4_unicode_ci]; 修改数据库字符编码。
+- DROP DATABASE [IF EXISTS] `数据库名`; 删除数据库。
+- USE `数据库名`; 进入数据库。
+- SHOW DATABASES [LIKE '数据库名']; 显示数据库。
+- SHOW CREATE DATABASE `数据库名`; 查看创建数据库的语句。
+- SELECT DATABASE(); 查看当前数据库。
 
 # 表
 
@@ -405,14 +405,14 @@ networks:
 
 - = 等于。相等返回1，否则返回0
 - <=> 安全等于。null<=>null返回1
-- !=|<> 不等于
+- != | <> 不等于
 - < 小于
 - <= 小于等于
-- > 大于
-- >= 大于等于
-- + 加运算
-- - 减运算
-- * 积运算
+- \> 大于
+- \>= 大于等于
+- \+ 加运算
+- \- 减运算
+- \* 积运算
 - / 除运算
 - % 取模
 - _ 通配一个字符
@@ -435,7 +435,7 @@ networks:
 - REGEXP '正则表达式'
 - RLIKE '正则表达式'
 - 子查询多行单列运算符
-  - ANY或者SOME 例如SELECT * FROM emp WHERE sal > ALL (SELECT sal FROM emp WHERE deptno=30)
+  - ANY或者SOME 例如 SELECT * FROM emp WHERE sal > ALL (SELECT sal FROM emp WHERE deptno=30)
   - ALL
 - [NOT] EXISTS 是否有返回数据
 - [NOT] IN 在某个字段值内

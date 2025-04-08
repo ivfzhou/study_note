@@ -51,3 +51,6 @@
 1. export path dest 导出注册表。
 1. import dest 导入注册表。
 1. nslookup 解析域名ip地址。
+1. bcdedit /set {bootmgr} path \EFI\debian\grubx64.efi
+1. bcdedit /set {bootmgr} description "Debian Linux"
+1. bcdedit /enum all

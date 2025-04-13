@@ -5,19 +5,21 @@ services:
   tusd:
     image: tusproject/tusd:v2.3.0
     container_name: tusd
-    hostname: ivfzhou-docker-tusd
+    hostname: ivfzhou_docker_tusd
     privileged: true
     ports:
       - "8080:8080"
     networks:
       network:
         ipv4_address: 172.16.3.132
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
     volumes:
       - /home/ivfzhou/volumes/tusd/data:/srv/srv/tusd-data/data:rw
     entrypoint: "tusd -expose-metrics=false -disable-cors -hooks-enabled-events="
 networks:
   network:
-    name: ivfzhou-docker-network
+    name: ivfzhou_docker_network
     driver: bridge
     attachable: true
     ipam:

@@ -6,12 +6,12 @@ services:
     image: rabbitmq:4.0.5-management
     container_name: rabbitmq
     privileged: true
-    hostname: ivfzhou-docker-rabbitmq
+    hostname: ivfzhou_docker_rabbitmq
     networks:
       network:
         ipv4_address: 172.16.3.128
     extra_hosts:
-      - "ivfzhoudebian:172.16.3.1"
+      - "ivfzhou_debian:172.16.3.1"
     volumes:
       - /home/ivfzhou/volumes/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:rw
       - /home/ivfzhou/volumes/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins:rw
@@ -27,7 +27,7 @@ services:
       RABBITMQ_DEFAULT_VHOST: /
 networks:
   network:
-    name: ivfzhou-docker-network
+    name: ivfzhou_docker_network
     driver: bridge
     attachable: true
     ipam:
@@ -48,14 +48,14 @@ networks:
 ## Docker 安装
 
 1. docker pull rabbitmq:4.0.5-management # https://hub.docker.com/rabbitmq/
-1. docker network create --subnet 172.16.3.0/24 ivfzhou-docker-network
+1. docker network create --subnet 172.16.3.0/24 ivfzhou_docker_network
 1. mkdir -p volumes/rabbitmq
 1. mv [rabbitmq.conf](./rabbitmq.conf) volumes/rabbitmq/
 1. mv [enabled_plugins](./enabled_plugins) volumes/rabbitmq/
 1. mv [.erlang.cookie](./.erlang.cookie) volumes/rabbitmq/
 1. sudo chown -R 999:999 volumes/rabbitmq
 1. sudo chmod 400 volumes/rabbitmq/.erlang.cookie
-1. docker run --name rabbitmq --hostname ivfzhou-docker-rabbitmq --network ivfzhou-docker-network --ip 172.16.3.129 -p 15672:15672 -p 5672:5672 -v /home/ivfzhou/volumes/rabbitmq/rabbitmq.conf:/opt/rabbitmq/etc/rabbitmq/rabbitmq.conf -v /home/ivfzhou/volumes/rabbitmq/enabled_plugins:/opt/rabbitmq/etc/rabbitmq/enabled_plugins -v /home/ivfzhou/volumes/rabbitmq/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie -v /home/ivfzhou/volumes/rabbitmq/log:/var/log/rabbitmq -v /home/ivfzhou/volumes/rabbitmq/mnesia:/var/lib/rabbitmq/mnesia -d rabbitmq:4.0.5-management
+1. docker run --name rabbitmq --hostname ivfzhou_docker_rabbitmq --network ivfzhou_docker_network --ip 172.16.3.129 -p 15672:15672 -p 5672:5672 -v /home/ivfzhou/volumes/rabbitmq/rabbitmq.conf:/opt/rabbitmq/etc/rabbitmq/rabbitmq.conf -v /home/ivfzhou/volumes/rabbitmq/enabled_plugins:/opt/rabbitmq/etc/rabbitmq/enabled_plugins -v /home/ivfzhou/volumes/rabbitmq/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie -v /home/ivfzhou/volumes/rabbitmq/log:/var/log/rabbitmq -v /home/ivfzhou/volumes/rabbitmq/mnesia:/var/lib/rabbitmq/mnesia -d rabbitmq:4.0.5-management
 
 # Debian12 apt 安装
 
@@ -163,11 +163,11 @@ sudo apt-get install rabbitmq-server -y --fix-missing
 # 集群搭建
 
 1. 二进制版本与 Docker 版本组建集群。
-1. 修改本地 hosts 文件：172.16.3.1 ivfzhoudebian、172.16.3.130 ivfzhou-docker-rabbitmq-1、172.16.3.131 ivfzhou-docker-rabbitmq-2。
+1. 修改本地 hosts 文件：172.16.3.1 ivfzhou_debian、172.16.3.130 ivfzhou_docker_rabbitmq_1、172.16.3.131 ivfzhou_docker_rabbitmq_2。
 1. cp [.erlang.cookie](./.erlang.cookie) programs/rabbitmq_server-4.0.5/var/lib/rabbitmq/.erlang.cookie
 1. sudo chown ivfzhou:ivfzhou programs/rabbitmq_server-4.0.5/var/log/rabbitmq/.erlang.cookie
 1. ./programs/rabbitmq_server-4.0.5/sbin/rabbitmq-server
-1. 创建 docker network create --subnet 172.16.3.0/24 ivfzhou-docker-network 网段。
+1. 创建 docker network create --subnet 172.16.3.0/24 ivfzhou_docker_network 网段。
 1. mkdir -p volumes/rabbitmq/1
 1. mkdir -p volumes/rabbitmq/2
 1. cp [.erlang.cookie](./.erlang.cookie) volumes/rabbitmq/1/.erlang.cookie
@@ -175,8 +175,8 @@ sudo apt-get install rabbitmq-server -y --fix-missing
 1. sudo chown -R 999:999 volumes/rabbitmq
 1. sudo chmod 400 volumes/rabbitmq/1/.erlang.cookie
 1. sudo chmod 400 volumes/rabbitmq/2/.erlang.cookie
-1. docker run -v /home/ivfzhou/volumes/rabbitmq/1/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie -v /home/ivfzhou/volumes/rabbitmq/1/rabbitmq.conf:/opt/rabbitmq/etc/rabbitmq/rabbitmq.conf -v /home/ivfzhou/volumes/rabbitmq/1/enabled_plugins:/opt/rabbitmq/etc/rabbitmq/enabled_plugins -v /home/ivfzhou/volumes/rabbitmq/1/log:/var/log/rabbitmq -v /home/ivfzhou/volumes/rabbitmq/1/mnesia:/var/lib/rabbitmq/mnesia --hostname ivfzhou-docker-rabbitmq-1 --add-host ivfzhoudebian:172.16.3.1 --add-host ivfzhou-docker-rabbitmq-2:172.16.3.131 --network ivfzhou-docker-network --ip 172.16.3.130 --name rabbitmq-1 --link rabbitmq-2 -p 15673:15672 -p 5673:5672 -d rabbitmq:4.0.5-management
-1. docker run -v /home/ivfzhou/volumes/rabbitmq/2/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie -v /home/ivfzhou/volumes/rabbitmq/2/rabbitmq.conf:/opt/rabbitmq/etc/rabbitmq/rabbitmq.conf -v /home/ivfzhou/volumes/rabbitmq/2/enabled_plugins:/opt/rabbitmq/etc/rabbitmq/enabled_plugins -v /home/ivfzhou/volumes/rabbitmq/2/log:/var/log/rabbitmq -v /home/ivfzhou/volumes/rabbitmq/2/mnesia:/var/lib/rabbitmq/mnesia --hostname ivfzhou-docker-rabbitmq-2 --add-host ivfzhoudebian:172.16.3.1 --add-host ivfzhou-docker-rabbitmq-1:172.16.3.130 --network ivfzhou-docker-network --ip 172.16.3.131 --name rabbitmq-2 --link rabbitmq-1 -p 15674:15672 -p 5674:5672 -d rabbitmq:4.0.5-management
+1. docker run -v /home/ivfzhou/volumes/rabbitmq/1/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie -v /home/ivfzhou/volumes/rabbitmq/1/rabbitmq.conf:/opt/rabbitmq/etc/rabbitmq/rabbitmq.conf -v /home/ivfzhou/volumes/rabbitmq/1/enabled_plugins:/opt/rabbitmq/etc/rabbitmq/enabled_plugins -v /home/ivfzhou/volumes/rabbitmq/1/log:/var/log/rabbitmq -v /home/ivfzhou/volumes/rabbitmq/1/mnesia:/var/lib/rabbitmq/mnesia --hostname ivfzhou_docker_rabbitmq_1 --add-host ivfzhou_debian:172.16.3.1 --add-host ivfzhou_docker_rabbitmq_2:172.16.3.131 --network ivfzhou_docker_network --ip 172.16.3.130 --name rabbitmq_1 --link rabbitmq_2 -p 15673:15672 -p 5673:5672 -d rabbitmq:4.0.5-management
+1. docker run -v /home/ivfzhou/volumes/rabbitmq/2/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie -v /home/ivfzhou/volumes/rabbitmq/2/rabbitmq.conf:/opt/rabbitmq/etc/rabbitmq/rabbitmq.conf -v /home/ivfzhou/volumes/rabbitmq/2/enabled_plugins:/opt/rabbitmq/etc/rabbitmq/enabled_plugins -v /home/ivfzhou/volumes/rabbitmq/2/log:/var/log/rabbitmq -v /home/ivfzhou/volumes/rabbitmq/2/mnesia:/var/lib/rabbitmq/mnesia --hostname ivfzhou_docker_rabbitmq_2 --add-host ivfzhou_debian:172.16.3.1 --add-host ivfzhou_docker_rabbitmq_1:172.16.3.130 --network ivfzhou_docker_network --ip 172.16.3.131 --name rabbitmq_2 --link rabbitmq_1 -p 15674:15672 -p 5674:5672 -d rabbitmq:4.0.5-management
 1. 放行本地防火墙端口：4369、25672。
 1. 容器中执行 /opt/rabbitmq/sbin/rabbitmqctl stop_app，接着 reset，接着 join_cluster --ram rabbit@ivfzhoudebian。
 

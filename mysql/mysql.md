@@ -9,13 +9,13 @@ services:
   mysql:
     image: mysql:8.1.0
     container_name: mysql
-    hostname: ivfzhou-docker-mysql
+    hostname: ivfzhou_docker_mysql
     privileged: true
     networks:
       network:
         ipv4_address: 172.16.3.142
     extra_hosts:
-      - "ivfzhoudebian:172.16.3.1"
+      - "ivfzhou_debian:172.16.3.1"
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: db_xxx # 启动创建数据库。
@@ -35,7 +35,7 @@ services:
       - xxx:/docker-entrypoint-initdb.d # 这个目录下的 SQL 文件将被导入到数据库中，默认数据库是变量 MYSQL_DATABASE 的值。
 networks:
   network:
-    name: ivfzhou-docker-network
+    name: ivfzhou_docker_network
     driver: bridge
     attachable: true
     ipam:

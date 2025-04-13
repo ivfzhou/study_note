@@ -11,12 +11,12 @@ services:
     image: redis:7.2.1
     container_name: redis
     privileged: true
-    hostname: ivfzhou-docker-redis
+    hostname: ivfzhou_docker_redis
     networks:
       network:
         ipv4_address: 172.16.3.133
     extra_hosts:
-      - "ivfzhoudebian:172.16.3.1"
+      - "ivfzhou_debian:172.16.3.1"
     working_dir: /data
     ports:
       - "6379:6379"
@@ -28,7 +28,7 @@ services:
       - /config/redis.conf
 networks:
   network:
-    name: ivfzhou-docker-network
+    name: ivfzhou_docker_network
     driver: bridge
     attachable: true
     ipam:
@@ -46,7 +46,7 @@ networks:
 
 # Docker 安装
 
-docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name redis --hostname ivfzhou-docker-redis -p 6379:6379 redis:7.2.1 redis-server /etc/redis/redis.conf
+docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name redis --hostname ivfzhou_docker_redis -p 6379:6379 redis:7.2.1 redis-server /etc/redis/redis.conf
 
 # Debian12 安装 redis
 
@@ -90,7 +90,7 @@ sudo vim /etc/redis/redis.conf
 
 # Docker 安装 sentinel
 
-docker run -v volumes/sentinel/config:/etc/redis -v volumes/sentinel/data:/data --hostname ivfzhou-docker-redis-sentinel --name redis-sentinel redis:7.2.1 redis-sentinel /etc/redis/sentinel.conf
+docker run -v volumes/sentinel/config:/etc/redis -v volumes/sentinel/data:/data --hostname ivfzhou_docker_redis_sentinel --name redis-sentinel redis:7.2.1 redis-sentinel /etc/redis/sentinel.conf
 
 # Cluster 集群连接建立
 
@@ -107,7 +107,7 @@ services:
     image: redis:7.2.1
     container_name: redis_0
     privileged: true
-    hostname: ivfzhou-docker-redis-0
+    hostname: ivfzhou_docker_redis_0
     networks:
       network:
         ipv4_address: 172.16.3.134
@@ -125,7 +125,7 @@ services:
     image: redis:7.2.1
     working_dir: /data
     container_name: redis_1
-    hostname: ivfzhou-docker-redis-1
+    hostname: ivfzhou_docker_redis_1
     networks:
       network:
         ipv4_address: 172.16.3.135
@@ -144,7 +144,7 @@ services:
     container_name: redis_2
     working_dir: /data
     privileged: true
-    hostname: ivfzhou-docker-redis-2
+    hostname: ivfzhou_docker_redis_2
     networks:
       network:
         ipv4_address: 172.16.3.136
@@ -162,7 +162,7 @@ services:
     image: redis:7.2.1
     container_name: redis_3
     working_dir: /data
-    hostname: ivfzhou-docker-redis-3
+    hostname: ivfzhou_docker_redis_3
     networks:
       network:
         ipv4_address: 172.16.3.137
@@ -180,7 +180,7 @@ services:
     image: redis:7.2.1
     working_dir: /data
     container_name: redis_4
-    hostname: ivfzhou-docker-redis-4
+    hostname: ivfzhou_docker_redis_4
     networks:
       network:
         ipv4_address: 172.16.3.138
@@ -199,7 +199,7 @@ services:
     container_name: redis_5
     working_dir: /data
     privileged: true
-    hostname: ivfzhou-docker-redis-5
+    hostname: ivfzhou_docker_redis_5
     volumes:
       - /home/ivfzhou/volumes/redis/cluster/config:/config
       - /home/ivfzhou/volumes/redis/cluster/data:/data
@@ -216,7 +216,7 @@ services:
     image: redis:7.2.1
     container_name: redis_sentinel_0
     working_dir: /data
-    hostname: ivfzhou-docker-redis-sentinel-0
+    hostname: ivfzhou_docker_redis_sentinel_0
     networks:
       network:
         ipv4_address: 172.16.3.140
@@ -240,7 +240,7 @@ services:
     image: redis:7.2.1
     container_name: redis_sentinel_1
     working_dir: /data
-    hostname: ivfzhou-docker-redis-sentinel-1
+    hostname: ivfzhou_docker_redis_sentinel_1
     networks:
       network:
         ipv4_address: 172.16.3.141
@@ -262,7 +262,7 @@ services:
       - redis_5
 networks:
   network:
-    name: ivfzhou-docker-network
+    name: ivfzhou_docker_network
     driver: bridge
     attachable: true
     ipam:

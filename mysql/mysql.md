@@ -14,6 +14,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.142
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: db_xxx # 启动创建数据库。
@@ -115,13 +117,13 @@ networks:
 # 表
 
 1. CREATE TABLE [IF NOT EXISTS] *表名* (
-  *字段名* 数据类型(大小) 约束 COMMENT '注释内容' COLLATE utf8mb4_unicode_ci DEFAULT 函数或者值 ON UPDATE 函数或者值,  [UNIQUE INDEX *索引名*(*字段名*(*长度*),...)],
-  [KEY *索引名*(*字段名*,...)],
-  [CONSTRAINT *约束名* FOREIGN KEY(*字段名*,...) REFERENCES *目标表名*(*目标字段名*,...)],
-  [PRIMARY KEY(*字段*,...)],
-  [UNIQUE KEY(*字段*,...)],
-  [CONTRAINT CHECK(*表达式*)],
-  ) [CHARSET=*字符名*] COMMENT '*注释内容*' ENGINE *储存引擎* AUTO_INCREMENT=*数字*：新建表，两表之间外键列的数据类型一定要与关联的主键的类型一致。
+    *字段名* 数据类型(大小) 约束 COMMENT '注释内容' COLLATE utf8mb4_unicode_ci DEFAULT 函数或者值 ON UPDATE 函数或者值,  [UNIQUE INDEX *索引名*(*字段名*(*长度*),...)],
+    [KEY *索引名*(*字段名*,...)],
+    [CONSTRAINT *约束名* FOREIGN KEY(*字段名*,...) REFERENCES *目标表名*(*目标字段名*,...)],
+    [PRIMARY KEY(*字段*,...)],
+    [UNIQUE KEY(*字段*,...)],
+    [CONTRAINT CHECK(*表达式*)],
+    ) [CHARSET=*字符名*] COMMENT '*注释内容*' ENGINE *储存引擎* AUTO_INCREMENT=*数字*：新建表，两表之间外键列的数据类型一定要与关联的主键的类型一致。
 2. ALTER TABLE *表名* CONVERT TO CHARACTER SET *utf8mb4* COLLATE utf8mb4_general_ci
 3. ALTER TABLE *表名* DEFAULT CHARACTER SET *xxx* COLLATE *xxx*
 4. CREATE TABLE *表名* [AS] SELECT *查询语句*
@@ -147,19 +149,19 @@ networks:
 10. INSERT INTO *表名* SET *字段*=*值*,...：插入一行数据。
 11. INSERT INTO *表名* (*字段名*,...) VALUES (*字段值*,...),... [ON DUPLICATE KEY UPDATE *字段名*=*字段值* | VALUES(*字段名*)],... 如果存在唯一、主键冲突则更新该行指定的字段; 如果插入空值，请使用null。插入的日期和字符一样，都使用单引号括起来。
 12. UPDATE *表名* SET *字段名*=*字段值*,... WHERE *条件* ORDER BY *字段名* | *表达式或者第几列*,... ASC | DESC LIMIT *起始行*,*条数*：更改数据。
-   SET *字段名* = CASE *字段名* WHEN *字段值* THEN *字段值*,...：case-when-then 更新字段值。
+      SET *字段名* = CASE *字段名* WHEN *字段值* THEN *字段值*,...：case-when-then 更新字段值。
 13. UPDATE *表名* JOIN *表名* ON *连接条件* SET *字段名*=*字段值*,... WHERE *条件*：连表更改数据。
 14. DELETE FROM *表名* WHERE 条件 ORDER BY *字段名* |*表达式或者第几列*,... ASC | DESC LIMIT *起始行*,*条数*：删除数据，自增种子还在自增。
 15. DETELE *别名1*, *别名2* FROM *表名* AS *别名1* JOIN *表名* AS *别名2* ON *连接条件* WHERE *条件*：连表删除字段。
 16. TRUNCATE TABLE *表名*：删除表然后又创建一个一模一样的新表。
 17. SELECT *字段名*,... FROM *数据库*.*表名*
-   WHERE 条件
-   GROUP BY *字段*,...<small>和聚合函数同时出现的列名要写在 group by 后</small>
-   HAVING *条件* <small>分组后筛选</small>
-   ORDER BY *字段名* | *表达式或者第几列*,... ASC | DESC <small>所有 null 值分为一组</small>
-   LIMIT *起始条数*,*显示条数*
-   FOR UPDATE <small>获取排他锁</small>
-   LOCK IN SHARE MODE <small>共享锁</small>：查询语句。两事务获取共享锁。其中一个等待获取排他锁，另一个也去获取排他锁时会报 deadlock。查询过程 FROM -> ON -> JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> LIMIT
+      WHERE 条件
+      GROUP BY *字段*,...<small>和聚合函数同时出现的列名要写在 group by 后</small>
+      HAVING *条件* <small>分组后筛选</small>
+      ORDER BY *字段名* | *表达式或者第几列*,... ASC | DESC <small>所有 null 值分为一组</small>
+      LIMIT *起始条数*,*显示条数*
+      FOR UPDATE <small>获取排他锁</small>
+      LOCK IN SHARE MODE <small>共享锁</small>：查询语句。两事务获取共享锁。其中一个等待获取排他锁，另一个也去获取排他锁时会报 deadlock。查询过程 FROM -> ON -> JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> LIMIT
 18. SHOW TABLES：显示所有表。
 19. DESCRIBE | DESC *表名*：查看表详情。
 20. SHOW TABLE STATUS LIKE '*表名*'：查看表的储存引擎。
@@ -198,20 +200,20 @@ networks:
 4. ALTER TABLE *表名* DROP INDEX *索引名*：删除索引。
 5. SHOW INDEX FROM *数据库*.*表名*：查看索引。
 6. EXPLAIN *查询语句*：执行计划。
-  id：执行顺序，从上往下。
-  select_type 查询类型：simple 单表查询。primary 包含了子查询的外层查询。derived FROM 后面的子查询。subquery SELECT 和 WHERE 后面的子查询。dependent subquery 依赖主查询的子查询。uncachable subquery 使用了 @@ 全局变量的子查询，不用缓存。union UNION 后的查询。union result 从 UNION 表获取结果的查询。
-  table：该查询来自哪个表。
-  type 查询的访问类型：system <small>表只有一行记录，系统表</small> > const <small>索引一次找到</small> > eq_ref <small>唯一索引</small> > ref <small>非唯一索引</small> > fulltext > ref_or_null > index_merge <small>多个索引组合使用</small> > unique_subquery <small>关联子查询的唯一索引</small> > index_subquery <small>利用索引来关联子查询</small> > range <small>检索给定范围</small> > index <small>使用了索引但没用来过滤</small> > ALL。
-  possible_keys：可能使用的索引。
-  key：实际使用的索引。
-  key_len：索引中使用的字节数。
+    id：执行顺序，从上往下。
+    select_type 查询类型：simple 单表查询。primary 包含了子查询的外层查询。derived FROM 后面的子查询。subquery SELECT 和 WHERE 后面的子查询。dependent subquery 依赖主查询的子查询。uncachable subquery 使用了 @@ 全局变量的子查询，不用缓存。union UNION 后的查询。union result 从 UNION 表获取结果的查询。
+    table：该查询来自哪个表。
+    type 查询的访问类型：system <small>表只有一行记录，系统表</small> > const <small>索引一次找到</small> > eq_ref <small>唯一索引</small> > ref <small>非唯一索引</small> > fulltext > ref_or_null > index_merge <small>多个索引组合使用</small> > unique_subquery <small>关联子查询的唯一索引</small> > index_subquery <small>利用索引来关联子查询</small> > range <small>检索给定范围</small> > index <small>使用了索引但没用来过滤</small> > ALL。
+    possible_keys：可能使用的索引。
+    key：实际使用的索引。
+    key_len：索引中使用的字节数。
     索引上字段的类型、长度。比如 int=4、varchar(20)=20、char(20)=20。
     varchar 或者 char 这种字符串字段，视字符集要乘不同的值，比如 utf-8 要乘 3，GBK 要乘 2。
     varchar 这种动态字符串要加 2 个字节。
     允许为空的字段要加 1 个字节。
-  ref：哪些列或常量被用于查找索引列上的值。
-  rows：检查的行数。
-  extra：using filesort 文件排序。查询条件和排序条件的索引不一致。using temporary 使用了临时表保存中间结果。using index 使用了索引，没有用表的数据行。using where 使用 where 过滤。using join buffer 连接查询条件没有使用索引。impossible where where 条件恒 false。select tables optimized away 聚合字段使用索引。
+    ref：哪些列或常量被用于查找索引列上的值。
+    rows：检查的行数。
+    extra：using filesort 文件排序。查询条件和排序条件的索引不一致。using temporary 使用了临时表保存中间结果。using index 使用了索引，没有用表的数据行。using where 使用 where 过滤。using join buffer 连接查询条件没有使用索引。impossible where where 条件恒 false。select tables optimized away 聚合字段使用索引。
 
 # 索引数据结构
 
@@ -331,7 +333,7 @@ networks:
 2. mysql -u *用户名* -p *密码* -h *主机名* -A -P *端口号* *数据库名* < *备份文件*：恢复备份。
 3. CREATE USER *用户名*@*主机名* | % <small>表示所有</small> IDENTIFIED WITH mysql_native_password BY '*密码*'：创建用户。
 4. GRANT *权限类型* [ (*字段*), ... ] ON *数据库名*.*表名* <small>\*号代表所有</small> TO *用户名*@*主机名*：给用户授权。
-  权限类型：SELECT、INSERT、DELETE、UPDATE、REFERENCES(外键权限)、CREATE、ALTER、INDEX、DROP、SHOW VIEW、CREATE ROUTINE、ALTER ROUTINE、CREATE TEMPORARY TABLES CREATE VIEW、LOCK TABLES、ALL(ALL PRIVILEGES)、CREATE USER、SHOW DATABASES、REPLICATION SLAVE、REPLICATION CLIENT。
+    权限类型：SELECT、INSERT、DELETE、UPDATE、REFERENCES(外键权限)、CREATE、ALTER、INDEX、DROP、SHOW VIEW、CREATE ROUTINE、ALTER ROUTINE、CREATE TEMPORARY TABLES CREATE VIEW、LOCK TABLES、ALL(ALL PRIVILEGES)、CREATE USER、SHOW DATABASES、REPLICATION SLAVE、REPLICATION CLIENT。
 5. SHOW GRANTS FOR *用户名*@*主机名*：查看用户权限。
 6. REVOKE *权限类型* [ (*字段*), ... ] ON *数据库名*.*表名* FROM *用户名*@*主机名*：删除用户权限。
 7. DROP USER *用户名*@*主机名*, ...;：删除用户。
@@ -368,12 +370,12 @@ networks:
 10. SHOW MATER STATUS：测试主库。
 11. SHOW SLAVE STATUS：测试从库。
 12. CHANGE MASTER TO
-   MASTER_HOST='172.18.0.1',
-   MASTER_PORT=3306,
-   MASTER_USER='mycat',
-   MASTER_PASSWORD='123',
-   MASTER_LOG_FILE='master-data-logs.000009',
-   MASTER_LOG_POS=155：配置从库连接主库。
+      MASTER_HOST='172.18.0.1',
+      MASTER_PORT=3306,
+      MASTER_USER='mycat',
+      MASTER_PASSWORD='123',
+      MASTER_LOG_FILE='master-data-logs.000009',
+      MASTER_LOG_POS=155：配置从库连接主库。
 13. START SLAVE：从库开始复制。
 14. STOP SLAVE; 从库结束复制。
 15. FLUSH LOGS：重置主库复制日志。
@@ -704,12 +706,12 @@ flush privileges;
   - server_id=2
   - relay_log=relaylog
 5. 从库开启客户端运行命令：
-  CHANGE MASTER TO
-  MASTER_HOST='172.18.0.1',
-  MASTER_PORT=3306,
-  MASTER_USER='mycat',
-  MASTER_LOG_FILE='master-data-logs.000006',
-  MASTER_LOG_POS=155;
+    CHANGE MASTER TO
+    MASTER_HOST='172.18.0.1',
+    MASTER_PORT=3306,
+    MASTER_USER='mycat',
+    MASTER_LOG_FILE='master-data-logs.000006',
+    MASTER_LOG_POS=155;
 6. 从库运行 START SLAVE USER=*mycat* PASSWORD='123'：开始复制。
 
 # SQL Server 2000

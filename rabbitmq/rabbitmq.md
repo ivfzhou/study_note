@@ -10,6 +10,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.128
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
     volumes:
       - /home/ivfzhou/volumes/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:rw
       - /home/ivfzhou/volumes/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins:rw

@@ -15,6 +15,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.133
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
     working_dir: /data
     ports:
       - "6379:6379"

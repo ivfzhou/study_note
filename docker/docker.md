@@ -150,7 +150,7 @@ sudo systemctl restart docker
 1. openzipkin/zipkin:2.24.3
 1. sonatype/nexus3:3.60.0
 1. redis:7.2.1
-1. rabbitmq:3.12.5-management
+1. rabbitmq:4.0.5-management
 1. tusproject/tusd:v2.3.0
 1. jaspeen/oracle-11g:latest
 

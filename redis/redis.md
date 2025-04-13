@@ -38,7 +38,7 @@ networks:
 容器启动：  
 1. mkdir -p volumes/redis/config
 1. mkdir -p volumes/redis/data
-1. cp [redis.conf](./redis.conf)volumes/redis/config/redis.conf
+1. cp [redis.conf](./redis.conf) volumes/redis/config/redis.conf
 1. sudo chown -R 999:999 volumes/redis
 1. docker-compose -f docker-compose.yml up -d redis
 
@@ -48,31 +48,31 @@ docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name
 
 # Debian12 安装 redis
 
-1. cd /redis 目录下，执行 make
+1. cd /home/ivfzhou/programs/redis 目录下，执行 make。
 1. 安装 tcl：
     ```shell
     wget http://downloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz
-    tar -xzvf tcl8.6.1-src.tar.gz  -C /opt/tcl/
-    cd  /opt/tcl/unix/
+    tar -xzvf tcl8.6.1-src.tar.gz  -C /home/ivfzhou/programs/tcl/
+    cd  /home/ivfzhou/programs/tcl/unix/
     sudo ./configure
     sudo make
     sudo make install
     ```
-1. cd /opt/redis，执行 make test
-1. 修改 /etc/sysctl.conf，添加 vm.overcommit_memory=1
-1. 修改 /etc/rc.local 文件添加 echo never > /sys/kernel/mm/transparent_hugepage/enabled
+1. cd /home/ivfzhou/programs/redis，执行 make test。
+1. 修改 /etc/sysctl.conf，添加 vm.overcommit_memory=1。
+1. 修改 /etc/rc.local 文件添加 echo never > /sys/kernel/mm/transparent_hugepage/enabled。
 
 # Centos 安装
 
-1. cd /redis && make MALLOC=libc
+1. cd /home/ivfzhou/programs/redis && make MALLOC=libc
 1. make distclean
 1. make
 1. make install
-1. 修改 /etc/sysctl.conf，添加 vm.overcommit_memory=1
-1. 修改 /etc/rc.local 文件添加 echo never > /sys/kernel/mm/transparent_hugepage/enabled
+1. 修改 /etc/sysctl.conf，添加 vm.overcommit_memory=1。
+1. 修改 /etc/rc.local 文件添加 echo never > /sys/kernel/mm/transparent_hugepage/enabled。
 1. sudo -i
 1. echo 511 > /proc/sys/net/core/somaxconn
-1. 修改 redis.conf，maxclient 500
+1. 修改 redis.conf，maxclient 500。
 
 # Debian12 apt 安装
 
@@ -88,13 +88,13 @@ sudo vim /etc/redis/redis.conf
 
 # Docker 安装 sentinel
 
-docker run -vvolumes/sentinel/config:/etc/redis -v volumes/sentinel/data:/data --hostname ivfzhou-docker-redis-sentinel --name redis-sentinel redis:7.2.1 redis-sentinel /etc/redis/sentinel.conf
+docker run -v volumes/sentinel/config:/etc/redis -v volumes/sentinel/data:/data --hostname ivfzhou-docker-redis-sentinel --name redis-sentinel redis:7.2.1 redis-sentinel /etc/redis/sentinel.conf
 
 # Cluster 集群连接建立
 
 1. redis-cli --askpass --cluster create 172.16.3.134:6379 172.16.3.135:6379 172.16.3.136:6379 172.16.3.137:6379 172.16.3.138:6379 172.16.3.139:6379 --cluster-replicas 1
-1. 关闭集群主节点间的总线端口防火墙 +1000，16379
-1. 从节点注意配置主节点账号密码
+1. 关闭集群主节点间的总线端口防火墙 +1000，16379。
+1. 从节点注意配置主节点账号密码。
 1. redis-cli -c -h 172.16.3.134
 
 # Docker-compose 集群配置
@@ -278,18 +278,18 @@ networks:
 
 ## 系统命令
 
-- redis-server /opt/redis/redis.conf --loadmodule /opt/redis/redisbloom.so
-- redis-cli -h 172.18.0.1 -p 6379：连接服务进入命令窗口。
-- redis-cli -h 172.18.0.1 --user ivfzhou --askpass
-- EXIST：退出命令行。
-- SAVE：将数据储存到根目录的 dump.rdb。
-- BGSAVE：后台进行数据存储。
-- BGREWRITEAOF：后台写日志。
-- PING：测试链接。
-- SELECT *index*：选择数据库 0-15。
-- CONFIG SET REQUIREPASS *password*：设置密码。
-- CONFIG GET *：获得所有参数。
-- CONFIG SET *param* *value*：设置参数。
+1. redis-server /opt/redis/redis.conf --loadmodule /opt/redis/redisbloom.so
+2. redis-cli -h 172.18.0.1 -p 6379：连接服务进入命令窗口。
+3. redis-cli -h 172.18.0.1 --user ivfzhou --askpass
+4. EXIST：退出命令行。
+5. SAVE：将数据储存到根目录的 dump.rdb。
+6. BGSAVE：后台进行数据存储。
+7. BGREWRITEAOF：后台写日志。
+8. PING：测试链接。
+9. SELECT *index*：选择数据库 0-15。
+10. CONFIG SET REQUIREPASS *password*：设置密码。
+11. CONFIG GET *：获得所有参数。
+12. CONFIG SET *param* *value*：设置参数。
 
 ## 操作命令
 
@@ -345,8 +345,8 @@ networks:
 
 ## list 类型数据相关命令，特点 value 可重复有序
 
-- LPUSH *key* <*value*...>：向 list 左边添加 value，返回 list 长度。
-- RPUSH *key* <*value*...>：向 list 右边添加 value，返回 list 长度。
+- LPUSH *key* *value*...：向 list 左边添加 value，返回 list 长度。
+- RPUSH *key* *value*...：向 list 右边添加 value，返回 list 长度。
 - LPOP *key*：返回 list 左边的 value，并从 list 中删除该 value。
 - RPOP *key*：返回 list 右边的 value，并从 list 中删除该 value。
 - LLEN *key*：返回 list 的长度。
@@ -362,7 +362,7 @@ networks:
 
 ## set 类型数据相关命令，特点 value 去重无序：
 
-- SADD *key* <*value*...>：向 set 添加 value，返回成功数量。
+- SADD *key* *value*...：向 set 添加 value，返回成功数量。
 - SREM *key* *value*：删除 set 集合的元素。成功返回 1，没有 value 可删除返回 0。
 - SISMEMBER *key* *value*：判断 value 是否在 key 中，存在返回 1，不存在返回 0。
 - SUNION *key1* *key2*：合并多个 set 返回所有 value。
@@ -370,11 +370,11 @@ networks:
 - SPOP *key* *many*：取出 set 中 many 个 value 返回，并从 set 中删除。
 - SRANDMEMBER *key* *many*：取出 set 中 many 个 value 返回。
 - SCARD *key*：获取集合长度。
-- SDIFF *key* <*key1*...>：返回在第一个 set 中存在，其它 set 中不存在的内容。
-- SDIFFSTORE *key* <*key1*...>：将其它 set 中不同与 key 中的元素保存到 key 中。
-- SINTER *key1* <*key2*...>：取交集，返回集合重复的数据。
-- SINTERSTORE *key* <*key1*...>：其它 key 取交集后保存到 key 中。
-- SUNIONSTORE *key* <*key1*...>：取并集后添加到 key。
+- SDIFF *key* *key1*...：返回在第一个 set 中存在，其它 set 中不存在的内容。
+- SDIFFSTORE *key* *key1*...：将其它 set 中不同与 key 中的元素保存到 key 中。
+- SINTER *key1* *key2*...：取交集，返回集合重复的数据。
+- SINTERSTORE *key* *key1*...：其它 key 取交集后保存到 key 中。
+- SUNIONSTORE *key* *key1*...：取并集后添加到 key。
 - SMOVE *key* *key1* *value*：将 value 从 key 移到 key1。
 
 ## sorted set 类型数据相关命令，特点有序去重
@@ -394,9 +394,9 @@ networks:
 
 ## hash 类型数据相关命令，特点结构类似一个对象
 
-- HSET或者HMSET *key* *field1* *value1* *field2* *value2*...：设置 hash value。
+- HSET | HMSET *key* *field1* *value1* *field2* *value2*...：设置 hash value。
 - HGETALL *key*：返回 hash value。
-- HGET或者HMGET *key* *field*...：返回 hash key 中一个 field 的 value。
+- HGET | HMGET *key* *field*...：返回 hash key 中一个 field 的 value。
 - HDEL *key* *field*：删除 hash key 中一个 field 的 value。
 - HINCRBY *key* *field* *number*：将 hash key 中的 field value 加一。
 - HSETNX *key* *field* *value*：若果不存在设置成功。

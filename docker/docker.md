@@ -31,6 +31,10 @@
     ARG module # docker build --build-arg=module=xxx
     ```
 
+8. Docker-Compose 程序下载：
+    1. curl -SL https://github.com/docker/compose/releases/download/v2.35.0/docker-compose-linux-x86_64 -o bin/docker-compose
+    2. chmod +x bin/docker-compose
+
 # 命令
 
 1. docker -v：打印版本。
@@ -165,7 +169,7 @@ sudo systemctl restart docker
 	}
 }
 ```
-然后运行：  
-sudo systemctl daemon-reload  
+然后运行：
+sudo systemctl daemon-reload
 sudo systemctl restart docker
 

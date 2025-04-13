@@ -111,6 +111,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.134
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
     working_dir: /data
     ports:
       - "6380:6380"
@@ -129,6 +131,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.135
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
     privileged: true
     ports:
       - "6381:6381"
@@ -148,6 +152,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.136
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
     ports:
       - "6382:6382"
       - "16382:16382"
@@ -166,6 +172,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.137
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
     privileged: true
     ports:
       - "6383:6383"
@@ -184,6 +192,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.138
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
     privileged: true
     ports:
       - "6384:6384"
@@ -209,6 +219,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.139
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
     command:
       - redis-server
       - /config/redis_6385.conf
@@ -220,6 +232,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.140
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
     privileged: true
     ports:
       - "6386:6386"
@@ -244,6 +258,8 @@ services:
     networks:
       network:
         ipv4_address: 172.16.3.141
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
     privileged: true
     ports:
       - "6387:6387"

@@ -240,7 +240,7 @@ s1 （type可选） = const_expression
 
 结构体切片数组接口映射函数通道声明
 type strcut_name struct {
-field_name field_type
+ field_name field_type
 }
 make([]type, length, capacity)
 [length]type{}

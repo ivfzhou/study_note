@@ -41,13 +41,13 @@
     ```
     deb https://mirrors.163.com/debian bookworm main non-free non-free-firmware contrib
     deb-src https://mirrors.163.com/debian bookworm main non-free non-free-firmware contrib
-
+    
     deb https://mirrors.163.com/debian-security bookworm-security main
     deb-src https://mirrors.163.com/debian-security bookworm-security main
-
+    
     deb https://mirrors.163.com/debian/ bookworm-updates main non-free non-free-firmware contrib
     deb-src https://mirrors.163.com/debian bookworm-updates main non-free non-free-firmware contrib
-
+    
     deb https://mirrors.163.com/debian/ bookworm-backports main non-free non-free-firmware contrib
     deb-src https://mirrors.163.com/debian bookworm-backports main non-free non-free-firmware contrib
     ```
@@ -62,13 +62,13 @@
     ```
     deb http://deb.debian.org/debian/ bookworm main contrib non-free-firmware non-free
     deb-src http://deb.debian.org/debian/ bookworm main contrib non-free-firmware non-free
-
+    
     deb http://security.debian.org/debian-security/ bookworm-security main contrib non-free-firmware non-free
     deb-src http://security.debian.org/debian-security/ bookworm-security main contrib non-free-firmware non-free
-
+    
     deb http://deb.debian.org/debian/ bookworm-updates main non-free non-free-firmware contrib
     deb-src http://deb.debian.org/debian/ bookworm-updates main non-free non-free-firmware contrib
-
+    
     deb http://ftp.debian.org/debian/ bookworm-backports main contrib non-free non-free-firmware
     deb-src http://ftp.debian.org/debian/ bookworm-backports main contrib non-free non-free-firmware
     ```
@@ -297,7 +297,7 @@ sudo systemctl start systemd-timesyncd
     ```conf
     Acquire {
       HTTP::proxy "http://127.0.0.1:8889";
-      HTTPS::proxy "http://127.0.0.1:8889;
+      HTTPS::proxy "http://127.0.0.1:8889";
     }
     ```
     ```conf

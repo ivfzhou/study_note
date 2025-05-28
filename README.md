@@ -29,7 +29,7 @@
 1. [Nacos](./nacos/nacos.md)
 1. [Nexus](./nexus/nexus.md)
 1. [Nginx](./nginx/nginx.md)
-1. [Nodejs](./nidejs/nidejs.md)
+1. [Nodejs](./nidejs/nodejs.md)
 1. [NVM](./nvm/nvm.md)
 1. [Oracle](./oracle/oracle.md)
 1. [Other](./other/other.md)

@@ -2,26 +2,26 @@
 
 1. 将源码转成 HTML 格式文档：
    ```shell
-   cd <openjdk22>
+   cd <openjdk>
    export MODULEPATH=$JAVA_HOME/jmods
    export JAVA_TOOL_OPTIONS='-Duser.language=en -Duser.country=US'
-   javadoc --module-source-path ./src/ -d ./docs/ -charset utf8 -docencoding utf8 -locale en_US --module java.base,java.compiler,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.naming,java.net.http,java.prefs,java.rmi,java.scripting,java.se,java.security.jgss,java.security.sasl,java.smartcardio,java.sql,java.sql.rowset,java.transaction.xa,java.xml,java.xml.crypto,jdk.accessibility,jdk.attach,jdk.charsets,jdk.compiler,jdk.crypto.cryptoki,jdk.crypto.ec,jdk.crypto.mscapi,jdk.dynalink,jdk.editpad,jdk.graal.compiler,jdk.graal.compiler.management,jdk.hotspot.agent,jdk.httpserver,jdk.incubator.vector,jdk.internal.ed,jdk.internal.jvmstat,jdk.internal.le,jdk.internal.opt,jdk.internal.vm.ci,jdk.jartool,jdk.javadoc,jdk.jcmd,jdk.jconsole,jdk.jdeps,jdk.jdi,jdk.jdwp.agent,jdk.jfr,jdk.jlink,jdk.jpackage,jdk.jshell,jdk.jsobject,jdk.jstatd,jdk.localedata,jdk.management,jdk.management.agent,jdk.management.jfr,jdk.naming.dns,jdk.naming.rmi,jdk.net,jdk.nio.mapmode,jdk.random,jdk.sctp,jdk.security.auth,jdk.security.jgss,jdk.unsupported,jdk.unsupported.desktop,jdk.xml.dom,jdk.zipfs
+   javadoc --module-source-path ./legal/ -d ./docs/ -charset utf8 -docencoding utf8 -locale en_US --module java.base,java.compiler,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.naming,java.net.http,java.prefs,java.rmi,java.scripting,java.se,java.security.jgss,java.security.sasl,java.smartcardio,java.sql,java.sql.rowset,java.transaction.xa,java.xml,java.xml.crypto,jdk.accessibility,jdk.attach,jdk.charsets,jdk.compiler,jdk.crypto.cryptoki,jdk.crypto.ec,jdk.crypto.mscapi,jdk.dynalink,jdk.editpad,jdk.graal.compiler,jdk.graal.compiler.management,jdk.hotspot.agent,jdk.httpserver,jdk.incubator.vector,jdk.internal.ed,jdk.internal.jvmstat,jdk.internal.le,jdk.internal.opt,jdk.internal.vm.ci,jdk.jartool,jdk.javadoc,jdk.jcmd,jdk.jconsole,jdk.jdeps,jdk.jdi,jdk.jdwp.agent,jdk.jfr,jdk.jlink,jdk.jpackage,jdk.jshell,jdk.jsobject,jdk.jstatd,jdk.localedata,jdk.management,jdk.management.agent,jdk.management.jfr,jdk.naming.dns,jdk.naming.rmi,jdk.net,jdk.nio.mapmode,jdk.random,jdk.sctp,jdk.security.auth,jdk.security.jgss,jdk.unsupported,jdk.unsupported.desktop,jdk.xml.dom,jdk.zipfs
    ```
-1. switch 作用对象为 byte short int char enum String。
+1. switch 作用对象为 byte、short、int、char、enum、String。
 1. 方法重载：同一个类中，方法名字相同，参数列表不同。参数个数不同，参数数据类型不同，参数顺序不同。
 1. 方法重写：方法名、参数列表、返回值类型（兼容）和父类相同。
-1. this() super() 只能在构造方法中第一行语句。
+1. this()、super() 只能在构造方法中第一行语句。
 1. 面向对象编程的七个原则：
     - 开闭原则：软件实体应当对扩展开放，对修改关闭。
     - 单一职责：一个类应该有且仅有一个引起它变化的原因，否则类应该被拆分。
     - 最少知道：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。
     - 里氏替换：继承必须确保超类所拥有的性质在子类中仍然成立。
     - 接口隔离：客户端不应该被迫依赖于它不使用的方法，一个类对另一个类的依赖应该建立在最小的接口上。
-    - 依赖倒置：高层模块不应该依赖低层模块，两者都应该依赖其抽象；抽象不应该依赖细节，细节应该依赖抽象。
+    - 依赖倒置：高层模块不应该依赖低层模块，两者都应该依赖其抽象。抽象不应该依赖细节，细节应该依赖抽象。
     - 合成复用：尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。
 1. 类之间关系：依赖、关联、聚合、组合、泛化、实现。
-1. 添加信任证书 keytool -importcert -trustcacerts -alias ivfzhou -file ~/ivfzhou.pub -keystore lib/security/cacerts -cacerts
-1. synchronied 锁升级
+1. 添加信任证书 keytool -importcert -trustcacerts -alias ivfzhou -file ~/ivfzhou.pub -keystore lib/security/cacerts -cacerts。
+1. synchronied 锁升级：
     - 偏向锁 -> 自旋锁 -> 重量级锁。
     - 如果异常，synchronied 会自动释放锁。
 1. volatile 保证变量在线程间的可见性。
@@ -31,22 +31,22 @@
 # 注解
 
 // 单行注解。  
-/** 多行注解。  
+/**  
 /** @author @version @since @see @param @return
-\*/ 文档注释。
+\*/ 多行注解。
 
 # 关键字
 
-abstract boolean break byte case catch char class const continue default do double else extends final finally float for goto if implements import instanceof int interface long native new package private protected public return short static strictfp super switch synchronized this throw throws transient try viod volatile while assert enum
+abstract、boolean、break、byte、case、catch、char、class、const、continue、default、do、double、else、extends、final、finally、float、for、goto、if、implements、import、instanceof、int、interface、long、native、new、package、private、protected、public、return、short、static、strictfp、super、switch、synchronized、this、throw、throws、transient、try、viod、volatile、while、assert、enum。
 
 # 数据类型
 
-1. byte：1 个字节，范围-128 到 127。
-1. short：2 个字节，范围-32768 到 32767。
+1. byte：1 个字节，范围 -128 到 127。
+1. short：2 个字节，范围 -32768 到 32767。
 1. int：4 个字节。-2147483648 到 2147483647。
 1. long：8 个字节。-9223373036854775808 到 9223373036854775807。
-1. float：4 个字节，-3.40E38 到+3.40E38，有效位数 7-8 位。
-1. double：8 个字节，-1.79E308 到+1.79E308，有效位数 15-16 位。
+1. float：4 个字节，-3.40E38 到 3.40E38，有效位数 7-8 位。
+1. double：8 个字节，-1.79E308 到 1.79E308，有效位数 15-16 位。
 1. char：2 个字节，0-65535，65536 个字符。
 1. boolean：不确定。
 
@@ -79,7 +79,7 @@ abstract boolean break byte case catch char class const continue default do doub
 1. protected：本类、同包类、不同包子类。
 1. default：本类、同包类。
 1. private：本类。
-1. 类：public 可不写。
+1. 类 public 可不写。
 1. 类成员：都有。
 1. 局部变量：都没有。
 
@@ -109,7 +109,7 @@ abstract boolean break byte case catch char class const continue default do doub
 1. \\S：查找非空白字符。
 1. \\b：匹配单词边界。
 1. \\B：匹配非单词边界。
-1. \\0：查找 NUL 字符。
+1. \\0：查找 NULL 字符。
 1. \\n：查找换行符。
 1. \\f：查找换页符。
 1. \\r：查找回车符。
@@ -136,45 +136,45 @@ abstract boolean break byte case catch char class const continue default do doub
 
 # java 命令参数
 
-1. --version 查看版本。
-1. -jar *包路径*... arg1 arg2 arg3 运行 jar 包。
+1. --version：查看版本。
+1. -jar *包路径*... *arg1* *arg2* *arg3*：运行 jar 包。
 1. -javaagent
-1. -Dfile.encoding=UTF-8 指定字符编码。
+1. -Dfile.encoding=UTF-8：指定字符编码。
 1. -classpath *包路径*;*包路径*...
-1. -Xms500m 堆初始内存。
-1. -Xmx3000m 堆最大内存。
-1. -Xss2m 栈空间。
+1. -Xms500m：堆初始内存。
+1. -Xmx3000m：堆最大内存。
+1. -Xss2m：栈空间。
 
 # 成员变量和局部变量的区别
 
-1. 定义的位置不同
+1. 定义的位置不同：
     - 成员变量：定义于类中，作用于整个类。
     - 局部变量：定义于方法或者语句中，作用于该方法或者该语句。
-1. 内存中出现的时间和位置不同
+1. 内存中出现的时间和位置不同：
     - 成员变量：当对象被创建时，出现在堆内存当中。
     - 局部变量：所属的区间被运算时，出现在栈内存当中。
-1. 生命周期不同
+1. 生命周期不同：
     - 成员变量：随着对象的出现而出现，随着对象的消失而消失。
     - 局部变量：随着所属区间运算结束，它就被释放。
-1. 初始化值不同
-    - 成员变量：成员变量因为在堆内存当中，所以他有默认的初始值
-    - 局部变量：没有默认的初始值
-1. 成员变量和局部变量名字相同，局部变量优先级高。就近原则
+1. 初始化值不同：
+    - 成员变量：成员变量因为在堆内存当中，所以他有默认的初始值。
+    - 局部变量：没有默认的初始值。
+1. 成员变量和局部变量名字相同，局部变量优先级高。就近原则。
 
 # 内部类
 
-1. 成员内部类
+1. 成员内部类：
     - 成员不能是 static。
     - 可访问外部类成员，Outer.this/super
 1. 静态成员内部类：相当于外部类。
 1. 局部内部类：可访问外部类，可访问 final 局部变量。
 1. 匿名内部类：在 new 时定义类成员。new Interface(){ implements }。
 
-# 设计模式：
+# 设计模式
 
-1. 创建型模式
-工厂方法，抽象工厂，建造器，原型，单例
-1. 结构型模式
-适配器，桥接，组合，装饰器，外观，代理，享元
-1. 行为模式
-责任链，命令，迭代器，中介者，备忘录，观察者，状态，策略，模板方法，访问者
+1. 创建型模式：
+工厂方法，抽象工厂，建造器，原型，单例。
+1. 结构型模式：
+适配器，桥接，组合，装饰器，外观，代理，享元。
+1. 行为模式：
+责任链，命令，迭代器，中介者，备忘录，观察者，状态，策略，模板方法，访问者。

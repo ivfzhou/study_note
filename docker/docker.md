@@ -1,6 +1,6 @@
 # 笔记
 
-1. 删除数据卷文件可能导致 run 失败，systemctl restart docker 即可。
+1. 删除数据卷文件可能导致 run 失败，运行 systemctl restart docker 修复。
 
 1. 指定的文件数据卷，目录下生成随机文件夹名。
 
@@ -25,13 +25,13 @@
     RUN apt-get update && apt-get install -y tzdata
     RUN dpkg-reconfigure -f noninteractive tzdata
     COPY --from=0 /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-    ENV WORKDIR /home/ubuntu/app
+    ENV WORKDIR /home/user/app
     CMD ./bin
     ENTRYPOINT java -Xms256m -Xmx512m -Xss2m -jar -Dserver.port=${PORT} ${MODULE}-0.0.1-SNAPSHOT.jar
     ARG module # docker build --build-arg=module=xxx
     ```
 
-8. Docker-Compose 程序下载：
+8. 下载 Docker-Compose 程序：
     1. curl -SL https://github.com/docker/compose/releases/download/v2.35.0/docker-compose-linux-x86_64 -o bin/docker-compose
     2. chmod +x bin/docker-compose
 
@@ -42,7 +42,7 @@
     - -i：保持和 docker 容器内的交互。
     - -t：为容器的标准输入，虚拟一个 tty。
     - -d：后台运行容器。
-    - --hostname *主机名*：给容器设置主机名
+    - --hostname *主机名*：给容器设置主机名。
     - --add-host *名字*:*IP*：给容器添加 host。
     - --rm：容器在启动后，执行完成命令或程序后就销毁（不可于 -d 一起使用）。
     - --name *name*：给容器起一个自定义名称。
@@ -84,7 +84,7 @@
 1. docker cp *masterPath* *cintainerName*:*containerPath*：从宿主机复制文件到容器。
 1. docker volume create *volume*：创建数据卷。
 1. docker volumn ls：查看所有卷。
-1. docker tag *imageId* *newName*:*version*：创建一个跟 id 一样的镜像。
+1. docker tag *imageId* *newName*:*version*：创建一个跟 imageId 一样的镜像。
 1. docker push *urlPathName*:*version*：将镜像推送至云。
 1. docker build -f ./Dockerfile -t *image:version* ./：构造镜像。
 1. docker login --username=*name* *url*：登录云仓库。
@@ -125,7 +125,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
-    "registry-mirrors": ["https://xxxxxxxx.mirror.aliyuncs.com"]
+    "registry-mirrors": ["https://registry.docker-cn.com"]
 }
 EOF
 sudo systemctl daemon-reload
@@ -152,7 +152,7 @@ sudo systemctl restart docker
 1. nacos/nacos-server:v2.2.3
 1. apache/rocketmq:5.1.3
 1. openzipkin/zipkin:2.24.3
-1. sonatype/nexus3:3.60.0
+1. sonatype/nexus3:3.80.0
 1. redis:7.2.1
 1. rabbitmq:4.0.5-management
 1. tusproject/tusd:v2.3.0
@@ -164,8 +164,8 @@ sudo systemctl restart docker
 ```json
 {
 	"proxies": {
-		"http-proxy": "http://127.0.0.1:8889",
-		"https-proxy": "http://127.0.0.1:8889"
+		"http-proxy": "http://127.0.0.1:7897",
+		"https-proxy": "http://127.0.0.1:7897"
 	}
 }
 ```

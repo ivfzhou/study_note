@@ -52,7 +52,7 @@
         <repositories>
           <repository>
             <id>nexus-download</id>
-            <url>http://ivfzhoudebian:8081/repository/maven-public/</url>
+            <url>http://ivfzhou_debian:8081/repository/maven-public/</url>
             <releases>
               <enabled>true</enabled>
               <updatePolicy>always</updatePolicy>
@@ -68,7 +68,7 @@
           <pluginRepository>
             <!-- 插件仓库的 id 不允许重复，如果重复后边配置会覆盖前边 -->
             <id>nexus-download</id>
-            <url>http://ivfzhoudebian:8081/repository/maven-public/</url>
+            <url>http://ivfzhou_debian:8081/repository/maven-public/</url>
             <releases>
               <enabled>true</enabled>
               <updatePolicy>always</updatePolicy>
@@ -81,34 +81,34 @@
         </pluginRepositories>
       </profile>
       <profile>
-        <id>jdk23</id>
+        <id>jdk21</id>
         <activation>
           <activeByDefault>true</activeByDefault>
-          <jdk>23</jdk>
+          <jdk>21</jdk>
         </activation>
         <properties>
-          <maven.compiler.source>23</maven.compiler.source>
-          <maven.compiler.target>23</maven.compiler.target>
-          <maven.compiler.compilerVersion>23</maven.compiler.compilerVersion>
+          <maven.compiler.source>21</maven.compiler.source>
+          <maven.compiler.target>21</maven.compiler.target>
+          <maven.compiler.compilerVersion>21</maven.compiler.compilerVersion>
         </properties>
       </profile>
     </profiles>
     
     <activeProfiles>
-      <activeProfile>jdk23</activeProfile>
+      <activeProfile>jdk24</activeProfile>
       <activeProfile>nexus</activeProfile>
     </activeProfiles>
     ```
 1. pom.xml：
     ```xml
     <distributionManagement>
-    <repository>
+      <repository>
         <id>nexus-releases-upload</id>
-        <url>http://ivfzhoudebian:8081/repository/maven-releases/</url>
+        <url>http://ivfzhou_debian:8081/repository/maven-releases/</url>
       </repository>
       <snapshotRepository>
         <id>nexus-snapshots-upload</id>
-        <url>http://ivfzhoudebian:8081/repository/maven-snapshots/</url>
+        <url>http://ivfzhou_debian:8081/repository/maven-snapshots/</url>
       </snapshotRepository>
     </distributionManagement>
     
@@ -179,6 +179,6 @@
 
 1. **mvn help:describe -Dplugin=*groupId*:*artifactId*:*version***：打印插件帮助信息。
 
-1. **mvn dependency:resolve dependency:sources -Dclassifier=javaDoc**：下载 jar 和 source 和 doc。
+1. **mvn dependency:resolve dependency:resolve-sources -Dclassifier=javaDoc**：下载 jar 和 source 和 doc。
 
     

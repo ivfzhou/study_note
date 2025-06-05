@@ -28,7 +28,7 @@
 # Docker 运行
 
 1. chown -R 200 /home/ivfzhou/volumes/nexus/
-2. docker run --name nexus --ip 172.16.3.132 --hostname ivfzhou_docker_nexus -p 8081:8081 -v /home/ivfzhou/volumes/nexus/nexus-data:/nexus-data:rw --network ivfzhou_docker_network -td sonatype/nexus3:3.60.0
+2. docker run --name nexus --ip 172.16.3.142 --hostname ivfzhoudockernexus -p 8081:8081 -v /home/ivfzhou/volumes/nexus/nexus-data:/nexus-data:rw --network ivfzhou_docker_network -td sonatype/nexus3:3.80.0
 
 # 配置 https
 
@@ -37,8 +37,8 @@
 3. 生成根证书私钥 openssl genrsa -out ivfzhou.pri 4096。
 4. 生成根证书公钥 openssl req -x509 -new -nodes -key ivfzhou.pri -days 365 -out ivfzhou.pub。
 5. 生成 nexus 用的证书私钥 openssl genrsa -out nexus.pri 4096。
-6. 生成 nexus 的 csr openssl req -new -key nexus.pri -out nexus.csr -config <(printf "[SAN]\nsubjectAltName=DNS:ivfzhou_docker_nexus,IP:172.16.2.2")>。
-7. 根证书签名 openssl x509 -req -in nexus.csr -CA ivfzhou.pub -CAkey ivfzhou.pri -CAcreateserial -days 365 -ext “SAN=IP:172.16.3.132” -extensions SAN -out nexus.pub -extfile <(printf "-[SAN]\nsubjectAltName=DNS:ivfzhou_docker_nexus,IP:172.16.3.132")>
+6. 生成 nexus 的 csr openssl req -new -key nexus.pri -out nexus.csr -config <(printf "[SAN]\nsubjectAltName=DNS:ivfzhoudockernexus,IP:172.16.3.142")>。
+7. 根证书签名 openssl x509 -req -in nexus.csr -CA ivfzhou.pub -CAkey ivfzhou.pri -CAcreateserial -days 365 -ext “SAN=IP:172.16.3.142” -extensions SAN -out nexus.pub -extfile <(printf "-[SAN]\nsubjectAltName=DNS:ivfzhoudockernexus,IP:172.16.3.142")>
 8. 打成 pkcs12 openssl pkcs12 -export -in nexus.pub -inkey nexus.pri -out nexus.pfx。
 9. 转成 jks keytool -importkeystore -srckeystore nexus.pfx -srcstoretype pkcs12 -destkeystore nexus.jks -deststoretype jks -deststorepass 654321 -destkeypass 123456。
 10. 将 nexus.jks 复制到 /opt/nexus/etc/ssl/ 下。
@@ -50,14 +50,14 @@
 version: "3.9"
 services:
   nexus:
-    image: sonatype/nexus3:3.60.0
+    image: sonatype/nexus3:3.80.0
     container_name: nexus
-    hostname: ivfzhou_docker_nexus
+    hostname: ivfzhoudockernexus
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     networks:
       network:
-        ipv4_address: 172.16.3.132
+        ipv4_address: 172.16.3.142
     privileged: true
     ports:
       - "8081:8081"

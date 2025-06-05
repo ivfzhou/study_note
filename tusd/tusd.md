@@ -3,17 +3,17 @@
 ```yml
 services:
   tusd:
-    image: tusproject/tusd:v2.3.0
+    image: tusproject/tusd:v2.8
     container_name: tusd
-    hostname: ivfzhou_docker_tusd
+    hostname: ivfzhoudockertusd
     privileged: true
     ports:
       - "8080:8080"
     networks:
       network:
-        ipv4_address: 172.16.3.132
+        ipv4_address: 172.16.3.141
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     volumes:
       - /home/ivfzhou/volumes/tusd/data:/srv/srv/tusd-data/data:rw
     entrypoint: "tusd -expose-metrics=false -disable-cors -hooks-enabled-events="

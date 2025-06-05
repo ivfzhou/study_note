@@ -8,15 +8,15 @@
 ```yaml
 services:
   redis:
-    image: redis:7.2.1
+    image: redis:8.0.2
     container_name: redis
     privileged: true
-    hostname: ivfzhou_docker_redis
+    hostname: ivfzhoudockerredis
     networks:
       network:
-        ipv4_address: 172.16.3.133
+        ipv4_address: 172.16.3.129
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     working_dir: /data
     ports:
       - "6379:6379"
@@ -46,7 +46,7 @@ networks:
 
 # Docker 安装
 
-docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name redis --hostname ivfzhou_docker_redis -p 6379:6379 redis:7.2.1 redis-server /etc/redis/redis.conf
+docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name redis --hostname ivfzhoudockerredis -p 6379:6379 redis:8.0.2 redis-server /etc/redis/redis.conf
 
 # Debian12 安装 redis
 
@@ -90,29 +90,29 @@ sudo vim /etc/redis/redis.conf
 
 # Docker 安装 sentinel
 
-docker run -v volumes/sentinel/config:/etc/redis -v volumes/sentinel/data:/data --hostname ivfzhou_docker_redis_sentinel --name redis-sentinel redis:7.2.1 redis-sentinel /etc/redis/sentinel.conf
+docker run -v volumes/sentinel/config:/etc/redis -v volumes/sentinel/data:/data --hostname ivfzhoudockerredissentinel --name redis-sentinel redis:8.0.2 redis-sentinel /etc/redis/sentinel.conf
 
 # Cluster 集群连接建立
 
-1. redis-cli --askpass --cluster create 172.16.3.134:6379 172.16.3.135:6379 172.16.3.136:6379 172.16.3.137:6379 172.16.3.138:6379 172.16.3.139:6379 --cluster-replicas 1
+1. redis-cli --askpass --cluster create 172.16.3.130:6379 172.16.3.131:6379 172.16.3.132:6379 172.16.3.133:6379 172.16.3.134:6379 172.16.3.135:6379 --cluster-replicas 1
 1. 关闭集群主节点间的总线端口防火墙 +1000，16379。
 1. 从节点注意配置主节点账号密码。
-1. redis-cli -c -h 172.16.3.134
+1. redis-cli -c -h 172.16.3.130
 
 # Docker-compose 集群配置
 
 ```yaml
 services:
   redis_0:
-    image: redis:7.2.1
+    image: redis:8.0.2
     container_name: redis_0
     privileged: true
-    hostname: ivfzhou_docker_redis_0
+    hostname: ivfzhoudockerredis0
     networks:
       network:
-        ipv4_address: 172.16.3.134
+        ipv4_address: 172.16.3.130
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     working_dir: /data
     ports:
       - "6380:6380"
@@ -124,15 +124,15 @@ services:
       - redis-server
       - /config/redis_6380.conf
   redis_1:
-    image: redis:7.2.1
+    image: redis:8.0.2
     working_dir: /data
     container_name: redis_1
-    hostname: ivfzhou_docker_redis_1
+    hostname: ivfzhoudockerredis1
     networks:
       network:
-        ipv4_address: 172.16.3.135
+        ipv4_address: 172.16.3.131
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     privileged: true
     ports:
       - "6381:6381"
@@ -144,16 +144,16 @@ services:
       - redis-server
       - /config/redis_6381.conf
   redis_2:
-    image: redis:7.2.1
+    image: redis:8.0.2
     container_name: redis_2
     working_dir: /data
     privileged: true
-    hostname: ivfzhou_docker_redis_2
+    hostname: ivfzhoudockerredis2
     networks:
       network:
-        ipv4_address: 172.16.3.136
+        ipv4_address: 172.16.3.132
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     ports:
       - "6382:6382"
       - "16382:16382"
@@ -165,15 +165,15 @@ services:
       - redis-server
       - /config/redis_6382.conf
   redis_3:
-    image: redis:7.2.1
+    image: redis:8.0.2
     container_name: redis_3
     working_dir: /data
-    hostname: ivfzhou_docker_redis_3
+    hostname: ivfzhoudockerredis3
     networks:
       network:
-        ipv4_address: 172.16.3.137
+        ipv4_address: 172.16.3.133
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     privileged: true
     ports:
       - "6383:6383"
@@ -188,12 +188,12 @@ services:
     image: redis:7.2.1
     working_dir: /data
     container_name: redis_4
-    hostname: ivfzhou_docker_redis_4
+    hostname: ivfzhoudockerredis4
     networks:
       network:
-        ipv4_address: 172.16.3.138
+        ipv4_address: 172.16.3.134
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     privileged: true
     ports:
       - "6384:6384"
@@ -205,11 +205,11 @@ services:
       - redis-server
       - /config/redis_6384.conf
   redis_5:
-    image: redis:7.2.1
+    image: redis:8.0.2
     container_name: redis_5
     working_dir: /data
     privileged: true
-    hostname: ivfzhou_docker_redis_5
+    hostname: ivfzhoudockerredis5
     volumes:
       - /home/ivfzhou/volumes/redis/cluster/config:/config
       - /home/ivfzhou/volumes/redis/cluster/data:/data
@@ -218,22 +218,22 @@ services:
       - "16385:16385"
     networks:
       network:
-        ipv4_address: 172.16.3.139
+        ipv4_address: 172.16.3.135
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     command:
       - redis-server
       - /config/redis_6385.conf
   redis_sentinel_0:
-    image: redis:7.2.1
+    image: redis:8.0.2
     container_name: redis_sentinel_0
     working_dir: /data
-    hostname: ivfzhou_docker_redis_sentinel_0
+    hostname: ivfzhoudockerredissentinel0
     networks:
       network:
-        ipv4_address: 172.16.3.140
+        ipv4_address: 172.16.3.136
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     privileged: true
     ports:
       - "6386:6386"
@@ -254,12 +254,12 @@ services:
     image: redis:7.2.1
     container_name: redis_sentinel_1
     working_dir: /data
-    hostname: ivfzhou_docker_redis_sentinel_1
+    hostname: ivfzhoudockerredissentinel1
     networks:
       network:
-        ipv4_address: 172.16.3.141
+        ipv4_address: 172.16.3.137
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     privileged: true
     ports:
       - "6387:6387"

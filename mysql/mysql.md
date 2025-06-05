@@ -7,15 +7,15 @@
 ```yml
 services:
   mysql:
-    image: mysql:8.1.0
+    image: mysql:8.4.5
     container_name: mysql
-    hostname: ivfzhou_docker_mysql
+    hostname: ivfzhoudockermysql
     privileged: true
     networks:
       network:
-        ipv4_address: 172.16.3.142
+        ipv4_address: 172.16.3.128
     extra_hosts:
-      - "ivfzhou_debian:172.16.3.1"
+      - "ivfzhoudebian:172.16.3.1"
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: db_xxx # 启动创建数据库。
@@ -638,8 +638,8 @@ networks:
 
 # Docker 安装
 
-1. docker pull mysql:8.1.0
-2. docker run -v volumes/mysql/data:/var/lib/mysql -v volumes/mysql/config:/etc/mysql/conf.d -v volumes/mysql/log:/logs --hostname ivfzhou-docker-mysql --name mysql --ip 172.16.3.143 --network ivfzhou-docker-network --add-host ivfzhoudebian:172.16.3.143 -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:8.1.0
+1. docker pull mysql:8.4.5
+2. docker run -v volumes/mysql/data:/var/lib/mysql -v volumes/mysql/config:/etc/mysql/conf.d -v volumes/mysql/log:/logs --hostname ivfzhoudockermysql --name mysql --ip 172.16.3.128 --network ivfzhou_docker_network --add-host ivfzhoudebian:172.16.3.128 -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:8.1.0
 
 # 二进制安装
 
@@ -682,9 +682,9 @@ networks:
 # Debian12 apt 安装
 
 ```shell
-wget https://dev.mysql.com/get/mysql-apt-config_0.8.30-1_all.deb
+wget https://repo.mysql.com//mysql-apt-config_0.8.4-1_all.deb
 sudo apt install lsb-release gnupg
-sudo dpkg -i mysql-apt-config_0.8.30-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.4-1_all.deb
 sudo apt update
 sudo apt install mysql-server
 sudo systemctl disable mysql

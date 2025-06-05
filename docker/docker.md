@@ -143,7 +143,7 @@ sudo systemctl restart docker
 
 # 镜像版本
 
-1. mysql:8.1.0
+1. mysql:8.4.5
 1. grafana/grafana:10.1.2
 1. elasticsearch:8.10.2
 1. kibana:8.10.2
@@ -153,9 +153,9 @@ sudo systemctl restart docker
 1. apache/rocketmq:5.1.3
 1. openzipkin/zipkin:2.24.3
 1. sonatype/nexus3:3.80.0
-1. redis:7.2.1
-1. rabbitmq:4.0.5-management
-1. tusproject/tusd:v2.3.0
+1. redis:8.0.2
+1. rabbitmq:4.1.1-management
+1. tusproject/tusd:v2.8
 1. jaspeen/oracle-11g:latest
 
 # 网络代理配置

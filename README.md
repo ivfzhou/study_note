@@ -44,4 +44,5 @@
 1. [Tusd](./tusd/tusd.md)
 1. [Vue](./vue/vue.md)
 1. [XML](./xml/xml.md)
+1. [Zipkin](./zipkin/zipkin.md)
 1. [ZooKeeper](./zookeeper/zookeeper.md)

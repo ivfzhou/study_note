@@ -157,6 +157,7 @@ sudo systemctl restart docker
 1. rabbitmq:4.1.1-management
 1. tusproject/tusd:v2.8
 1. jaspeen/oracle-11g:latest
+1. openzipkin/zipkin:3.5
 
 # 网络代理配置
 

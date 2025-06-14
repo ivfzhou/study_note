@@ -181,4 +181,6 @@
 
 1. **mvn dependency:resolve dependency:resolve-sources -Dclassifier=javaDoc**：下载 jar 和 source 和 doc。
 
+1. **mvn tree**：打印依赖信息。
+
     

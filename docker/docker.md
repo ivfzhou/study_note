@@ -145,8 +145,8 @@ sudo systemctl restart docker
 
 1. mysql:8.4.5
 1. grafana/grafana:10.1.2
-1. elasticsearch:8.10.2
-1. kibana:8.10.2
+1. elasticsearch:9.0.2
+1. kibana:9.0.2
 1. zookeeper:3.9.0
 1. nginx:1.25.2
 1. nacos/nacos-server:v2.2.3

@@ -366,6 +366,22 @@ sudo iptables-restore < /etc/iptables/xxx # 应用配置文件的规则。
 sudo iptables -F # 清空规则，机器重启后失效。
 ```
 
+# 设置 Grub 界面字大小和背景
+
+```shell
+sudo grub-mkfont --output=/boot/grub/fonts/DejaVuSansMono28.pf2 --size=28 /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf
+sudo echo "set menu_color_normal=white/black\n" >> /etc/grub.d/05_custom
+sudo echo "set menu_color_highlight=black/white\n" >> /etc/grub.d/05_custom
+sudo vim /etc/default/grub
+GRUB_FONT=/boot/grub/fonts/DejaVuSansMono28.pf2
+GRUB_BACKGROUND=
+GRUB_GFXMODE=2880x1800
+GRUB_GFXPAYLOAD_LINUX=keep
+GRUB_LANG=en
+LANG=en_US
+sudo update-grub
+```
+
 # 命令
 
 ## 常用命令

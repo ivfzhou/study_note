@@ -12,6 +12,8 @@
 
 1. 配置文件增加字段 "insecure-registries":[ *host* ]，表示 push 时不使用 ssl。
 
+1. (docker-compose.yml)[./docker-compose.yml]
+
 1. Dockerfile 例子：
 
     ```dockerfile

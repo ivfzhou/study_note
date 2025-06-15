@@ -1,0 +1,157 @@
+services:
+  mysql:
+    image: mysql:8.4.5
+    container_name: mysql
+    hostname: ivfzhoudockermysql
+    privileged: true
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
+    networks:
+      network:
+        ipv4_address: 172.16.3.128
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - /home/ivfzhou/volumes/mysql/data/:/var/lib/mysql/:rw
+      - /home/ivfzhou/volumes/mysql/config/:/etc/mysql/conf.d/:rw
+      - /home/ivfzhou/volumes/mysql/log/:/logs/:rw
+  redis:
+    image: redis:8.0.2
+    container_name: redis
+    privileged: true
+    hostname: ivfzhoudockerredis
+    networks:
+      network:
+        ipv4_address: 172.16.3.129
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    working_dir: /data
+    ports:
+      - "6379:6379"
+    volumes:
+      - /home/ivfzhou/volumes/redis/config:/config:rw
+      - /home/ivfzhou/volumes/redis/data:/data:rw
+    command:
+      - redis-server
+      - /config/redis.conf
+  rabbitmq:
+    image: rabbitmq:4.1.1-management
+    container_name: rabbitmq
+    privileged: true
+    hostname: ivfzhoudockerrabbitmq
+    networks:
+      network:
+        ipv4_address: 172.16.3.138
+    extra_hosts:
+      - "ivfzhou_debian:172.16.3.1"
+    volumes:
+      - /home/ivfzhou/volumes/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:rw
+      - /home/ivfzhou/volumes/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins:rw
+      - /home/ivfzhou/volumes/rabbitmq/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie:rw
+      - /home/ivfzhou/volumes/rabbitmq/log:/var/log/rabbitmq:rw
+      - /home/ivfzhou/volumes/rabbitmq/mnesia:/var/lib/rabbitmq/mnesia:rw
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
+  tusd:
+    image: tusproject/tusd:v2.8
+    container_name: tusd
+    hostname: ivfzhoudockertusd
+    privileged: true
+    ports:
+      - "8080:8080"
+    networks:
+      network:
+        ipv4_address: 172.16.3.141
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    volumes:
+      - /home/ivfzhou/volumes/tusd/data:/srv/srv/tusd-data/data:rw
+    entrypoint: "tusd -expose-metrics=false -disable-cors -hooks-enabled-events="
+  nexus:
+    image: sonatype/nexus3:3.80.0
+    container_name: nexus
+    hostname: ivfzhoudockernexus
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    networks:
+      network:
+        ipv4_address: 172.16.3.142
+    privileged: true
+    ports:
+      - "8081:8081"
+    volumes:
+      - /home/ivfzhou/volumes/nexus/data:/nexus-data:rw
+  zipkin:
+    image: openzipkin/zipkin:3.5
+    container_name: zipkin
+    hostname: ivfzhoudockerzipkin
+    privileged: true
+    ports:
+      - "9411:9411"
+    networks:
+      network:
+        ipv4_address: 172.16.3.143
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+  elasticsearch:
+    image: elasticsearch:9.0.2
+    container_name: elasticsearch
+    hostname: ivfzhoudockerelasticsearch
+    privileged: true
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      network:
+        ipv4_address: 172.16.3.144
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.authc.api_key.enabled=true
+      - xpack.security.enabled=true
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - ELASTIC_PASSWORD=123456
+    volumes:
+      - "/home/ivfzhou/volumes/elasticsearch/data:/usr/share/elasticsearch/data:rw"
+      - "/home/ivfzhou/volumes/elasticsearch/config:/usr/share/elasticsearch/config:rw"
+      - "/home/ivfzhou/volumes/elasticsearch/log:/user/share/elasticsearch/logs:rw"
+      - "/home/ivfzhou/volumes/elasticsearch/plugin:/usr/share/elasticsearch/plugins:rw"
+  kibana:
+    image: kibana:9.0.2
+    container_name: kibana
+    hostname: ivfzhoudockerkibana
+    privileged: true
+    ports:
+      - "5601:5601"
+    networks:
+      network:
+        ipv4_address: 172.16.3.145
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+      - "ivfzhoudockerelasticsearch:172.16.3.144"
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_HOSTS=http://ivfzhoudockerelasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=123456
+    volumes:
+      - "/home/ivfzhou/volumes/kibana/config:/usr/share/kibana/config:rw"
+networks:
+  network:
+    name: ivfzhou_docker_network
+    driver: bridge
+    attachable: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.3.0/24
+          gateway: 172.16.3.1

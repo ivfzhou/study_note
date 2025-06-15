@@ -183,7 +183,22 @@ runlevelx.target
 
 ## gnome 桌面图标配置路径
 
-/usr/share/applications/
+1. 全用户图标位置：/usr/share/applications/
+1. 用户图标位置：$HOME/.local/share/applications
+1. 图标配置例子：
+    ```desktop
+    [Desktop Entry]
+    Version=1.0
+    Type=Application
+    Name=VSCode
+    Icon=/home/ivfzhou/programs/vscode/resources/app/resources/linux/code.png
+    Exec=/home/ivfzhou/programs/vscode/code
+    Comment=VSCode
+    Categories=Development;IDE;
+    Terminal=false
+    StartupNotify=true
+    ```
+
 
 ## 启动脚本目录
 

@@ -370,8 +370,8 @@ sudo iptables -F # 清空规则，机器重启后失效。
 
 ```shell
 sudo grub-mkfont --output=/boot/grub/fonts/DejaVuSansMono28.pf2 --size=28 /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf
-sudo echo "set menu_color_normal=white/black\n" >> /etc/grub.d/05_custom
-sudo echo "set menu_color_highlight=black/white\n" >> /etc/grub.d/05_custom
+sudo echo "set menu_color_normal=white/black" >> /etc/grub.d/05_custom
+sudo echo "set menu_color_highlight=black/white" >> /etc/grub.d/05_custom
 sudo vim /etc/default/grub
 GRUB_FONT=/boot/grub/fonts/DejaVuSansMono28.pf2
 GRUB_BACKGROUND=

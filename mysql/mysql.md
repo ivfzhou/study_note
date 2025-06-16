@@ -670,13 +670,12 @@ networks:
 
 # Windows 安装
 
-1. 给添加环境变量。
-2. 程序目录创建文件夹 data。
-3. 程序目录创建文件 my.ini。
-4. cmd 运行：
-5. mysqld --initialize-insecure –console。
-6. mysqld –install。
-7. net start mysql。
+1. 下载 MySQL 程序包并解压，https://dev.mysql.com/downloads/mysql/。
+2. 在程序目录创建文件夹 data。
+3. 在程序目录创建文件 my.ini。[my.cnf](./my.cnf)
+5. cmd 运行：mysqld --initialize-insecure –console。
+6. cmd 运行：mysqld –install。
+7. cmd 运行：net start mysql。
 8. 修改 root 密码，alter user root@localhost identified by '123456'。
 
 # Debian12 apt 安装

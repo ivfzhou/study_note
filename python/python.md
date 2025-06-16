@@ -57,3 +57,10 @@
     - `if -- else` 条件表达式
     - `lambda` lambda 表达式
     - `:=` 赋值表达式
+
+# Debian 12 编译安装
+
+1. 下载源码：https://github.com/python/cpython
+2. 运行：./configure --enable-optimizations --with-ensurepip=install --prefix=/home/ivfzhou/programs/python
+3. 运行：make -j $(nproc)
+4. 运行：make install

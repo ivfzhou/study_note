@@ -1,3 +1,12 @@
+# Debian12 编译安装
+
+1. git clone git@github.com:git/git.git
+1. cd git
+1. sudo apt install libcurl4-openssl-dev zlib1g-dev libssl-dev
+1. make clean
+1. make NO_TCLTK=1 NO_GETTEXT=1 NO_DOC=1 prefix=/home/ivfzhou/programs/git
+1. make NO_TCLTK=1 NO_GETTEXT=1 NO_DOC=1 prefix=/home/ivfzhou/programs/git install
+
 # 设置 Git 访问远程仓库账密
 
 1. 开启账密存储：`git config --global credential.helper store`。

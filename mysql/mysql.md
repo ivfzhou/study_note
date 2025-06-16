@@ -673,10 +673,10 @@ networks:
 1. 下载 MySQL 程序包并解压，https://dev.mysql.com/downloads/mysql/。
 2. 在程序目录创建文件夹 data。
 3. 在程序目录创建文件 my.ini。[my.cnf](./my.cnf)
-5. 管理员账号下运行：.\bin\mysqld.exe --initialize-insecure –console。
-6. 管理员账号下运行：.\bin\mysqld.exe –install。
+5. 管理员账号下运行：.\bin\mysqld.exe --initialize-insecure –-console --defaults-file=my.ini。
+6. 管理员账号下运行：.\bin\mysqld.exe -–install。
 7. 管理员账号下运行：net start mysql。
-8. 修改 root 密码：mysql -u root -p; alter user root@localhost identified by '123456'。
+8. 修改 root 用户密码：mysql -u root -p; alter user root@localhost identified by '123456';。
 
 # Debian12 apt 安装
 

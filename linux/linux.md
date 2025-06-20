@@ -1,43 +1,65 @@
 # 笔记
 
 1. /ect/default/grub 的一些参数：`GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i8042.redirect i8042.dumbkbd i8042.reset=0 i915.enable_psr=0"`。
-1. 设置 grub 启动黑色背景：`splash video=efifb:off`。
-1. ctrl+z 挂起当前进程。ctrl+d 结束命令。
-1. ~{account} 表示这个 account 的家目录，- 表示上次所在目录。
-1. /dev/sd*x* 盘信息，主设备号（磁盘驱动程序），从设备号（访问地址）。
-1. ls -l 输出中的第二字段表示文件夹说明子文件个数。
-1. umask 文件是 777 umask 111，文件夹 777 umask。
-1. cron 书写格式：分 小时 天 月 星期 命令。
-1. LVM 一些名称：PE LE PV VG LV。
-1. Chrome 浏览器下载地址：https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb。
-1. ssh 复制文件：scp src ivfzhou@ivfzhoudebian:~/src。
 
-# UID 类型
+2. 设置 grub 启动黑色背景：`splash video=efifb:off`。
 
-- 1-999 虚拟用户，1000+ 普通用户。
+3. ctrl+z 挂起当前进程。ctrl+d 结束命令。
+
+4. ~{account} 表示这个 account 的家目录，- 表示上次所在目录。
+
+5. /dev/sd*x* 盘信息，主设备号（磁盘驱动程序），从设备号（访问地址）。
+
+6. ls -l 输出中的第二字段表示文件夹说明子文件个数。
+
+7. umask 文件是 777 umask 111，文件夹 777 umask。
+
+8. cron 书写格式：分 小时 天 月 星期 命令。
+
+9. LVM 一些名称：PE LE PV VG LV。
+
+10. Chrome 浏览器下载地址：https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb。
+
+11. ssh 复制文件：scp src ivfzhou@ivfzhoudebian:~/src。
+
+12. Debian12 缩放配置：优化 1.85、vscode 0.5。
+
+13 UID 类型：1-999 虚拟用户，1000+ 普通用户。
 
 # 文件类型
 
-- \- 普通文件
-- d 目录
-- l 链接文件
-- p 管理文件
-- b 设备文件
-- c 设备文件
-- s 套接字文件
-- f 命令管道
+1. \- 普通文件
+
+2. d 目录
+
+3.  l 链接文件
+
+4.  p 管理文件
+
+5. b 设备文件
+
+6. c 设备文件
+
+7. s 套接字文件
+
+8. f 命令管道
 
 # 文件权限
 
-- 文件的权限含义：r 可以查看内容，w 可以修改内容，x 可以执行。
-- 文件夹的权限含义：r 可以查看文件夹下文件名和目录名，w 可以删除增加文件夹下文件和目录，x 可以 cd 到该文件夹下，可以看到文件权限信息。
-- 特殊权限 suid4：用于二进制可执行文件，执行命令时获得文件属主权限。例如 passwd。
-- 特殊权限 sgid2：用于目录，在该目录下创建文件和目录，权限自动更改为该目录的属组。用于文件共享。
-- 特殊权限 sbit1：用于目录，在该目录下创建文件和目录时，仅 root 和自己可以删除。
+1. 文件的权限含义：r 可以查看内容，w 可以修改内容，x 可以执行。
+
+2. 文件夹的权限含义：r 可以查看文件夹下文件名和目录名，w 可以删除增加文件夹下文件和目录，x 可以 cd 到该文件夹下，可以看到文件权限信息。
+
+3. 特殊权限 suid4：用于二进制可执行文件，执行命令时获得文件属主权限。例如 passwd。
+
+4. 特殊权限 sgid2：用于目录，在该目录下创建文件和目录，权限自动更改为该目录的属组。用于文件共享。
+
+5. 特殊权限 sbit1：用于目录，在该目录下创建文件和目录时，仅 root 和自己可以删除。
 
 # Debian12 软件源配置
 
-- 配置所在路径：/etc/apt/sources.list。源配置例子，把 https 协议改成 http 仍然可用。
+1. 配置所在路径：/etc/apt/sources.list。源配置例子，把 https 协议改成 http 仍然可用。
+
     ```
     deb https://mirrors.163.com/debian bookworm main non-free non-free-firmware contrib
     deb-src https://mirrors.163.com/debian bookworm main non-free non-free-firmware contrib
@@ -51,14 +73,18 @@
     deb https://mirrors.163.com/debian/ bookworm-backports main non-free non-free-firmware contrib
     deb-src https://mirrors.163.com/debian bookworm-backports main non-free non-free-firmware contrib
     ```
-- Debian WSL 上的默认配置：
+
+2. Debian WSL 上的默认配置：
+
     ```
     deb http://deb.debian.org/debian bookworm main
     deb http://deb.debian.org/debian bookworm-updates main
     deb http://security.debian.org/debian-security bookworm-security main
     deb http://ftp.debian.org/debian bookworm-backports main
     ```
-- Debian 官方配置：
+
+3. Debian 官方配置：
+
     ```
     deb http://deb.debian.org/debian/ bookworm main contrib non-free-firmware non-free
     deb-src http://deb.debian.org/debian/ bookworm main contrib non-free-firmware non-free
@@ -142,50 +168,77 @@ w
 # openssl 操作案例
 
 1. 创建私钥：`openssl genrsa -out ivfzhou.pem.key -passout pass:123456 4096`
-1. 查看私钥信息：`openssl rsa -in ivfzhou.pem.key -text -noout -passin pass:123456`
-1. 查看私钥信息：`openssl pkcs8 -in ivfzhou.pem.key.p8 [ -passin pass:123456 | -nocrypt ] -text -noout`
-1. 创建证书：`openssl req -x509 -new -key ivfzhou.pem.key -days 365 -out ivfzhou.pem.crt -subj '/C=CN/ST=HuNan/L=Changsha/O=ivfzhou Ltd/OU=ivfzhou/CN=ivfzhou/emailAddress=ivfzhou@126.com'`，C=Country 国家代码 CN=CommonName 通用名称 O=Organization 组织 OU=OrganizationUnit 组织单位 ST=StateOrProvince 州或省 L=Locality 城市 STREET=StreetAddress 街道 EMAIL=EmailAddress 电子邮件 DC=DomainComponent 域名组件。
-1. 查看证书信息：`openssl x509 -in ivfzhou.pem.crt -text -noout`
-1. 查看证书信息：`openssl crl2pkcs7 -nocrl -certfile ivfzhou.pem.crt | openssl pkcs7 -print_certs -text -noout`
-1. 查看证书指纹：`openssl x509 -in ivfzhou.pem.crt -noout -fingerprint -sha1`
-1. 查看证书指纹：`sha1sum ivfzhou.der.crt`
-1. 创建证书签名请求：`openssl req -new -key ivfzhou0.pem.key -out ivfzhou0.pem.csr -subj '/C=CN/ST=HuNan/L=Changsha/O=ivfzhou0 Ltd/OU=ivfzhou0/CN=ivfzhou0/emailAddress=ivfzhou0@126.com'`
-1. 对请求签名：`openssl x509 -req -in ivfzhou0.pem.csr -CA ivfzhou.pem.crt -CAkey ivfzhou.pem.key -days 365 -out ivfzhou0.ivfzhou.pem.crt`
-1. 导出 pkcs#12 格式：`openssl pkcs12 -export -inkey ivfzhou0.pem.key -in ivfzhou0.ivfzhou.pem.crt -out ivfzhou0.pfx -passout pass:123456`
-1. pkcs#12 中导出私钥：`openssl pkcs12 -in ivfzhou0.pfx -legacy -nocerts -out ivfzhou0_1.pem.key -passin pass:123456 -passout pass:123456`
-1. pkcs#12 中导出证书：`openssl pkcs12 -in ivfzhou0.pfx -nokeys -out ivfzhou0_1.pem.crt -passin pass:123456`
-1. 证书 pem 转 der 格式：`openssl x509 -in ivfzhou0.ivfzhou.pem.crt -inform pem -out ivfzhou0.ivfzhou.der.crt -outform der`
-1. 证书请求格式转换：`openssl req -in ivfzhou1.pem.csr -inform pem -out ivfzhou1.der.csr -outform der`
-1. 对证书请求签名：`openssl sha1 -sign ivfzhou1.pem.key ivfzhou1.der.csr > sha1.sign`
-1. 对私钥加密：`openssl pkey -in <file> -out <file> -aes256 -passin pass:<123456>`
-1. 判断证书和私钥模数：`openssl [rsa | x509] -noout -modulus -in <file>`
-1. 从证书中提取公钥：`openssl x509 -pubkey -noout -in <cert> -out <pub>`
-1. 校验私钥签名：`openssl dgst -sha1 -verify <pub> -signature <sign> <origin>`
-1. 从签名数据中获取散列值：`openssl rsautl -verify -pubin -inkey <pub> -in <sign> -out <hash>`
+
+2. 查看私钥信息：`openssl rsa -in ivfzhou.pem.key -text -noout -passin pass:123456`
+
+3. 查看私钥信息：`openssl pkcs8 -in ivfzhou.pem.key.p8 [ -passin pass:123456 | -nocrypt ] -text -noout`
+
+4. 创建证书：`openssl req -x509 -new -key ivfzhou.pem.key -days 365 -out ivfzhou.pem.crt -subj '/C=CN/ST=HuNan/L=Changsha/O=ivfzhou Ltd/OU=ivfzhou/CN=ivfzhou/emailAddress=ivfzhou@126.com'`，C=Country 国家代码 CN=CommonName 通用名称 O=Organization 组织 OU=OrganizationUnit 组织单位 ST=StateOrProvince 州或省 L=Locality 城市 STREET=StreetAddress 街道 EMAIL=EmailAddress 电子邮件 DC=DomainComponent 域名组件。
+
+5. 查看证书信息：`openssl x509 -in ivfzhou.pem.crt -text -noout`
+
+6. 查看证书信息：`openssl crl2pkcs7 -nocrl -certfile ivfzhou.pem.crt | openssl pkcs7 -print_certs -text -noout`
+
+7. 查看证书指纹：`openssl x509 -in ivfzhou.pem.crt -noout -fingerprint -sha1`
+
+8. 查看证书指纹：`sha1sum ivfzhou.der.crt`
+
+9. 创建证书签名请求：`openssl req -new -key ivfzhou0.pem.key -out ivfzhou0.pem.csr -subj '/C=CN/ST=HuNan/L=Changsha/O=ivfzhou0 Ltd/OU=ivfzhou0/CN=ivfzhou0/emailAddress=ivfzhou0@126.com'`
+
+10. 对请求签名：`openssl x509 -req -in ivfzhou0.pem.csr -CA ivfzhou.pem.crt -CAkey ivfzhou.pem.key -days 365 -out ivfzhou0.ivfzhou.pem.crt`
+
+11. 导出 pkcs#12 格式：`openssl pkcs12 -export -inkey ivfzhou0.pem.key -in ivfzhou0.ivfzhou.pem.crt -out ivfzhou0.pfx -passout pass:123456`
+
+12. pkcs#12 中导出私钥：`openssl pkcs12 -in ivfzhou0.pfx -legacy -nocerts -out ivfzhou0_1.pem.key -passin pass:123456 -passout pass:123456`
+
+13. pkcs#12 中导出证书：`openssl pkcs12 -in ivfzhou0.pfx -nokeys -out ivfzhou0_1.pem.crt -passin pass:123456`
+
+14. 证书 pem 转 der 格式：`openssl x509 -in ivfzhou0.ivfzhou.pem.crt -inform pem -out ivfzhou0.ivfzhou.der.crt -outform der`
+
+15. 证书请求格式转换：`openssl req -in ivfzhou1.pem.csr -inform pem -out ivfzhou1.der.csr -outform der`
+
+16. 对证书请求签名：`openssl sha1 -sign ivfzhou1.pem.key ivfzhou1.der.csr > sha1.sign`
+
+17. 对私钥加密：`openssl pkey -in <file> -out <file> -aes256 -passin pass:<123456>`
+
+18. 判断证书和私钥模数：`openssl [rsa | x509] -noout -modulus -in <file>`
+
+19. 从证书中提取公钥：`openssl x509 -pubkey -noout -in <cert> -out <pub>`
+
+20. 校验私钥签名：`openssl dgst -sha1 -verify <pub> -signature <sign> <origin>`
+
+21. 从签名数据中获取散列值：`openssl rsautl -verify -pubin -inkey <pub> -in <sign> -out <hash>`
 
 # 配置文件
 
 ## 启动配置
 
-/usr/lib/systemd/system  
-runlevelx.target
+1. /usr/lib/systemd/system  
+
+2. runlevelx.target
 
 ## sudo 配置
 
-文件所在位置：/etc/sudoers  
-使用 visudo 编辑  
-配置格式：user host=(asuser:asgroup) NOPASSWD: command，使用 ALL 表示所有，%sudo 表示 sudo 用户组成员。
+1. 文件所在位置：/etc/sudoers  
+
+2. 使用 visudo 编辑  
+
+3. 配置格式：user host=(asuser:asgroup) NOPASSWD: command，使用 ALL 表示所有，%sudo 表示 sudo 用户组成员。
 
 ## DNS
 
-路径：/etc/resolv.conf  
-内容：nameserver 114.114.114.114
+1. 路径：/etc/resolv.conf  
+
+2. 内容：nameserver 114.114.114.114
 
 ## gnome 桌面图标配置路径
 
 1. 全用户图标位置：/usr/share/applications/
+
 1. 用户图标位置：$HOME/.local/share/applications
+
 1. 图标配置例子：
+
     ```desktop
     [Desktop Entry]
     Version=1.0
@@ -197,68 +250,82 @@ runlevelx.target
     Categories=Development;IDE;
     Terminal=false
     StartupNotify=true
-    ```
-
+    StartupWMClass=Code
+    ``
 
 ## 启动脚本目录
 
-/etc/init.d/
+1. /etc/init.d/
 
 ## 启动挂载配置
 
-/etc/fstab  
-FileSystem Dir Type Options Dump Pass
+1. /etc/fstab  
+
+2. FileSystem Dir Type Options Dump Pass
 
 ## 定义用户文件夹名配置文件位置
 
-/home/xxx/.config/user-dirs.dirs
+1. /home/xxx/.config/user-dirs.dirs
 
 ## 内核配置文件路径
 
-/boot/configxxx
+1. /boot/configxxx
 
 ## SELinux 配置文件路径
 
-/etc/selinux/config
+1. /etc/selinux/config
 
 ## 用户配置文件
 
-/etc/passwd 七段：名、是否需要密码、uid、gid、注释、家路径、命令解释器。  
+1. /etc/passwd 七段：名、是否需要密码、uid、gid、注释、家路径、命令解释器。  
 /etc/shadow 存贮密码。用户名、密码、最后一修改时间、最小修改时间间隔、密码有效期、密码需要更改前的警告天数、密码过期后的宽限天数、账号失效时间、保留字段。  
-/etc/group 用户组名、组密码、gid、组内成员。
+
+2. /etc/group 用户组名、组密码、gid、组内成员。
 
 ## 网卡配置路径
 
-- /etc/sysconfig/network-scripts/
-  - BOOTPROTO=dhcp 或者 static none，动态或者静态地址 IP。
-  - IPADDR IP 地址。
-  - NETMASK 子网掩码。
-  - DEVICE 网卡名。
-  - ONBOOT=yes 或者 no 开机启动与否。
+1. /etc/sysconfig/network-scripts/
+  1. BOOTPROTO=dhcp 或者 static none，动态或者静态地址 IP。
+  2. IPADDR IP 地址。
+  3. NETMASK 子网掩码。
+  4. DEVICE 网卡名。
+  5. ONBOOT=yes 或者 no 开机启动与否。
 
 ## 系统信息路径
 
-- /proc/cpuinfo 显示 cpu 信息。
-- /proc/interrupts 显示中断。
-- /proc/meminfo 校验内存使用。
-- /proc/swaps 显示 swap 使用。
-- /proc/version 显示内核版本。
-- /proc/net/dev 显示网络适配器及统计。
-- /proc/mounts 显示已加载的文件系统。
-- /proc/pid/fd 程序输入输出。
-- /proc/pid/cwd 运行目录。
+1. /proc/cpuinfo 显示 cpu 信息。
+
+2. /proc/interrupts 显示中断。
+
+3. /proc/meminfo 校验内存使用。
+
+4. /proc/swaps 显示 swap 使用。
+
+5. /proc/version 显示内核版本。
+
+6. /proc/net/dev 显示网络适配器及统计。
+
+7. /proc/mounts 显示已加载的文件系统。
+
+8. /proc/pid/fd 程序输入输出。
+
+9. /proc/pid/cwd 运行目录。
 
 ## 进程日志信息
 
-- /var/log/cron 周期性的程序日志。
-- /var/log/secure 安全日志。
-- /var/log/message 异常信息。
-- /var/log/dmesg 内核日志。
+1. /var/log/cron 周期性的程序日志。
+
+2. /var/log/secure 安全日志。
+
+3. /var/log/message 异常信息。
+
+4. /var/log/dmesg 内核日志。
 
 # 导入证书
 
-路径 /usr/local/share/ca-certificates/ivfzhou.crt  
-运行 sudo update-ca-certificates --verbose
+1. 路径 /usr/local/share/ca-certificates/ivfzhou.crt  
+
+2. 运行 sudo update-ca-certificates --verbose
 
 # 添加字体
 
@@ -294,8 +361,10 @@ echo '/dev/sdax none swap sw 0 0' | sudo tee -a /etc/fstab
 # 设置时区时间
 
 1. export TZ='Asia/Shanghai'
-1. sudo rm -f /etc/localtime
-1. sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+2. sudo rm -f /etc/localtime
+
+3. sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ```shell
 timedatectl # 查看时区。
@@ -309,12 +378,14 @@ sudo systemctl start systemd-timesyncd
 # 设置 apt 网络代理
 
 1. 配置 apt 网络代理，配置文件路径：/etc/apt/apt.conf.d/proxy.conf。配置内容：
+
     ```conf
     Acquire {
       HTTP::proxy "http://127.0.0.1:8889";
       HTTPS::proxy "http://127.0.0.1:8889";
     }
     ```
+
     ```conf
     Acquire {
       HTTP::proxy::download.docker.com "http://127.0.0.1:8889";
@@ -325,32 +396,41 @@ sudo systemctl start systemd-timesyncd
 # 配置 Debian12 网络
 
 1. ip link show：查看网络。
-1. ip link set *eth0* up：启用网卡 *eth0*。
-1. ip addr add 192.168.137.128/24 dev eth0：配置网卡 ip。
-1. ip route add default via 192.168.137.1 dev eth0：配置网卡网关。
-1. echo "nameserver 114.114.114.114" > /etc/resolv.conf
-1. ping baidu.com
-1. sudo systemctl restart networking：重启网络。
-1. 编辑 /etc/network/interfaces 设置永久网卡配置。
-    - 例子：
-        ```
-        auto eth0
-        iface eth0 inet static
-            address 192.168.42.128
-            netmask 255.255.255.0
-            gateway 192.168.42.2
-            dns-nameservers 114.114.114.114 8.8.8.8 8.8.4.4
-        ```
-        ```
-        auto eth0
-        iface eth0 inet dhcp
-        ```
-        ```
-        auto wlan0
-        iface wlan0 inet dhcp
-            wpa-ssid "your_SSID"
-            wpa-psk "your_password"
-        ```
+
+2. ip link set *eth0* up：启用网卡 *eth0*。
+
+3. ip addr add 192.168.137.128/24 dev eth0：配置网卡 ip。
+
+4. ip route add default via 192.168.137.1 dev eth0：配置网卡网关。
+
+5. echo "nameserver 114.114.114.114" > /etc/resolv.conf
+
+6. ping baidu.com
+
+7. sudo systemctl restart networking：重启网络。
+
+8. 编辑 /etc/network/interfaces 设置永久网卡配置。
+
+    ```
+    auto eth0
+    iface eth0 inet static
+        address 192.168.42.128
+        netmask 255.255.255.0
+        gateway 192.168.42.2
+        dns-nameservers 114.114.114.114 8.8.8.8 8.8.4.4
+    ```
+
+    ```
+    auto eth0
+    iface eth0 inet dhcp
+    ```
+
+    ```
+    auto wlan0
+    iface wlan0 inet dhcp
+        wpa-ssid "your_SSID"
+        wpa-psk "your_password"
+    ```
 
 # 设置系统语言
 
@@ -402,14 +482,22 @@ sudo update-grub
 ## 常用命令
 
 1. 查看系统信息：lscpu free fdisk top printenv
-1. 基础配置：localectl timedatectl date hwclock
-1. 管理用户：useradd id passwd cracklib-unpacker create-cracklib-dict usermod userdel groupadd groupmod groupdel newgrp
-1. 管理软件包：vi dnf createrepo
-1. 管理服务：systemctl ln
-1. 管理进程：who ps top kill at crontab jobs fg bg atrm atq nice renice kill killall nohub
-1. 配置网络：nmcli ip ifup ifdown modprobe modinfo ss route nslookup
-1. LVM：pvcreate pvdisplay pvremove pvchange vgcreate vgdisplay vgchange vgextend vgreduce vgremove lvcreate lvresize lvextend lvreduce lvremove mkfs mount umount blkid resize2fs e2fsck lvchange
-1. 其他：uptimevmstat sar ps top free lsblk lspci ethtool dmidecode
+
+2. 基础配置：localectl timedatectl date hwclock
+
+3. 管理用户：useradd id passwd cracklib-unpacker create-cracklib-dict usermod userdel groupadd groupmod groupdel newgrp
+
+4. 管理软件包：vi dnf createrepo
+
+5. 管理服务：systemctl ln
+
+6. 管理进程：who ps top kill at crontab jobs fg bg atrm atq nice renice kill killall nohub
+
+7. 配置网络：nmcli ip ifup ifdown modprobe modinfo ss route nslookup
+
+8. LVM：pvcreate pvdisplay pvremove pvchange vgcreate vgdisplay vgchange vgextend vgreduce vgremove lvcreate lvresize lvextend lvreduce lvremove mkfs mount umount blkid resize2fs e2fsck lvchange
+
+9. 其他：uptimevmstat sar ps top free lsblk lspci ethtool dmidecode
 
 ## more
 
@@ -610,3 +698,7 @@ sudo update-grub
 - uname
     - uname -s：Linux
     - uname -r：6.1.0-28-amd64
+
+## xprop
+
+- WM_CLASS：点击应用窗口，获取 StartupWMClass 值（输出值的第二个）。

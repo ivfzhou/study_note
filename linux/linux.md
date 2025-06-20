@@ -377,7 +377,7 @@ sudo iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
 sudo iptables -A INPUT -j REJECT --reject-with icmp-host-prohibited
 sudo iptables -A FORWARD -j REJECT --reject-with icmp-host-prohibited
 sudo netfilter-persistent save
-sudo iptables-restore < /etc/iptables/xxx # 应用配置文件的规则。
+sudo iptables-restore  /etc/iptables/xxx # 应用配置文件的规则。
 sudo iptables -F # 清空规则，机器重启后失效。
 ```
 

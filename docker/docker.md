@@ -110,7 +110,7 @@
 1. docker-compose stop：停止容器。
 1. docker-compose down：停止容器并删除。
 
-# Debian12 安装
+# Debian12 apt 安装
 
 ```shell
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
@@ -133,6 +133,40 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
+
+# Debian12 编译安装
+
+1. 运行 git clone https://github.com/moby/moby.git -o github docker。
+
+2. 运行 cd docker。
+
+3. 从 https://download.docker.com/linux/static/stable/ 下载编译好的 docker 程序包。
+
+4. 解压 docker 程序包，将文件放到 docker_boot/ 下。
+
+5. 从 https://github.com/docker/buildx/releases 下载 docker-buildx。
+
+6. 将 docker-buildx 可执行程序放到 ~/.config/cli-plugins/ 下，将权限设置为可执行。
+
+7. 将 docker_boot 文件夹设置到环境变量 PATH 中。
+
+8. 配置 docker 网络代理，生成文件 config.json。
+
+9. root 用户运行 dockerd --userland-proxy=false --config-file=config.json --bip=172.17.0.1/16。
+
+10. 配置 Docker 容器内的网络代码，在 Dockerfile 中，分别在运行 apt 和 go 命令处添加：
+
+    ```dockerfile
+    ENV GOPROXY "goproxy.cn,direct"
+    ENV http_proxy "http://172.17.0.1:7897"
+    ENV https_proxy "http://172.17.0.1:7897"
+    ```
+
+11. 运行 make。
+
+12. 生成可执行文件在 bundle 文件夹下。
+
+11. 运行 sudo ip link delete docker0 删除网络接口。
 
 # 镜像代理服务器
 

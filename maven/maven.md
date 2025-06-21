@@ -20,7 +20,7 @@
     </mirrors>
     
     <servers>
-        <!-- 配置从 nexus 下载验证 -->
+      <!-- 配置从 nexus 下载验证 -->
       <server>
         <!-- 要与下面 profile 的 ID 一致 -->
         <id>nexus-download</id>
@@ -52,7 +52,7 @@
         <repositories>
           <repository>
             <id>nexus-download</id>
-            <url>http://ivfzhou_debian:8081/repository/maven-public/</url>
+            <url>http://ivfzhoudockernexus:8081/repository/maven-public/</url>
             <releases>
               <enabled>true</enabled>
               <updatePolicy>always</updatePolicy>
@@ -68,7 +68,7 @@
           <pluginRepository>
             <!-- 插件仓库的 id 不允许重复，如果重复后边配置会覆盖前边 -->
             <id>nexus-download</id>
-            <url>http://ivfzhou_debian:8081/repository/maven-public/</url>
+            <url>http://ivfzhoudockernexus:8081/repository/maven-public/</url>
             <releases>
               <enabled>true</enabled>
               <updatePolicy>always</updatePolicy>
@@ -95,7 +95,7 @@
     </profiles>
     
     <activeProfiles>
-      <activeProfile>jdk24</activeProfile>
+      <activeProfile>jdk21</activeProfile>
       <activeProfile>nexus</activeProfile>
     </activeProfiles>
     ```
@@ -104,11 +104,11 @@
     <distributionManagement>
       <repository>
         <id>nexus-releases-upload</id>
-        <url>http://ivfzhou_debian:8081/repository/maven-releases/</url>
+        <url>http://ivfzhoudockernexus:8081/repository/maven-releases/</url>
       </repository>
       <snapshotRepository>
         <id>nexus-snapshots-upload</id>
-        <url>http://ivfzhou_debian:8081/repository/maven-snapshots/</url>
+        <url>http://ivfzhoudockernexus:8081/repository/maven-snapshots/</url>
       </snapshotRepository>
     </distributionManagement>
     

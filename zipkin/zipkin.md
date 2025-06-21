@@ -1,4 +1,4 @@
-# Docker-Compose 配置
+# Docker-Compose 安装
 
 ```yml
 services:
@@ -25,3 +25,6 @@ networks:
         - subnet: 172.16.3.0/24
           gateway: 172.16.3.1
 ```
+1. sudo tee -a /etc/hosts <<EOF
+   172.16.3.143 ivfzhoudockerzipkin
+   EOF

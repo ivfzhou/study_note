@@ -2,63 +2,19 @@
 
 1. MySQL 连接报错："Public Key Retrieval is not allowed"。链接加上 `&allowPublicKeyRetrieval=true`，或者执行：`ALTER USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';`
 
-# Docker-Compose 配置
-
-```yml
-services:
-  mysql:
-    image: mysql:8.4.5
-    container_name: mysql
-    hostname: ivfzhoudockermysql
-    privileged: true
-    networks:
-      network:
-        ipv4_address: 172.16.3.128
-    extra_hosts:
-      - "ivfzhoudebian:172.16.3.1"
-    environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: db_xxx # 启动创建数据库。
-      MYSQL_USER: user # 创建新用户，拥有数据库 db_xxx 所有权限。不要设置成 root。
-      MYSQL_PASSWORD: password # 新用户密码。
-      MYSQL_ONETIME_PASSWORD: yes # root 用户登录后就要修改密码。
-      MYSQL_INITDB_SKIP_TZINFO: yes # 跳过时区解析。
-      MYSQL_ROOT_PASSWORD_FILE: /path/to/file # root 用户密码在容器指定文件中获取。以上环境变量也可以追加 _FILE。
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes # root 用户密码为空。
-      MYSQL_RANDOM_ROOT_PASSWORD: yes # root 用户密码随机，在控制台打印密码。
-    ports:
-      - "3306:3306"
-    volumes:
-      - /home/ivfzhou/volumes/mysql/data/:/var/lib/mysql/:rw
-      - /home/ivfzhou/volumes/mysql/config/:/etc/mysql/conf.d/:rw
-      - /home/ivfzhou/volumes/mysql/log/:/logs/:rw
-      - xxx:/docker-entrypoint-initdb.d # 这个目录下的 SQL 文件将被导入到数据库中，默认数据库是变量 MYSQL_DATABASE 的值。
-networks:
-  network:
-    name: ivfzhou_docker_network
-    driver: bridge
-    attachable: true
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.3.0/24
-          gateway: 172.16.3.1
-```
-1. mkdir -p /home/ivfzhou/volumes/mysql
-1. sudo chown -R 999:999 /home/ivfzhou/volumes/mysql
-1. docker-compose -f docker-compose.yml up -d mysql
-
 # 配置文件
 
 [my.cnf](./my.cnf)
 
-# 注释
+# SQL 语法
 
-\#：单行注释。  
---：单行注释。   
-/**/：多行注释。
+## 注释
 
-# 数据类型
+1. \#：单行注释。
+2. --：单行注释。 
+3. /**/：多行注释。
+
+## 数据类型
 
 1. TINYINT(*n*)：1 字节。范围：有符号 [-128, 127]，无符号 [0, 255]。后加 unsigned 表示为无符号范围。后加 zerofill 表示数值不足指定的位数时以 0 来填充。
 1. SMALLINT(*n*)：2 字节。范围：有符号 [-32768, 32767]，无符号 [0, 65535]。
@@ -89,7 +45,7 @@ networks:
 1. TIMESTAMP(*n*)：4 字节。格式：YYYY-MM-dd hh:mm:ss UTC，范围 (1970-01-01 08:00:00, 2038-1-19 11:14:07]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999。字符型格式：'YYYY-MM-dd HH:mm:ss'、'YYYY-MM-dd'、'YY-MM-dd'、'YYMMddHHmmss'、'YYMMddHHmm'、'YYYYMMdd'、'YYMMdd'。整形格式：YYYYMMddHHmmss、YYMMddHHmmss、YYYYMMdd、YYMMdd、00MMdd。
 1. DATETIME(*n*)：8 字节。格式：YYYY-MM-dd HH:mm:ss，范围 [0000-01-01 00:00:00, 9999-12-31 23:59:59]。插入字符型或者整型两位数：1-69 表示 2001-2069，70-99 表示 1970-1999。字符型格式：'YYYY-MM-dd HH:mm:ss'、'YYYY-MM-dd'、'YY-MM-dd'、'YYMMddHHmmss'、'YYMMddHHmm'、'YYYYMMdd'、'YYMMdd' 。整形格式：YYYYMMddHHmmss、YYMMddHHmmss、YYYYMMdd、YYMMdd、00MMdd。
 
-# 约束
+## 约束
 
 1. PRIMARY KEY：主键约束，不能重复，不能为 null。
 2. UNIQUE KEY：唯一约束，不能重复，可以为 null。
@@ -104,7 +60,7 @@ networks:
 11. ON DELETE | UPDATE SET DEFAULT：对应元组属性置位默认值。
 12. CREATE ASSERTION *名* CHECK (*条件*)：定义断言。
 
-# 库
+## 库
 
 1. CREATE DATABASE [IF NOT EXISTS] *数据库名* [DEFAULT CHARACTER SET *字符名*] [DEFAULT COLLATE utf8mb4_unicode_ci]：新建数据库。
 2. ALTER DATABASE|SCHEMA *数据库名* <small>省略表示选择当前的数据库</small> [DEFAULT CHARACTER SET *字符名*] [DEFAULT COLLATE utf8mb4_unicode_ci]：修改数据库字符编码。
@@ -114,7 +70,7 @@ networks:
 6. SHOW CREATE DATABASE *数据库名*：查看创建数据库的语句。
 7. SELECT DATABASE()：查看当前数据库。
 
-# 表
+## 表
 
 1. CREATE TABLE [IF NOT EXISTS] *表名* (
     *字段名* 数据类型(大小) 约束 COMMENT '注释内容' COLLATE utf8mb4_unicode_ci DEFAULT 函数或者值 ON UPDATE 函数或者值,  [UNIQUE INDEX *索引名*(*字段名*(*长度*),...)],
@@ -174,7 +130,7 @@ networks:
 27. INTERSCT 交集  EXCEPT 差集 UNION 并集
 28. INNER JOIN 内连接 NATURAL JOIN 自然连接 CROSS JOIN 交叉连接 LEFT OUTER JOIN 左外连接 RIGHT OUTER JOIN 右外连接 FULL OUTER JOIN 全连接 SELF JOIN 自连接
 
-# 视图
+## 视图
 
 1. CREATE VIEW *视图名* (*字段名*,...) AS *查询语句* [UNION *查询语句*],... WITH CHECK OPTION <small>检查插入数据是否符合 WHERE 设置的条件</small>：创建视图。合并查询列数要相同。查询语句不能引用系统或用户变量。
 2. ALTER VIEW *视图名* AS *查询语句* [UNION *查询语句*],...：修改视图。
@@ -185,14 +141,14 @@ networks:
 7. UPDATE *视图名* SET *字段*=*值*,... WHERE *条件*：更新视图字段信息。
 8. SELECT *字段*,... FROM *视图* ORDER BY *字段*,...：排序会覆盖视图中定义的排序规则。
 
-# 触发器
+## 触发器
 
 1. CREATE TRIGGER *触发器名* [AFTER | BEFORE] [INSERT | UPDATA | DELETE] ON *表名* FOR EACH ROW BEGIN *SQL语句* <small>NEW 新增行对象，OLD 删除行对象</small> END$$：创建触发器。before 前可以设置 new 对象的值。对于给自增值的列，当前值是零。如果有多个同类型的触发器则会依次触发，创建最晚的最后触发。
 2. DROP TRIGGER IF EXISTS *数据库*.*触发器名*：删除触发器。表被删除了，对应触发器自动删除。
 3. SHOW TRIGGERS：显示数据库的触发器。
 4. DELIMITER \$\$：临时定义语句结束符。
 
-# 索引
+## 索引
 
 1. CREATE [FULLTEXT | UNIQUE] INDEX *索引名* ON *表名* (*字段名*(*长度*) DESC | ASC,...)：创建索引。BLOB 和 TEXT 类型，必须指定长度。组合索引，最左前缀原则，查询条件左边连续一列或几列命中索引。InnoDB 数据表不支持全文索引。MySQL 把同一个数据表里的索引总数限制为16个。
 2. ALTER TABLE *表名* ADD INDEX [UNIQUE | FULLTEXT<small>全文索引</small> | PRIMARY KEY <small>聚簇索引</small>] *索引名* (*字段名*,... ASC | DESC) USING BTREE | HASH | FULLTEXT | RTREE：添加索引。
@@ -215,14 +171,14 @@ networks:
     rows：检查的行数。
     extra：using filesort 文件排序。查询条件和排序条件的索引不一致。using temporary 使用了临时表保存中间结果。using index 使用了索引，没有用表的数据行。using where 使用 where 过滤。using join buffer 连接查询条件没有使用索引。impossible where where 条件恒 false。select tables optimized away 聚合字段使用索引。
 
-# 索引数据结构
+## 索引数据结构
 
 二叉树
 平衡二叉树：通过左右旋保持两边高度差不大于一。
 多叉查找树：每个节点会有多个关键值，节点拥有的子节点不超过树高度。
 多路搜索树：所有数据放在了叶子节点下。
 
-# 分区
+## 分区
 
 1. CREATE TABLE *表名* (*字段定义*) PARTITION BY  
   - RANGE(*整形字段* | *表达式*)(
@@ -237,7 +193,7 @@ networks:
   - KEY(*字段*,...) PARTITIONS *整数*：键值分区。
 2. SELECT * FROM TABLE PARTITION(*分区名*)：使用分区查询。
 
-# 参数
+## 参数
 
 1. SET @@*参数*=*值*：设置全局参数值。
 2. SET GLOBAL *参数*=*值*：设置全局参数值。
@@ -294,7 +250,7 @@ networks:
   - table_locks_waited：不能立即获取锁的次数。
   - max_used_connections：当前的连接数。
 
-# 储存过程
+## 储存过程
 
 1. CREATE DEFINER=*用户名*@*主机名* PROCEDURE *储存过程名*(IN | OUT | INOUT<small>后两者只能传变量。列名优先</small> *参数名* *参数数据类型*,...) COMMENT 'string' | LANGUAGE SQL | [NOT] DETERMINISTIC | { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA } | SQL SECURITY { DEFINER | INVOKER } *标志名*:BEGIN *过程体* <small>可嵌套begin end</small> END *标志名*$$：创建储存过程。
 2. 过程体中控制语句。
@@ -320,14 +276,14 @@ networks:
 7. SHOW CREATE PROCEDURE *数据库名*.*储存过程名*：查看数据库的储存过程。
 8. SELECT routine_name FROM information_schema.routines WHERE routine_schema=*数据库名*：查询储存过程。
 
-# 函数
+## 函数
 
 1. CREATE FUNCTION *方法名*(*形参* *类型*,...) RETURNS *返回数据类型* BEGIN RETURN (*返回值查询语句* <small>返回结果集必须是一列一行</small>); END$$：创建函数。
 2. DROP FUNCTION IF EXISTS *方法名*：删除函数。
 3. SHOW CREATE FUNCTION *函数名*：查看函数详情。
 4. SHOW FUNCTION STATUS：打印一堆。
 
-# 用户
+## 用户
 
 1. mysql -u *用户名* -p *密码* -h *主机*名 -A <small>表示选择数据库时关闭预读表和字段信息</small> -P *端口号*：登陆 mysql。
 2. mysql -u *用户名* -p *密码* -h *主机名* -A -P *端口号* *数据库名* < *备份文件*：恢复备份。
@@ -346,7 +302,7 @@ networks:
 14. RENAME USER *旧帐号*@*主机名* TO *新帐号*@*主机名*：修改用户名。
 15. flush privileges：刷新权限。
 
-# 事务
+## 事务
 
 1. START TRANSACTION：开启事务，手动提交。
 2. ROLLBACK TO *保存点名*：回滚。
@@ -356,7 +312,7 @@ networks:
 6. FLUSH PRIVILEGES：刷新权限。
 7. SELECT @@tx_isolation; 查看全局参数 @@ 事务隔离级别的值。
 
-# 其它
+## 其它
 
 1. SELECT *值* INTO *用户变量*：初始化或更改变量值。
 2. QUIT：退出。
@@ -388,7 +344,7 @@ networks:
 22. TEE *文件路径*：将输出信息保存到指定的文件中。
 23. NOTEE：结束信息输出到文件。
 
-# 运算符
+## 运算符
 
 1. = ：等于。相等返回 1，否则返回 0。
 2. <=>：安全等于。null<=>null 返回 1。
@@ -430,7 +386,7 @@ networks:
 36. @@：设置获取系统变量。
 37. 运算符优先级：NOT > AND > OR。
 
-# 查询函数
+## 查询函数
 
 1. DISTINCT *字段名*：该字段去重。
 2. AS *别名*：设置别名。
@@ -441,7 +397,7 @@ networks:
 7. LEFT [OUTER] JOIN *表名* ON *条件*：左外连接。
 8. RIGHT [OUTER] JOIN *表名* ON *条件*：右外链接。
 
-# 数学函数
+## 数学函数
 
 1. BIN(*数字*)：返回二进制表示。
 2. OCT(*数字*)：返回八进制表示。
@@ -465,7 +421,7 @@ networks:
 20. RAND(*种子数*)：返回 0 到 １ 内的随机值，可以通过提供一个参数种子。
 21. SIGN(*数字*)：返回代表数字的符号的值：1 -1 0。
 
-# 聚合函数
+## 聚合函数
 
 1. AVG(*字段名*)：返回指定列的平均值。如果指定列类型不是数值类型，那么计算结果为 null。
 2. COUNT(*字段名*)：返回指定列中非 NULL 值的个数。COUNT(*) 计算 NULL 值个数。
@@ -474,7 +430,7 @@ networks:
 5. SUM(*字段名*)：返回指定列的所有值之和。如果指定列类型不是数值类型，那么计算结果为 0。
 6. GROUP_CONCAT(*字段名* [ SEPARATOR *sep* ])：返回字段值拼接结果，中间用逗号隔开。
 
-# 字符串函数
+## 字符串函数
 
 1. ASCII('*字符*')：返回字符的 ASCII 码值。
 2. CHAR(*数字*,...)：ASCII 码转化成字符串。
@@ -508,7 +464,7 @@ networks:
 30. UUID()：返回 uuid 字符串。
 31. SUBSTRING_INDEX('*字符串*', '*分隔符*', *count*)：返回一个字符串中的子字符串。
 
-# 日期和时间函数
+## 日期和时间函数
 
 1. NOW()：返回当前的日期和时间。
 2. CURDATE()|CURRENT_DATE()：返回当前的日期。
@@ -595,7 +551,7 @@ networks:
    - %%：一个文字“%”。
    - 所有的其他字符不做解释被复制到结果中。
 
-# 加密函数
+## 加密函数
 
 1. AES_ENCRYPT('*字符串*', '*密钥*')：返回用密钥对字符串利用高级加密标准算法加密后的结果，调用 AES_ENCRYPT 的结果是一个二进制字符串，以 BLOB 类型存储。
 2. AES_DECRYPT('*字符串*', '*密钥*')：返回用密钥对字符串利用高级加密标准算法解密后的结果。
@@ -607,7 +563,7 @@ networks:
 8. TO_BASE64(*blob 字段*)
 9. FROM_BASE64(*blob 字段*)
 
-# 控制流函数
+## 控制流函数
 
 1. CASE WHEN *条件* THEN *结果1* ELSE *结果2* END：如果条件是真，则返回结果 1，否则返回结果 2。
 2. CASE *值* WHEN *等于值* THEN *结果1*,... ELSE *结果2* END
@@ -616,12 +572,12 @@ networks:
 5. NULLIF(*值1*, *值2*)：如果两值相等返回 NULL，否则返回值 1。
 6. ISNULL(*值*)：如果值是 null，返回 0。
 
-# 格式化函数
+## 格式化函数
 
 1. INET_ATON(*IP 地址*)：返回 IP 地址的数字表示。
 2. INET_NTOA(*数字*)：返回数字所代表的 IP 地址。
 
-# 系统信息函数
+## 系统信息函数
 
 1. DATABASE()：返回当前数据库名。
 2. BENCHMARK(*次数*, *表达式*)：将表达式重复运行指定次数。
@@ -636,12 +592,64 @@ networks:
 2. mycat stop：停止服务。
 3. mycat console：运行服务。
 
-# Docker 安装
+# 安装
+
+## Docker-Compose 运行
+
+```yml
+services:
+  mysql:
+    image: mysql:8.4.5
+    container_name: mysql
+    hostname: ivfzhoudockermysql
+    privileged: true
+    networks:
+      network:
+        ipv4_address: 172.16.3.128
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: db_xxx # 启动创建数据库。
+      MYSQL_USER: user # 创建新用户，拥有数据库 db_xxx 所有权限。不要设置成 root。
+      MYSQL_PASSWORD: password # 新用户密码。
+      MYSQL_ONETIME_PASSWORD: yes # root 用户登录后就要修改密码。
+      MYSQL_INITDB_SKIP_TZINFO: yes # 跳过时区解析。
+      MYSQL_ROOT_PASSWORD_FILE: /path/to/file # root 用户密码在容器指定文件中获取。以上环境变量也可以追加 _FILE。
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes # root 用户密码为空。
+      MYSQL_RANDOM_ROOT_PASSWORD: yes # root 用户密码随机，在控制台打印密码。
+    ports:
+      - "3306:3306"
+    volumes:
+      - /home/ivfzhou/volumes/mysql/data/:/var/lib/mysql/:rw
+      - /home/ivfzhou/volumes/mysql/config/:/etc/mysql/conf.d/:rw
+      - /home/ivfzhou/volumes/mysql/log/:/logs/:rw
+      - xxx:/docker-entrypoint-initdb.d # 这个目录下的 SQL 文件将被导入到数据库中，默认数据库是变量 MYSQL_DATABASE 的值。
+networks:
+  network:
+    name: ivfzhou_docker_network
+    driver: bridge
+    attachable: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.3.0/24
+          gateway: 172.16.3.1
+```
+
+1. mkdir -p /home/ivfzhou/volumes/mysql
+1. sudo chown -R 999:999 /home/ivfzhou/volumes/mysql
+1. sudo tee -a /etc/hosts <<EOF
+   172.16.3.128 ivfzhoudockermysql
+   EOF 
+1. docker-compose -f src/note/docker/docker-compose.yml up -d mysql
+
+## Docker 安装
 
 1. docker pull mysql:8.4.5
 2. docker run -v volumes/mysql/data:/var/lib/mysql -v volumes/mysql/config:/etc/mysql/conf.d -v volumes/mysql/log:/logs --hostname ivfzhoudockermysql --name mysql --ip 172.16.3.128 --network ivfzhou_docker_network --add-host ivfzhoudebian:172.16.3.128 -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:8.1.0
 
-# 二进制安装
+## Ubuntu 二进制包安装
 
 1. 解压文件，在程序目录下新建 data 文件夹，里面不能有文件。
 2. 编写 my.cnf 文件，复制到 /opt/mysql 下。
@@ -653,7 +661,7 @@ networks:
 8. reboot。
 9. 登录 mysql 修改 root 密码：ALTER USER root@localhost IDENTIFIED BY '123456'。
 
-# Centos 安装
+## Centos 安装
 
 1. 解压压缩包到 /home/ivfzhou/programs/mysql 下。
 2. sudo rpm -i ncurses-compat-libs-6.1-7.20180224.el8.x86_64.rpm。
@@ -668,7 +676,7 @@ networks:
 9. reboot。
 10. alter user root@localhost identified by '123456'。
 
-# Windows 安装
+## Windows 安装
 
 1. 下载 MySQL 程序包并解压，https://dev.mysql.com/downloads/mysql/。
 2. 在程序目录创建文件夹 data。
@@ -678,7 +686,7 @@ networks:
 7. 管理员账号下运行：net start mysql。
 8. 修改 root 用户密码：mysql -u root -p; alter user root@localhost identified by '123456';。
 
-# Debian12 apt 安装
+## Debian12 apt 安装
 
 ```shell
 wget https://repo.mysql.com//mysql-apt-config_0.8.4-1_all.deb

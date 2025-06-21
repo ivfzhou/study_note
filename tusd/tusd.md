@@ -28,6 +28,9 @@ networks:
         - subnet: 172.16.3.0/24
           gateway: 172.16.3.1
 ```
-1. mkdir -p /home/ivfzhou/volumes/tusd/data
-1. sudo chown 1000:1000 -R /home/ivfzhou/volumes/tusd
-1. docker-compose -f docker-compose.yml up -d tusd
+1. mkdir -p volumes/tusd/data
+1. sudo chown 1000:1000 -R volumes/tusd
+1. sudo tee -a /etc/hosts <<EOF
+   172.16.3.141 ivfzhoudockertusd
+   EOF
+1. docker-compose -f src/note/docker/docker-compose.yml up -d tusd

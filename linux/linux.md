@@ -22,7 +22,7 @@
 
 11. ssh 复制文件：scp src ivfzhou@ivfzhoudebian:~/src。
 
-12. Debian12 缩放配置：优化 1.85、vscode 0.5。
+12. Debian12 缩放配置：优化 1.85、vscode 0.5、Jetbians 界面 27 字体 25.7 间隔 1.1。
 
 13 UID 类型：1-999 虚拟用户，1000+ 普通用户。
 

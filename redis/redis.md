@@ -1,9 +1,11 @@
 # 笔记
 
 1. 在 redis 中，key 在添加设置时，如不存在将自动创建。key 的值为空时将自动删除。
-1. 配置文件：[redis.conf.example](./redis.conf.example)、[sentinel.conf](./sentinel.conf)、[redis_volume.zip](./redis_volume.zip)。
+1. 配置文件：[redis.conf.example](./redis.conf.example)、[sentinel.conf](./sentinel.conf)、[redis_cluster_volume.zip](./redis_cluster_volume.zip)。
 
-# Docker-Compose 安装
+# 安装
+
+## Docker-Compose 安装
 
 ```yaml
 services:
@@ -37,18 +39,25 @@ networks:
         - subnet: 172.16.3.0/24
           gateway: 172.16.3.1
 ```
-容器启动：  
 1. mkdir -p volumes/redis/config
-1. mkdir -p volumes/redis/data
-1. cp [redis.conf](./redis.conf) volumes/redis/config/redis.conf
-1. sudo chown -R 999:999 volumes/redis
-1. docker-compose -f docker-compose.yml up -d redis
 
-# Docker 安装
+1. mkdir -p volumes/redis/data
+
+1. cp src/note/redis/redis.conf volumes/redis/config/redis.conf
+
+1. sudo chown -R 999:999 volumes/redis
+
+1. sudo tee -a /etc/hosts <<EOF
+172.16.3.129 ivfzhoudockerredis
+   EOF
+
+1. docker-compose -f src/note/docker/docker-compose.yml up -d redis
+
+## Docker 安装
 
 docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name redis --hostname ivfzhoudockerredis -p 6379:6379 redis:8.0.2 redis-server /etc/redis/redis.conf
 
-# Debian12 安装 redis
+## Debian12 二进制包安装
 
 1. cd /home/ivfzhou/programs/redis 目录下，执行 make。
 1. 安装 tcl：
@@ -64,7 +73,7 @@ docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name
 1. 修改 /etc/sysctl.conf，添加 vm.overcommit_memory=1。
 1. 修改 /etc/rc.local 文件添加 echo never > /sys/kernel/mm/transparent_hugepage/enabled。
 
-# Centos 安装
+## Centos 二进制包安装
 
 1. cd /home/ivfzhou/programs/redis && make MALLOC=libc
 1. make distclean
@@ -76,7 +85,7 @@ docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name
 1. echo 511 > /proc/sys/net/core/somaxconn
 1. 修改 redis.conf，maxclient 500。
 
-# Debian12 apt 安装
+## Debian12 apt 安装
 
 ```shell
 sudo apt install lsb-release curl gpg
@@ -88,7 +97,7 @@ sudo systemctl disable redis-server
 sudo vim /etc/redis/redis.conf
 ```
 
-# Docker 安装 sentinel
+## Docker 安装 sentinel
 
 docker run -v volumes/sentinel/config:/etc/redis -v volumes/sentinel/data:/data --hostname ivfzhoudockerredissentinel --name redis-sentinel redis:8.0.2 redis-sentinel /etc/redis/sentinel.conf
 
@@ -344,7 +353,7 @@ networks:
 26. CLUSTER INFO：集群信息。
 27. CLUSTER MODES：集群节点信息。
 
-## string/integer 类型数据相关命令
+## string/integer
 
 1. SET *key* *value* EX *second* PX *minute*：设置 key value 并指定过期时间。
 2. GET *key*：获取 key value。
@@ -361,7 +370,7 @@ networks:
 13. MGET *key*...：批量读取。
 14. STRLEN *key*：返回长度。
 
-## list 类型数据相关命令，特点 value 可重复有序
+## list
 
 1. LPUSH *key* *value*...：向 list 左边添加 value，返回 list 长度。
 2. RPUSH *key* *value*...：向 list 右边添加 value，返回 list 长度。
@@ -378,7 +387,7 @@ networks:
 13. LREM *key* *count* *value*：删除 key 中 count 个为 value 的元素，并返回删除的个数。count><0 从左右开始删，count=0 全删。
 14. RPOPLPUSH *key1* *key2*：删除 key1 的最后元素，并添加到 key2 中左边，没有 key2 则创建，并返回这个元素。
 
-## set 类型数据相关命令，特点 value 去重无序：
+## set
 
 1. SADD *key* *value*...：向 set 添加 value，返回成功数量。
 2. SREM *key* *value*：删除 set 集合的元素。成功返回 1，没有 value 可删除返回 0。
@@ -395,7 +404,7 @@ networks:
 13. SUNIONSTORE *key* *key1*...：取并集后添加到 key。
 14. SMOVE *key* *key1* *value*：将 value 从 key 移到 key1。
 
-## sorted set 类型数据相关命令，特点有序去重
+## sorted set
 
 1. ZADD *key* *score* *value*：向 sorted-set 添加 value。
 2. ZRANGE *key* *start* *end*：可选 WITHSCORE 返回 sorted-set 指定范围内的 value。withscore 表示显示 score。
@@ -410,7 +419,7 @@ networks:
 11. ZREMRANGEBYRANK *key* *start* *end*：移除有序集合中给定的排名区间的所有成员。
 12. ZREMRANGEBYSCORE *key* *min* *max*：移除有序集合中给定的分数区间的所有成员。
 
-## hash 类型数据相关命令，特点结构类似一个对象
+## hash
 
 1. HSET | HMSET *key* *field1* *value1* *field2* *value2*...：设置 hash value。
 2. HGETALL *key*：返回 hash value。
@@ -429,7 +438,9 @@ networks:
 2. bf.add *key* *value*：向布隆过滤器添加元素。
 3. bf.exist *key* *value*：检查布隆过滤器中是否有该元素。
 
-## hyperloglog 统计一个集合中不重复元素的数量
+## hyperloglog
+
+统计一个集合中不重复元素的数量。
 
 1. PFADD *key* *value*...：添加基数型 key。
 2. PFCOUNT *key*：计算该 key 基数。

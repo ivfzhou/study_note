@@ -1,4 +1,6 @@
-# Docker-Compose 安装
+# 安装
+
+## Docker-Compose 安装
 
 ```yml
 services:
@@ -14,6 +16,7 @@ services:
       - "ivfzhoudebian:172.16.3.1"
     volumes:
       - /home/ivfzhou/volumes/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:rw
+      - /home/ivfzhou/volumes/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:rw
       - /home/ivfzhou/volumes/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins:rw
       - /home/ivfzhou/volumes/rabbitmq/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie:rw
       - /home/ivfzhou/volumes/rabbitmq/log:/var/log/rabbitmq:rw
@@ -38,12 +41,24 @@ networks:
 ```
 
 1. mkdir -p volumes/rabbitmq
-1. cp [rabbitmq.conf](./rabbitmq.conf) volumes/rabbitmq/
-1. cp [enabled_plugins](./enabled_plugins) volumes/rabbitmq/
-1. cp [.erlang.cookie](./.erlang.cookie) volumes/rabbitmq/
+
+1. cp src/note/rabbitmq/rabbitmq.conf volumes/rabbitmq/
+
+1. cp src/note/rabbitmq/enabled_plugins volumes/rabbitmq/
+
+1. cp src/note/rabbitmq/.erlang.cookie volumes/rabbitmq/
+
+1. cp src/note/rabbitmq/definitions.json volumes/rabbitmq/
+
+1. chmod 400 volumes/rabbitmq/.erlang.cookie
+
 1. sudo chown -R 999:999 volumes/rabbitmq
-1. sudo chmod 400 volumes/rabbitmq/.erlang.cookie
-1. docker-compose -f docker-compose.yml up -d rabbitmq
+
+1. sudo tee -a /etc/hosts <<EOF
+172.16.3.138 ivfzhoudockerrabbitmq
+   EOF
+
+1. docker-compose -f src/note/docker/docker-compose.yml up -d rabbitmq
 
 ## Docker 安装
 
@@ -57,7 +72,7 @@ networks:
 1. sudo chmod 400 volumes/rabbitmq/.erlang.cookie
 1. docker run --name rabbitmq --hostname ivfzhoudockerrabbitmq --network ivfzhou_docker_network --ip 172.16.3.138 -p 15672:15672 -p 5672:5672 -v /home/ivfzhou/volumes/rabbitmq/rabbitmq.conf:/opt/rabbitmq/etc/rabbitmq/rabbitmq.conf -v /home/ivfzhou/volumes/rabbitmq/enabled_plugins:/opt/rabbitmq/etc/rabbitmq/enabled_plugins -v /home/ivfzhou/volumes/rabbitmq/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie -v /home/ivfzhou/volumes/rabbitmq/log:/var/log/rabbitmq -v /home/ivfzhou/volumes/rabbitmq/mnesia:/var/lib/rabbitmq/mnesia -d rabbitmq:4.1.1-management
 
-# Debian12 apt 安装
+## Debian12 apt 安装
 
 ```shell
 sudo apt-get install curl gnupg apt-transport-https -y
@@ -92,7 +107,7 @@ sudo apt-get install -y erlang-base \
 sudo apt-get install rabbitmq-server -y --fix-missing
 ```
 
-# 二进制文件安装
+## 二进制包安装
 
 1. wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v4.1.1/rabbitmq-server-generic-unix-4.1.1.tar.xz
 1. tar -xJvf rabbitmq-server-generic-unix-4.1.1.tar.xz
@@ -180,7 +195,7 @@ sudo apt-get install rabbitmq-server -y --fix-missing
 1. 放行本地防火墙端口：4369、25672。
 1. 容器中执行 /opt/rabbitmq/sbin/rabbitmqctl stop_app，接着 reset，接着 join_cluster --ram rabbit@ivfzhoudebian。
 
-# 其他
+# 笔记
 
 1. 服务正式环境下打开文件数可设置为 65536，测试环境可设置为 4096。
 1. 环境变量 RABBITMQ_LOG_BASE 可控制日志文件夹。

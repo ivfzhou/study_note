@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "name": "ivfzhou",
+      "password_hash": "xNndCUv+kk6UKCGu0omKTwMYkjsoSllV3zOCdAGzwGv71YNh", 
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "ivfzhou",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ]
+}

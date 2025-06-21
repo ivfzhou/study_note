@@ -24,12 +24,6 @@
     7. /run：启动。
     8. /run-redirect：目标启动。
 
-
-# Docker 运行
-
-1. chown -R 200 /home/ivfzhou/volumes/nexus/
-2. docker run --name nexus --ip 172.16.3.142 --hostname ivfzhoudockernexus -p 8081:8081 -v /home/ivfzhou/volumes/nexus/nexus-data:/nexus-data:rw --network ivfzhou_docker_network -td sonatype/nexus3:3.80.0
-
 # 配置 https
 
 1. /nacos-data/etc/nexus.properties 里面修改配置，放开 ssl 端口，添加 jetty-https.xml。
@@ -44,7 +38,9 @@
 10. 将 nexus.jks 复制到 /opt/nexus/etc/ssl/ 下。
 11. [http.zip](./https.zip)
 
-# Docker-Compose 配置
+# 安装
+
+## Docker-Compose 安装
 
 ```yaml
 version: "3.9"
@@ -62,7 +58,7 @@ services:
     ports:
       - "8081:8081"
     #volumes:
-    #  - /home/ivfzhou/volumes/nexus/data:/nexus-data:rw
+    #  - /home/ivfzhou/volumes/nexus:/nexus-data:rw
 networks:
   network:
     driver: bridge
@@ -72,3 +68,20 @@ networks:
         - subnet: 172.16.3.0/24
           gateway: 172.16.3.1
 ```
+
+1. sudo tee -a /etc/hosts <<EOF
+   172.16.3.142 ivfzhoudockernexus
+   EOF
+2. docker-compose -f src/note/docker/docker-compose.yml up -d nexus
+3. docker cp nexus:/nexus-data/ volumes/nexus
+4. docker stop nexus
+5. sudo chown -R 200:200 volumes/nexus
+6. docker-compose -f src/note/docker/docker-compose.yml down nexus
+7. docker-compose -f src/note/docker/docker-compose.yml up -d nexus
+8. cat volumes/nexus/admin.password
+
+## Docker 安装
+
+1. mkdir volumes/nexus
+2. chown -R 200:200 volumes/nexus
+3. docker run --name nexus --ip 172.16.3.142 --hostname ivfzhoudockernexus -p 8081:8081 -v /home/ivfzhou/volumes/nexus/nexus-data:/nexus-data:rw --network ivfzhou_docker_network -td sonatype/nexus3:3.80.0

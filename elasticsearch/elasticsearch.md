@@ -78,7 +78,7 @@ WhitespaceAnalyzer（去除空格）、SimpleAnalyzer（字母小写）、StopAn
     - --optimize：运行插件优化器，然后停止服务。
     - -h、--help：显示帮助信息。
 
-# Docker-Compose 配置
+# Docker-Compose 安装
 
 ```yml
 services:
@@ -126,7 +126,10 @@ services:
       - ELASTICSEARCH_USERNAME=kibana_system
       - ELASTICSEARCH_PASSWORD=123456
     volumes:
-       - "/home/ivfzhou/volumes/kibana/config:/usr/share/kibana/config:rw"
+      - "/home/ivfzhou/volumes/kibana/data:/usr/share/kibana/data:rw"
+      - "/home/ivfzhou/volumes/kibana/config:/usr/share/kibana/config:rw"
+      - "/home/ivfzhou/volumes/kibana/log:/user/share/kibana/logs:rw"
+      - "/home/ivfzhou/volumes/kibana/plugin:/usr/share/kibana/plugins:rw"
 networks:
   network:
     name: ivfzhou_docker_network
@@ -139,16 +142,30 @@ networks:
           gateway: 172.16.3.1
 ```
 
-1. /usr/share/elasticsearch/bin/elasticsearch-reset-password -u kibana_system -i
-1. docker cp elasticsearch:/usr/share/elasticsearch/data /home/ivfzhou/volumes/elasticsearch/
-1. docker cp elasticsearch:/usr/share/elasticsearch/config /home/ivfzhou/volumes/elasticsearch/
-1. sudo chown 1000:1000 -R volumes/elasticsearch
-1. docker cp kibana:/usr/share/kibana/config/ volumes/kibana/
-1. sudo chown 1000:1000 -R volumes/kibana
+1. sudo tee -a /etc/hosts <<EOF
+   172.16.3.144 ivfzhoudockerelasticsearch
+   172.16.3.145 ivfzhoudockerkibana
+   EOF
+1. docker-compose -f src/note/docker/docker-compose.yml up -d elasticsearch kibana
+1. mkdir -p volumes/elasticsearch
+1. mkdir -p volumes/kibana
+1. docker cp elasticsearch:/usr/share/elasticsearch/data volumes/elasticsearch/
+1. docker cp elasticsearch:/usr/share/elasticsearch/config volumes/elasticsearch/
+1. mkdir -p volumes/elasticsearch/logs
+1. mkdir -p volumes/elasticsearch/plugins
+1. sudo chown 1000:0 -R volumes/elasticsearch
+1. docker cp kibana:/usr/share/kibana/data volumes/kibana/
+1. docker cp kibana:/usr/share/kibana/config volumes/kibana/
+1. mkdir -p volumes/kibana/plugins
+1. mkdir -p volumes/kibana/logs
+1. sudo chown 1000:0 -R volumes/kibana
+1. docker-compose -f src/note/docker/docker-compose.yml down elasticsearch kibana
+1. docker-compose -f src/note/docker/docker-compose.yml up -d elasticsearch kibana
+1. docker exec -it elasticsearch /usr/share/elasticsearch/bin/elasticsearch-reset-password -u kibana_system -i
 
-# kibana 运行
+# Docker kibana 安装
 
-1. docker run -v /home/ivfzhou/volumes/kibana/config:/usr/share/kibana/config --hostname ivfzhoudockerkibana -v 5601:5601 --name kibana kibana:9.0.2
+1. docker run -v volumes/kibana/config:/usr/share/kibana/config --hostname ivfzhoudockerkibana -v 5601:5601 --name kibana kibana:9.0.2
 1. 复制配置文件到数据卷。
 1. kibana 控制台报错需添加配置
     - xpack.encryptedSavedObjects.encryptionKey: "woyaocouqi32weizifu+++++++++++++"

@@ -702,3 +702,14 @@ sudo update-grub
 ## xprop
 
 - WM_CLASS：点击应用窗口，获取 StartupWMClass 值（输出值的第二个）。
+
+# ss
+
+ - -t：列出 tcp 的端口使用。
+ - -u：列出 udp 的端口使用。
+ - -p：列出线程信息。
+
+# ps
+
+- -p *pid*：指定线程 ID。
+- -o args=：显示线程命令行。

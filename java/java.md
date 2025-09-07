@@ -2,7 +2,11 @@
 
 1. 将源码转成 HTML 格式文档：
    ```shell
-   javadoc --module-source-path ./src/  -d ./docs/ -charset utf8 -docencoding utf8 -locale en_US --module java.base,java.compiler,java.datatransfer,java.desktop,java.instrument,java.logging,java.management,java.management.rmi,java.naming,java.net.http,java.prefs,java.rmi,java.scripting,java.se,java.security.jgss,java.security.sasl,java.smartcardio,java.sql,java.sql.rowset,java.transaction.xa,java.xml,java.xml.crypto,jdk.accessibility,jdk.attach,jdk.charsets,jdk.compiler,jdk.crypto.cryptoki,jdk.crypto.ec,jdk.crypto.mscapi,jdk.dynalink,jdk.editpad,jdk.graal.compiler,jdk.graal.compiler.management,jdk.hotspot.agent,jdk.httpserver,jdk.incubator.vector,jdk.internal.ed,jdk.internal.jvmstat,jdk.internal.le,jdk.internal.opt,jdk.internal.vm.ci,jdk.jartool,jdk.javadoc,jdk.jcmd,jdk.jconsole,jdk.jdeps,jdk.jdi,jdk.jdwp.agent,jdk.jfr,jdk.jlink,jdk.jpackage,jdk.jshell,jdk.jsobject,jdk.jstatd,jdk.localedata,jdk.management,jdk.management.agent,jdk.management.jfr,jdk.naming.dns,jdk.naming.rmi,jdk.net,jdk.nio.mapmode,jdk.random,jdk.sctp,jdk.security.auth,jdk.security.jgss,jdk.unsupported,jdk.unsupported.desktop,jdk.xml.dom,jdk.zipfs
+   unzip lib/src.zip -d src
+   mv src ../
+   mkdir docs
+   LANG=ejavadoc --module-source-path src -d docs -charset utf8 -docencoding utf8 --module $(ls src | sed ':a;N;$!ba;s/\n/,/g')
+   docs
    ```
 1. switch 作用对象为 byte、short、int、char、enum、String。
 1. 方法重载：同一个类中，方法名字相同，参数列表不同。参数个数不同，参数数据类型不同，参数顺序不同。
@@ -24,6 +28,24 @@
 1. volatile 保证变量在线程间的可见性。
 1. SpringFrame IoC/DI、AOP：解耦。
 1. CGLib（ASM）Enhancer 无法代理 final 类，因为无法被继承。
+1. [Java9 模块化](./module_example)：
+    ```shell
+    cd module_example
+    mkdir mods
+    
+    # 编译模块 A：
+    javac -d mods/cn.ivfzhou.moduleA --module-path mods $(find src/cn.ivfzhou.moduleA -name *.java)
+    
+    # 编译模块 B：
+    javac -d mods/cn.ivfzhou.moduleB --module-path mods $(find src/cn.ivfzhou.moduleB -name *.java)
+    
+    # 运行模块 B：
+    java --module-path mods -m cn.ivfzhou.moduleB/cn.ivfzhou.moduleB.MainB
+    
+    # 一次性编译所有模块，避免模块循环依赖：
+    javac --module-source-path src -d mods --module cn.ivfzhou.moduleA,cn.ivfzhou.moduleB
+    ```
+1. [Java21 语言定义](https://docs.oracle.com/javase/specs/jls/se21/html/index.html)。
 
 # 注解
 
@@ -46,10 +68,7 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 1. double：8 个字节，-1.79E308 到 1.79E308，有效位数 15-16 位。
 1. char：2 个字节，0-65535，65536 个字符。
 1. boolean：不确定。
-
-# 引用类型
-
-类、接口、数组、枚举、注解、String。
+1. 引用类型：类、接口、数组、枚举、注解。
 
 # 转义字符
 
@@ -135,7 +154,6 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 
 1. --version：查看版本。
 1. -jar *包路径*... *arg1* *arg2* *arg3*：运行 jar 包。
-1. -javaagent
 1. -Dfile.encoding=UTF-8：指定字符编码。
 1. -classpath *包路径*;*包路径*...
 1. -Xms500m：堆初始内存。
@@ -166,12 +184,3 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 1. 静态成员内部类：相当于外部类。
 1. 局部内部类：可访问外部类，可访问 final 局部变量。
 1. 匿名内部类：在 new 时定义类成员。new Interface(){ implements }。
-
-# 设计模式
-
-1. 创建型模式：
-工厂方法，抽象工厂，建造器，原型，单例。
-1. 结构型模式：
-适配器，桥接，组合，装饰器，外观，代理，享元。
-1. 行为模式：
-责任链，命令，迭代器，中介者，备忘录，观察者，状态，策略，模板方法，访问者。

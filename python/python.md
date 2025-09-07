@@ -24,7 +24,7 @@
 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple  
 华中理工大学：http://pypi.hustunique.com/  
 山东理工大学：http://pypi.sdutlinux.org  
-豆瓣：http://pypi.douban.com/simple  
+豆瓣：http://pypi.douban.com/simple
 
 - 卸载 pip：`python.exe -m pip uninstall pip`
 - 安装 pip：`python.exe -m ensurepip --default-pip`

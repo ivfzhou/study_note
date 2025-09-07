@@ -84,14 +84,31 @@
         <id>jdk21</id>
         <activation>
           <activeByDefault>true</activeByDefault>
-          <jdk>21</jdk>
         </activation>
         <properties>
           <maven.compiler.source>21</maven.compiler.source>
           <maven.compiler.target>21</maven.compiler.target>
           <maven.compiler.compilerVersion>21</maven.compiler.compilerVersion>
+          <maven.compiler.release>21</maven.compiler.release>
         </properties>
-      </profile>
+        <build>
+          <pluginManagement>
+            <plugins>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!-- <version>${maven.compiler.plugin.version}</version> -->
+                <configuration>
+                  <source>21</source>
+                  <target>21</target>
+                  <release>21</release>
+                  <encoding>UTF-8</encoding>
+                </configuration>
+              </plugin>
+            </plugins>
+          </pluginManagement>
+        </build>
+    </profile>
     </profiles>
     
     <activeProfiles>

@@ -5,11 +5,11 @@
    unzip lib/src.zip -d src
    mv src ../
    mkdir docs
-   LANG=ejavadoc --module-source-path src -d docs -charset utf8 -docencoding utf8 --module $(ls src | sed ':a;N;$!ba;s/\n/,/g')
+   LANG=en_US javadoc --module-source-path src -d docs -charset utf8 -docencoding utf8 --module $(ls src | sed ':a;N;$!ba;s/\n/,/g')
    docs
    ```
 1. switch 作用对象为 byte、short、int、char、enum、String。
-1. 方法重载：同一个类中，方法名字相同，参数列表不同。参数个数不同，参数数据类型不同，参数顺序不同。
+1. 方法重载：同一个类中，方法名字相同，参数列表不同。参数个数、参数数据类型、参数顺序。
 1. 方法重写：方法名、参数列表、返回值类型（兼容）和父类相同。
 1. this()、super() 只能在构造方法中第一行语句。
 1. 面向对象编程的七个原则：
@@ -105,60 +105,15 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 1. static：类成员、局部变量。
 1. abstract：类、类方法。
 
-# 正则
-
-1. a：字符 a。
-1. [abc]：匹配 a 或 b 或 c。
-1. [^abc]：任何字符，除了 a、b 或 c（否定）。
-1. [a-zA-Z]：a 到 z 或 A 到 Z，两头的字母包括在内（范围）。
-1. [a-d[m-p]]：a 到 d 或 m 到 p，[a-dm-p]（并集）。
-1. [a-z&&[def]]：d、e 或 f（交集）。
-1. [a-z&&\[^bc]]：a 到 z，除了 b 和 c，[ad-z]（减去）。
-1. [a-z&&\[^m-p]]：a 到 z，且非 m 到 p，[a-lq-z]（减去）。
-1. (red|blue|green)：查找任何指定的选项。
-1. .：任意字符（与行结束符可能匹配也可能不匹配）。
-1. \\d：数字 [0-9]。
-1. \\D：查找非数字字符。
-1. \\w：单词字符 [a-zA-Z_0-9]。
-1. \\W：查找非单词字符。
-1. \\s：查找空白字符。
-1. \\S：查找非空白字符。
-1. \\b：匹配单词边界。
-1. \\B：匹配非单词边界。
-1. \\0：查找 NULL 字符。
-1. \\n：查找换行符。
-1. \\f：查找换页符。
-1. \\r：查找回车符。
-1. \\t：查找制表符。
-1. \\v：查找垂直制表符。
-1. \\*xxx*：查找以八进制数 *xxx* 规定的字符。
-1. \\x*dd*：查找以十六进制数 *dd* 规定的字符。
-1. \\u*xxxx*：查找以十六进制数 *xxxx* 规定的 Unicode 字符。
-1. ^：行开头。
-1. $：行结尾。
-1. *X*?：一次或 0 次。
-1. *X*\*：0 次或多次（包括 1 次）。
-1. *X*+：一次或多次。
-1. *X*{*n*}：恰好 *n* 次。
-1. *X*{*n*,}：至少 *n* 次。
-1. *X*{*n*, *m*}：至少 *n* 次,不超过 m 次。
-1. ^*n*：匹配任何开头为 *n* 的字符串。
-1. *n*$：匹配任何结尾为 *n* 的字符串。
-1. ?=*n*：匹配任何其后紧接指定字符串 *n* 的字符串。
-1. ?!*n*：匹配任何其后没有紧接指定字符串 *n* 的字符串。
-1. i：执行对大小写不敏感的匹配。
-1. g：执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。
-1. m：执行多行匹配。
-
 # java 命令参数
 
 1. --version：查看版本。
 1. -jar *包路径*... *arg1* *arg2* *arg3*：运行 jar 包。
 1. -Dfile.encoding=UTF-8：指定字符编码。
 1. -classpath *包路径*;*包路径*...
-1. -Xms500m：堆初始内存。
-1. -Xmx3000m：堆最大内存。
-1. -Xss2m：栈空间。
+1. -Xms*500m*：堆初始内存。
+1. -Xmx*3000m*：堆最大内存。
+1. -Xss*2m*：栈空间。
 
 # 成员变量和局部变量的区别
 
@@ -180,7 +135,7 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 
 1. 成员内部类：
     - 成员不能是 static。
-    - 可访问外部类成员，Outer.this/super
+    - 可访问外部类成员，*Outer*.this/super
 1. 静态成员内部类：相当于外部类。
 1. 局部内部类：可访问外部类，可访问 final 局部变量。
 1. 匿名内部类：在 new 时定义类成员。new Interface(){ implements }。

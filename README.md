@@ -38,6 +38,7 @@
 1. [Python](./python/python.md)
 1. [RabbitMQ](./rabbitmq/rabbitmq.md)
 1. [Redis](./redis/redis.md)
+1. [RegularExpression](./regexp/regexp.md)
 1. [RocketMQ](./rocketmq/rocketmq.md)
 1. [SemanticVersion](./semver/semver.md)
 1. [Shell](./shell/shell.md)

@@ -34,7 +34,7 @@
 1. SET('elem1', 'elem2', ...)：去重集合。插入数据时可以选下标也可指定值，插入多个值时，值之间用逗号分割，可以插入多个值。值尾部空格自动删除。默认值为 NULL。
 1. BIT(*n*)：位数据类型。最大 64 位，默认 1 位。值不足位数前面补 0。
 1. BINARY(*字节*)。
-1. VARBINATY(*字节*)：最大数为 65535。
+1. VARBINARY(*字节*)：最大数为 65535。
 1. TINYBLOB：大小为 [0, 255] 字节。只对 max_sort_length 个字节排序。
 1. BLOB：大小为 [0, 65535] 字节。
 1. MEDIUMBLOB：大小为 [0, 16777215] 字节。
@@ -73,7 +73,7 @@
 ## 表
 
 1. CREATE TABLE [IF NOT EXISTS] *表名* (
-    *字段名* 数据类型(大小) 约束 COMMENT '注释内容' COLLATE utf8mb4_unicode_ci DEFAULT 函数或者值 ON UPDATE 函数或者值,  [UNIQUE INDEX *索引名*(*字段名*(*长度*),...)],
+    *字段名* 数据类型(大小) 约束 COMMENT '注释内容' CHARSET *ANSCII* COLLATE utf8mb4_unicode_ci DEFAULT 函数或者值 ON UPDATE 函数或者值,  [UNIQUE INDEX *索引名*(*字段名*(*长度*),...)],
     [KEY *索引名*(*字段名*,...)],
     [CONSTRAINT *约束名* FOREIGN KEY(*字段名*,...) REFERENCES *目标表名*(*目标字段名*,...)],
     [PRIMARY KEY(*字段*,...)],

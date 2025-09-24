@@ -204,7 +204,9 @@
             - post-site
             - site-deploy：maven-site-plugin:deploy，部署站点到服务器。
     
-1. **mvn clean verify**
+1. **mvn clean complie**
+
+1. **mvn clean install -Dmaven.test.skip=true**
 
 1. **mvn test -Dtest=*classname*＃*method***
 

@@ -201,7 +201,7 @@ sudo systemctl restart docker
 
 2. 解压，设置环境变量。
 
-3. 运行 sudo env PATH=$PATH:/usr/sbin:/sbin dockerd。
+3. 运行 sudo env PATH=$PATH:/sbin dockerd。
 
 # Debian12 二进制包安装 docker-compose
 

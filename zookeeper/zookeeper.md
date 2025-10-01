@@ -37,31 +37,31 @@ services:
   zookeeper:
     image: zookeeper:3.9.0
     container_name: zookeeper
-    hostname: ivfzhou-docker-zookeeper
+    hostname: ivfzhoudockerzookeeper
     privileged: true
     networks:
       network:
-        ipv4_address: 172.16.3.5
-    ports:
-      - "2181:2181"
+        ipv4_address: 172.16.3.146
+    #ports:
+    #  - "2181:2181"
     environment:
       ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=ivfzhou-docker-zookeeper:2888:3888;2181
+      ZOO_SERVERS: server.1=ivfzhoudockerzookeeper:2888:3888;2181
     volumes:
       - /home/ivfzhou/volumes/zookeeper/data:/data:rw
       - /home/ivfzhou/volumes/zookeeper/datalog:/datalog:rw
       - /home/ivfzhou/volumes/zookeeper/logs:/logs:rw
-      - /home/ivfzhou/volumes/zookeeper/conf:/conf:rw
+      - /home/ivfzhou/volumes/zookeeper/conf/zoo.cfg:/conf/zoo.cfg:rw
   zookeeper_0:
     image: zookeeper:3.9.0
     container_name: zookeeper_0
-    hostname: ivfzhou-docker-zookeeper_0
+    hostname: ivfzhoudockerzookeeper_0
     privileged: true
     networks:
       network:
-        ipv4_address: 172.16.3.6
-    ports:
-      - "2182:2181"
+        ipv4_address: 172.16.3.147
+    #ports:
+    #  - "2182:2181"
     environment:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zookeeper_0:2888:3888;2181 server.2=zookeeper_1:2888:3888;2181 server.3=zookeeper_2:2888:3888;2181
@@ -69,17 +69,17 @@ services:
       - /home/ivfzhou/volumes/zookeeper/0/data:/data:rw
       - /home/ivfzhou/volumes/zookeeper/0/datalog:/datalog:rw
       - /home/ivfzhou/volumes/zookeeper/0/logs:/logs:rw
-      - /home/ivfzhou/volumes/zookeeper/0/conf:/conf:rw
+      - /home/ivfzhou/volumes/zookeeper/0/conf/zoo.cfg:/conf/zoo.cfg:rw
   zookeeper_1:
     image: zookeeper:3.9.0
     container_name: zookeeper_1
-    hostname: ivfzhou-docker-zookeeper_1
+    hostname: ivfzhoudockerzookeeper_1
     privileged: true
     networks:
       network:
-        ipv4_address: 172.16.3.7
-    ports:
-      - "2183:2181"
+        ipv4_address: 172.16.3.148
+    #ports:
+    #  - "2183:2181"
     environment:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zookeeper_0:2888:3888;2181 server.2=zookeeper_1:2888:3888;2181 server.3=zookeeper_2:2888:3888;2181
@@ -87,15 +87,15 @@ services:
       - /home/ivfzhou/volumes/zookeeper/1/data:/data:rw
       - /home/ivfzhou/volumes/zookeeper/1/datalog:/datalog:rw
       - /home/ivfzhou/volumes/zookeeper/1/logs:/logs:rw
-      - /home/ivfzhou/volumes/zookeeper/1/conf:/conf:rw
+      - /home/ivfzhou/volumes/zookeeper/1/conf/zoo.cfg:/conf/zoo.cfg:rw
   zookeeper_2:
     image: zookeeper:3.9.0
     container_name: zookeeper_2
-    hostname: ivfzhou-docker-zookeeper_2
+    hostname: ivfzhoudockerzookeeper_2
     privileged: true
     networks:
       network:
-        ipv4_address: 172.16.3.8
+        ipv4_address: 172.16.3.149
     ports:
       - "2184:2181"
     environment:
@@ -105,7 +105,7 @@ services:
       - /home/ivfzhou/volumes/zookeeper/2/data:/data:rw
       - /home/ivfzhou/volumes/zookeeper/2/datalog:/datalog:rw
       - /home/ivfzhou/volumes/zookeeper/2/logs:/logs:rw
-      - /home/ivfzhou/volumes/zookeeper/2/conf:/conf:rw
+      - /home/ivfzhou/volumes/zookeeper/2/conf/zoo.cfg:/conf/zoo.cfg:rw
 networks:
   network:
     driver: bridge
@@ -116,15 +116,24 @@ networks:
         - subnet: 172.16.3.0/24
           gateway: 172.16.3.1
 ```
-1. mkdir -p ~/volumes/zookeeper/data。
-1. mkdir -p ~/volumes/zookeeper/datalog。
-1. mkdir -p ~/volumes/zookeeper/logs。
-1. mkdir -p ~/volumes/zookeeper/conf。
-1. sudo chown -R 1000:1000 ~/volumes/zookeeper。
-1. docker-compose -f ~/docker-compose.yml up -d zookeeper。
-___
-1. mkdir -p ~/volumes/zookeeper/0/data ~/volumes/zookeeper/0/datalog ~/volumes/zookeeper/0/logs ~/volumes/zookeeper/0/conf。
-1. mkdir -p ~/volumes/zookeeper/1/data ~/volumes/zookeeper/1/datalog ~/volumes/zookeeper/1/logs ~/volumes/zookeeper/1/conf。
-1. mkdir -p ~/volumes/zookeeper/2/data ~/volumes/zookeeper/2/datalog ~/volumes/zookeeper/2/logs ~/volumes/zookeeper/2/conf。
-1. sudo chown -R 1000:1000 ~/volumes/zookeeper。
-1. docker-compose -f ~/docker-compose.yml up -d zookeeper_0 zookeeper_1 zookeeper_2。
+
+## 单例部署
+
+1. mkdir -p ~/volumes/zookeeper/data
+1. mkdir -p ~/volumes/zookeeper/datalog
+1. mkdir -p ~/volumes/zookeeper/logs
+1. mkdir -p ~/volumes/zookeeper/conf
+1. cp [zoo.cfg](./zoo.cfg) ~/volumes/zookeeper/conf/
+1. sudo chown -R 1000:1000 ~/volumes/zookeeper
+1. docker-compose -f ~/src/note/docker/docker-compose.yml up -d zookeeper
+
+### 集群部署
+
+1. mkdir -p ~/volumes/zookeeper/0/data ~/volumes/zookeeper/0/datalog ~/volumes/zookeeper/0/logs ~/volumes/zookeeper/0/conf
+1. mkdir -p ~/volumes/zookeeper/1/data ~/volumes/zookeeper/1/datalog ~/volumes/zookeeper/1/logs ~/volumes/zookeeper/1/conf
+1. mkdir -p ~/volumes/zookeeper/2/data ~/volumes/zookeeper/2/datalog ~/volumes/zookeeper/2/logs ~/volumes/zookeeper/2/conf
+1. cp [zoo.cfg](./zoo.cfg) ~/volumes/zookeeper/0/conf/
+1. cp [zoo.cfg](./zoo.cfg) ~/volumes/zookeeper/1/conf/
+1. cp [zoo.cfg](./zoo.cfg) ~/volumes/zookeeper/2/conf/
+1. sudo chown -R 1000:1000 ~/volumes/zookeeper
+1. docker-compose -f ~/src/note/docker/docker-compose.yml up -d zookeeper_0 zookeeper_1 zookeeper_2

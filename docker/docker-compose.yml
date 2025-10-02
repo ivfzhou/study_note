@@ -36,6 +36,179 @@ services:
     command:
       - redis-server
       - /config/redis.conf
+  redis_0:
+    image: redis:8.0.2
+    container_name: redis_0
+    privileged: true
+    hostname: ivfzhoudockerredis0
+    networks:
+      network:
+        ipv4_address: 172.16.3.130
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    working_dir: /data
+    #ports:
+    #  - "6380:6380"
+    #  - "16380:16380"
+    volumes:
+      - /home/ivfzhou/volumes/redis/cluster/config:/config:rw
+      - /home/ivfzhou/volumes/redis/cluster/data:/data:rw
+    command:
+      - redis-server
+      - /config/redis_6380.conf
+  redis_1:
+    image: redis:8.0.2
+    working_dir: /data
+    container_name: redis_1
+    hostname: ivfzhoudockerredis1
+    networks:
+      network:
+        ipv4_address: 172.16.3.131
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    privileged: true
+    #ports:
+    #  - "6381:6381"
+    #  - "16381:16381"
+    volumes:
+      - /home/ivfzhou/volumes/redis/cluster/config:/config
+      - /home/ivfzhou/volumes/redis/cluster/data:/data
+    command:
+      - redis-server
+      - /config/redis_6381.conf
+  redis_2:
+    image: redis:8.0.2
+    container_name: redis_2
+    working_dir: /data
+    privileged: true
+    hostname: ivfzhoudockerredis2
+    networks:
+      network:
+        ipv4_address: 172.16.3.132
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    #ports:
+    #  - "6382:6382"
+    #  - "16382:16382"
+    stdin_open: true
+    volumes:
+      - /home/ivfzhou/volumes/redis/cluster/config:/config
+      - /home/ivfzhou/volumes/redis/cluster/data:/data
+    command:
+      - redis-server
+      - /config/redis_6382.conf
+  redis_3:
+    image: redis:8.0.2
+    container_name: redis_3
+    working_dir: /data
+    hostname: ivfzhoudockerredis3
+    networks:
+      network:
+        ipv4_address: 172.16.3.133
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    privileged: true
+    #ports:
+    #  - "6383:6383"
+    #  - "16383:16383"
+    volumes:
+      - /home/ivfzhou/volumes/redis/cluster/config:/config
+      - /home/ivfzhou/volumes/redis/cluster/data:/data
+    command:
+      - redis-server
+      - /config/redis_6383.conf
+  redis_4:
+    image: redis:8.0.2
+    working_dir: /data
+    container_name: redis_4
+    hostname: ivfzhoudockerredis4
+    networks:
+      network:
+        ipv4_address: 172.16.3.134
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    privileged: true
+    #ports:
+    #  - "6384:6384"
+    #  - "16384:16384"
+    volumes:
+      - /home/ivfzhou/volumes/redis/cluster/config:/config
+      - /home/ivfzhou/volumes/redis/cluster/data:/data
+    command:
+      - redis-server
+      - /config/redis_6384.conf
+  redis_5:
+    image: redis:8.0.2
+    container_name: redis_5
+    working_dir: /data
+    privileged: true
+    hostname: ivfzhoudockerredis5
+    volumes:
+      - /home/ivfzhou/volumes/redis/cluster/config:/config
+      - /home/ivfzhou/volumes/redis/cluster/data:/data
+    #ports:
+    #  - "6385:6385"
+    #  - "16385:16385"
+    networks:
+      network:
+        ipv4_address: 172.16.3.135
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    command:
+      - redis-server
+      - /config/redis_6385.conf
+  redis_sentinel_0:
+    image: redis:8.0.2
+    container_name: redis_sentinel_0
+    working_dir: /data
+    hostname: ivfzhoudockerredissentinel0
+    networks:
+      network:
+        ipv4_address: 172.16.3.136
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    privileged: true
+    #ports:
+    #  - "6386:6386"
+    volumes:
+      - /home/ivfzhou/volumes/redis/cluster/config:/config
+      - /home/ivfzhou/volumes/redis/cluster/data:/data
+    command:
+      - redis-sentinel
+      - /config/sentinel_6386.conf
+    depends_on:
+      - redis_0
+      - redis_1
+      - redis_2
+      - redis_3
+      - redis_4
+      - redis_5
+  redis_sentinel_1:
+    image: redis:8.0.2
+    container_name: redis_sentinel_1
+    working_dir: /data
+    hostname: ivfzhoudockerredissentinel1
+    networks:
+      network:
+        ipv4_address: 172.16.3.137
+    extra_hosts:
+      - "ivfzhoudebian:172.16.3.1"
+    privileged: true
+    #ports:
+    #  - "6387:6387"
+    volumes:
+      - /home/ivfzhou/volumes/redis/cluster/config:/config
+      - /home/ivfzhou/volumes/redis/cluster/data:/data
+    command:
+      - redis-sentinel
+      - /config/sentinel_6387.conf
+    depends_on:
+      - redis_0
+      - redis_1
+      - redis_2
+      - redis_3
+      - redis_4
+      - redis_5
   rabbitmq:
     image: rabbitmq:4.1.1-management
     container_name: rabbitmq

@@ -57,19 +57,19 @@ networks:
 
 docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name redis --hostname ivfzhoudockerredis -p 6379:6379 redis:8.0.2 redis-server /etc/redis/redis.conf
 
-## Debian12 二进制包安装
+## Debian 二进制包安装
 
-1. cd /home/ivfzhou/programs/redis 目录下，执行 make。
+1. cd ~/programs/redis 目录下，执行 make。
 1. 安装 tcl：
     ```shell
     wget http://downloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz
-    tar -xzvf tcl8.6.1-src.tar.gz  -C /home/ivfzhou/programs/tcl/
-    cd  /home/ivfzhou/programs/tcl/unix/
+    tar -xzvf tcl8.6.1-src.tar.gz  -C ~/programs/tcl/
+    cd  ~/programs/tcl/unix/
     sudo ./configure
     sudo make
     sudo make install
     ```
-1. cd /home/ivfzhou/programs/redis，执行 make test。
+1. cd ~/programs/redis，执行 make test。
 1. 修改 /etc/sysctl.conf，添加 vm.overcommit_memory=1。
 1. 修改 /etc/rc.local 文件添加 echo never > /sys/kernel/mm/transparent_hugepage/enabled。
 
@@ -85,7 +85,7 @@ docker run -v volumes/redis/config:/etc/redis -v volumes/redis/data:/data --name
 1. echo 511 > /proc/sys/net/core/somaxconn
 1. 修改 redis.conf，maxclient 500。
 
-## Debian12 apt 安装
+## Debian apt 安装
 
 ```shell
 sudo apt install lsb-release curl gpg
@@ -100,13 +100,6 @@ sudo vim /etc/redis/redis.conf
 ## Docker 安装 sentinel
 
 docker run -v volumes/sentinel/config:/etc/redis -v volumes/sentinel/data:/data --hostname ivfzhoudockerredissentinel --name redis-sentinel redis:8.0.2 redis-sentinel /etc/redis/sentinel.conf
-
-# Cluster 集群连接建立
-
-1. redis-cli --askpass --cluster create 172.16.3.130:6379 172.16.3.131:6379 172.16.3.132:6379 172.16.3.133:6379 172.16.3.134:6379 172.16.3.135:6379 --cluster-replicas 1
-1. 关闭集群主节点间的总线端口防火墙 +1000，16379。
-1. 从节点注意配置主节点账号密码。
-1. redis-cli -c -h 172.16.3.130
 
 # Docker-compose 集群配置
 
@@ -194,7 +187,7 @@ services:
       - redis-server
       - /config/redis_6383.conf
   redis_4:
-    image: redis:7.2.1
+    image: redis:8.0.2
     working_dir: /data
     container_name: redis_4
     hostname: ivfzhoudockerredis4
@@ -260,7 +253,7 @@ services:
       - redis_4
       - redis_5
   redis_sentinel_1:
-    image: redis:7.2.1
+    image: redis:8.0.2
     container_name: redis_sentinel_1
     working_dir: /data
     hostname: ivfzhoudockerredissentinel1
@@ -299,7 +292,11 @@ networks:
 1. mkdir -p volumes/redis/cluster
 1. cp [redis_cluster_volume](./redis_cluster_volume)/* volumes/redis/cluster/
 1. sudo chown -R 999:999 volumes/redis/cluster
-1. docker-compose -f docker-compose.yml up -d redis_0 redis_1 redis_2 redis_3 redis_4 redis_5 redis_sentinel_0 redis_sentinel_1
+1. docker-compose -f ~/src/note/docker/docker-compose.yml up -d redis_0 redis_1 redis_2 redis_3 redis_4 redis_5 redis_sentinel_0 redis_sentinel_1
+1. redis-cli --askpass --cluster create 172.16.3.130:6380 172.16.3.131:6381 172.16.3.132:6382 172.16.3.133:6383 172.16.3.134:6384 172.16.3.135:6385 --cluster-replicas 1
+1. redis-cli -c -h 172.16.3.130 -p 6380
+1. 关闭集群主节点间的总线端口防火墙 +1000，16379。
+1. 从节点注意配置主节点账号密码。
 
 # 命令
 

@@ -1,4 +1,4 @@
-# 笔记
+# 一、笔记
 
 1. `make -f makefile -C dir target`
 1. `make -n` 打印命令执行语句，不实际执行。
@@ -18,7 +18,8 @@
 1. 函数调用，`$(func args)`，`${func, args}`。
 1. 常用函数，`shell` 执行命令，`wildcard` 替换通配符，`subst from,to,text` 替换文本，`patsubst pattern,replace,text` 模式匹配替换，替换后缀名：`$(VAR:.js=.ts)`。
 
-# 语法
+# 二、语法
+
     ```Makefile
     目标: 依赖
         命令
@@ -64,7 +65,7 @@
     $(basename $(f))
     ```
 
-# 使用 PREFIX
+# 三、使用 PREFIX
 
 在 Makefile 中定义：`PREFIX ?= /path/to/dir`，将成为 PREFIX 的默认值。  
 然后在命令行中指定：`make PREFIX=/path/to/dir`，修改 PREFIX 的值。  

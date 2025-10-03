@@ -1,4 +1,4 @@
-# Docker-Compose 安装
+# 一、Docker-Compose 安装
 
 ```yml
 services:
@@ -14,16 +14,6 @@ services:
         ipv4_address: 172.16.3.143
     extra_hosts:
       - "ivfzhoudebian:172.16.3.1"
-networks:
-  network:
-    name: ivfzhou_docker_network
-    driver: bridge
-    attachable: true
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.3.0/24
-          gateway: 172.16.3.1
 ```
 1. sudo tee -a /etc/hosts <<EOF
    172.16.3.143 ivfzhoudockerzipkin

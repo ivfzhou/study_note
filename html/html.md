@@ -1,13 +1,15 @@
-# 笔记
+# 一、笔记
 
+1. [html_standard_2024.pdf](./html_standard_2024.pdf)
 1. html 标签名和属性名全部小写。
 1. HTML5 中的默认字符集为 UTF-8。
 
-# 标签
+# 二、标签
 
-## 基础
+## 1. 基础
 
-1. **`<!DOCTYPE>`**：声明，不区分大小写，也没有结束标签。每一个 HTML 文档都必须以 DOCTYPE 元素开头。
+- **`<!DOCTYPE>`**：声明，不区分大小写，也没有结束标签。每一个 HTML 文档都必须以 DOCTYPE 元素开头。
+
     - HTML5：
         ```html
         <!DOCTYPE html>
@@ -28,7 +30,7 @@
         ```html
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
         ```
-1. **`<html>`**：定义 HTML 文档的根。
+- **`<html>`**：定义 HTML 文档的根。
     - xmlns="http://www.w3.org/1999/xhtml"：规定 XML namespace 属性（如果需要内容符合 XHTML）。
     - 默认 CSS 值：
         ```css
@@ -39,21 +41,21 @@
             outline: none;
         }
         ```
-1. **`<head>`**：定义关于文档的信息。
+- **`<head>`**：定义关于文档的信息。
     - 默认 CSS 值：
         ```css
         head {
             display: none;
         }
         ```
-1. **`<title>`**：定义文档的标题。一个 HTML 文档中不能包含多个 title 元素。
+- **`<title>`**：定义文档的标题。一个 HTML 文档中不能包含多个 title 元素。
     - 默认 CSS 值：
         ```css
         title {
             display: none;
         }
         ```
-1. **`<body>`**：定义文档的主体。一个 HTML 文档中只能有一个 body 元素。
+- **`<body>`**：定义文档的主体。一个 HTML 文档中只能有一个 body 元素。
     - 默认 CSS 值：
         ```css
         body {
@@ -64,7 +66,7 @@
             outline: none;
         }
         ```
-1. **`<h1> to <h6>`**：定义 HTML 标题。
+- **`<h1> to <h6>`**：定义 HTML 标题。
     - 默认 CSS 值：
         ```css
         h1 {
@@ -122,7 +124,7 @@
             font-weight: bold;
         }
         ```
-1. **`<p>`**：定义段落。
+- **`<p>`**：定义段落。
     - 默认 CSS 值：
         ```css
         p {
@@ -133,8 +135,8 @@
             margin-right: 0;
         }
         ```
-1. **`<br>`**：单标签。定义简单的折行。
-1. **`<hr>`**：单标签。定义内容的主题变化。通常显示为水平线。
+- **`<br>`**：单标签。定义简单的折行。
+- **`<hr>`**：单标签。定义内容的主题变化。通常显示为水平线。
     - 默认 CSS 值：
         ```css
         hr {
@@ -147,22 +149,23 @@
             border-width: 1px;
         }
         ```
-1. **`<!--...-->`**：定义注释。
+- **`<!--...-->`**：定义注释。
      - 条件注释例子：
          ```html
          <!--[if IE 8]> .... some HTML here .... <![endif]-->
          ```
 
-## 2.2 格式化
+## 2. 格式化
 
-1. **`<abbr>`**：定义缩写词或首字母缩略词。
+- **`<abbr>`**：定义缩写词或首字母缩略词。
+
     - 默认 CSS 值：
         ```css
         abbr {
             display: inline;
         }
         ```
-1. **`<address>`**：定义文档作者或拥有者的联系信息。
+- **`<address>`**：定义文档作者或拥有者的联系信息。
     - 默认 CSS 值：
         ```css
         address {
@@ -170,9 +173,9 @@
             font-style: italic;
         }
         ```
-1. **`<b>`**：定义粗体文本。
-1. **`<bdi>`**：定义文本方向，使其脱离其周围文本的方向设置。
-1. **`<bdo>`**：定义文字方向。
+- **`<b>`**：定义粗体文本。
+- **`<bdi>`**：定义文本方向，使其脱离其周围文本的方向设置。
+- **`<bdo>`**：定义文字方向。
     - dir="ltr | rtl"：必需。规定 bdo 元素内文本的方向。
     - 默认 CSS 值：
         ```css
@@ -180,7 +183,7 @@
             unicode-bidi: bidi-override;
         }
         ```
-1. **`<blockquote>`**：定义长的引用。
+- **`<blockquote>`**：定义长的引用。
     - cite="*URL*"：规定引用的来源。
     - 默认 CSS 值：
         ```css
@@ -192,21 +195,21 @@
             margin-right: 40px;
         }
         ```
-1. **`<cite>`**：定义作品的标题。
+- **`<cite>`**：定义作品的标题。
     - 默认 CSS 值：
         ```css
         cite {
             font-style: italic;
         }
         ```
-1. **`<code>`**：定义一段计算机代码。
+- **`<code>`**：定义一段计算机代码。
     - 默认 CSS 值：
         ```css
         code {
             font-family: monospace;
         }
         ```
-1. **`<del>`**：定义已从文档中删除的文本。
+- **`<del>`**：定义已从文档中删除的文本。
     - cite="*URL*"：规定文档的 URL，解释文本被删除/更改的原因。
     - datetime="*YYYY-MM-DDThh:mm:ssTZD*"：规定删除/更改文本的日期和时间。
     - 默认 CSS 值：
@@ -215,7 +218,7 @@
             text-decoration: line-through;
         }
         ```
-1. **`<dfn>`**：规定要在内容中定义的术语。
+- **`<dfn>`**：规定要在内容中定义的术语。
     - title="*value*"
     - 默认 CSS 值：
         ```css
@@ -223,21 +226,21 @@
             font-style: italic;
         }
         ```
-1. **`<em>`**：定义强调文本。
+- **`<em>`**：定义强调文本。
     - 默认 CSS 值：
         ```css
         em {
             font-style: italic;
         }
         ```
-1. **`<i>`**：定义以不同的语气或情态表达的文本部分。
+- **`<i>`**：定义以不同的语气或情态表达的文本部分。
     - 默认 CSS 值：
         ```css
         i {
             font-style: italic;
         }
         ```
-1. **`<ins>`**：定义已插入到文档中的文本。
+- **`<ins>`**：定义已插入到文档中的文本。
     - cite="*URL*"：规定解释插入/更改文本的原因的文档的 URL。
     - datetime="*YYYY-MM-DDThh:mm:ssTZD*"：规定插入/更改文本的日期和时间。
     - 默认 CSS 值：
@@ -246,14 +249,14 @@
             text-decoration: underline;
         }
         ```
-1. **`<kbd>`**：定义键盘输入。
+- **`<kbd>`**：定义键盘输入。
     - 默认 CSS 值：
         ```css
         kbd {
             font-family: monospace;
         }
         ```
-1. **`<mark>`**：定义应标记或突出显示的文本。
+- **`<mark>`**：定义应标记或突出显示的文本。
     - 默认 CSS 值：
         ```css
         mark {
@@ -261,7 +264,7 @@
             color: black;
         }
         ```
-1. **`<meter>`**：定义已知范围内的仪表。
+- **`<meter>`**：定义已知范围内的仪表。
     - form="*formId*"：规定 meter 元素属于哪个表单。
     - high="*num*"：规定范围的高值。
     - low="*num*"：规定范围的低值。
@@ -269,7 +272,7 @@
     - min="*num*"：规定范围的最小值。默认值为 0。
     - optimum="*num*"：规定仪表的最佳值。
     - value="*num*"：必需。规定仪表的当前值。
-1. **`<pre>`**：定义预格式文本。文本保留空格和换行符。
+- **`<pre>`**：定义预格式文本。文本保留空格和换行符。
     - 默认 CSS 值：
         ```css
         pre {
@@ -279,10 +282,10 @@
             margin: 1em 0;
         }
         ```
-1. **`<progress>`**：定义任务进度。
+- **`<progress>`**：定义任务进度。
     - max="*num*"：规定任务所需的总工作量。默认值为 1。
     - value="*num*"：规定任务已完成的部分。
-1. **`<q>`**：定义短的引用。
+- **`<q>`**：定义短的引用。
     - cite="*URL*"：规定引用的源 URL。
     - 默认 CSS 值：
         ```css
@@ -296,42 +299,42 @@
             content: close-quote;
         }
         ```
-1. **`<rp>`**：定义在不支持 ruby 注释的浏览器中显示的内容。
-1. **`<rt>`**：定义字符的解释/发音（针对东亚印刷术）。
+- **`<rp>`**：定义在不支持 ruby 注释的浏览器中显示的内容。
+- **`<rt>`**：定义字符的解释/发音（针对东亚印刷术）。
     - 默认 CSS 值：
         ```css
         rt {
             line-height: normal;
         }
         ```
-1. **`<ruby>`**：定义 ruby 注释（针对东亚印刷术）。
+- **`<ruby>`**：定义 ruby 注释（针对东亚印刷术）。
     - 例子：
         ```html
         <ruby> 漢 <rp>(</rp><rt>ㄏㄢˋ</rt><rp>)</rp> </ruby>
         ```
-1. **`<s>`**：定义不再正确的文本。
+- **`<s>`**：定义不再正确的文本。
     - 默认 CSS 值：
         ```css
         s {
             text-decoration: line-through;
         }
         ```
-1. **`<samp>`**：定义计算机程序的样本输出。
+- **`<samp>`**：定义计算机程序的样本输出。
     - 默认 CSS 值：
         ```css
         samp {
             font-family: monospace;
         }
         ```
-1. **`<small>`**：定义小号文本。
-1. **`<strong>`**：定义重要的文本。
+- **`<small>`**：定义小号文本。
+- **`<strong>`**：定义重要的文本。
     - 默认 CSS 值：
         ```css
         strong {
             font-weight: bold;
         }
         ```
-1. **`<sup>`**：定义上标文本。
+- **`<sup>`**：定义上标文本。
     - 默认 CSS 值：
         ```css
         sup {
@@ -339,7 +342,7 @@
             font-size: smaller;
         }
         ```
-1. **`<sub>`**：定义下标文本。
+- **`<sub>`**：定义下标文本。
     - 默认 CSS 值：
         ```css
         sub {
@@ -347,28 +350,29 @@
             font-size: smaller;
         }
         ```
-1. **`<template>`**：定义用作容纳页面加载时隐藏内容的容器。
-1. **`<time>`**：定义日期/时间。
+- **`<template>`**：定义用作容纳页面加载时隐藏内容的容器。
+- **`<time>`**：定义日期/时间。
     - datetime="*datetime*"：表示 time 元素的机器可读的格式。
-1. **`<u>`**：定义未明确表达且样式与普通文本不同的文本。
+- **`<u>`**：定义未明确表达且样式与普通文本不同的文本。
     - 默认 CSS 值：
         ```css
         u {
             text-decoration: underline;
         }
         ```
-1. **`<var>`**：定义变量。
+- **`<var>`**：定义变量。
     - 默认 CSS 值：
         ```css
         var {
             font-style: italic;
         }
         ```
-1. **`<wbr>`**：定义可能的换行符。
+- **`<wbr>`**：定义可能的换行符。
 
-## 表单和输入
+## 3. 表单和输入
 
-1. **`<form>`**：定义供用户输入的 HTML 表单。
+- **`<form>`**：定义供用户输入的 HTML 表单。
+
     - accept-charset="*charset*"：规定提交表单时要使用的字符编码。
     - action="*URL*"：规定提交表单时将表单数据发送到哪里。
     - autocomplete="on | off"：规定表单是否应启用自动完成功能。
@@ -385,7 +389,7 @@
             margin-top: 0em;
         }
         ```
-1. **`<input>`**：单标签。定义输入控件。
+- **`<input>`**：单标签。定义输入控件。
     - accept="*文件扩展名：audio/\* | video/\* | image/\**"：媒体类型，规定通过文件上传来提交的文件的类型。规定用户可以从文件输入对话框中选择哪些文件类型的过滤器（仅适用于 type="file"）。
     - alt="*txt*"：规定图像的替代文本（仅适用于 type="image"）。
     - autocomplete="on | off"：规定 input 元素是否应该启用自动完成。
@@ -419,7 +423,7 @@
     - type="button | checkbox | color | date | datetime-local | email | file | hidden | image | month | number | password | radio | range | reset | search | submit | tel | text | time | url | week"：规定要显示的 input 元素的类型。
     - value="*txt*"：规定 input 元素的值。
     - width="*px*"：规定 input 元素的宽度（仅适用于 type="image"）。
-1. **`<textarea>`**：定义多行的文本输入控件。
+- **`<textarea>`**：定义多行的文本输入控件。
     - autofocus="autofocus"：规定文本区域应在页面加载时自动获得焦点。
     - cols="*num*"：规定文本区域的可见宽度。
     - dirname="*dir*"：规定被提交的文本区域的的文字方向。
@@ -432,7 +436,7 @@
     - required="required"：规定文本区域是必填的。
     - rows="*num*"：规定文本区域中可见的行数。
     - wrap="hard | soft"：规定在表单中提交时文本区域中的文本如何换行。
-1. **`<button>`**：定义可点击的按钮。
+- **`<button>`**：定义可点击的按钮。
     - autofocus="autofocus"：规定按钮应在页面加载时自动获得焦点。
     - disabled="disabled"：规定应禁用按钮。
     - form="*formId*"：规定按钮属于哪个表单。
@@ -446,7 +450,7 @@
     - popovertargetaction="hide | show | toggle"：规定按钮被点击时对弹出窗口元素的操作。
     - type="button | reset | submit"：规定按钮的类型。
     - value="*txt*"：规定按钮的初始值。
-1. **`<select>`**：定义下拉列表。
+- **`<select>`**：定义下拉列表。
     - autofocus="autofocus"：规定下拉列表应在页面加载时自动获得焦点。
     - disabled="disabled"：规定应禁用下拉列表。
     - form="*formId*"：定义下拉列表所属的表单。
@@ -454,15 +458,15 @@
     - name="*txt*"：定义下拉列表的名称。
     - required="required"：规定在提交表单之前用户必须选择一个值。
     - size="*num*"：定义下拉列表中可见选项的数量。
-1. **`<optgroup>`**：定义下拉列表中相关选项的分组。
+- **`<optgroup>`**：定义下拉列表中相关选项的分组。
     - disabled="disabled"：规定应禁用选项组。
     - label="*txt*"：规定选项组的标签。
-1. **`<option>`**：定义下拉列表中的选项。
+- **`<option>`**：定义下拉列表中的选项。
     - disabled="disabled"：规定选项应该被禁用。
     - label="*txt*"：为选项规定较短的标签。
     - selected="selected"：规定在页面加载时应预先选择一个选项。
     - value="*txt*"：规定要发送到服务器的值。
-1. **`<label>`**：定义 input 元素的标注。
+- **`<label>`**：定义 input 元素的标注。
     - for="*elementId*"：规定 label 绑定到哪个表单元素。
     - form="*formId*"：规定 label 字段所属的表单。
     - 默认 CSS 值：
@@ -471,7 +475,7 @@
             cursor: default;
         }
         ```
-1. **`<fieldset>`**：对表单中的相关元素进行分组。
+- **`<fieldset>`**：对表单中的相关元素进行分组。
     - disabled="disabled"：规定应禁用一组相关的表单元素。
     - form="*formId*"：规定字段集属于哪个表单。
     - name="*txt*"：规定字段集的名称。
@@ -488,7 +492,7 @@
             border: 2px groove (internal value);
         }
         ```
-1. **`<legend>`**：定义 fieldset 元素的标题。
+- **`<legend>`**：定义 fieldset 元素的标题。
     - 默认 CSS 值：
         ```css
         legend {
@@ -498,7 +502,7 @@
             border: none;
         }
         ```
-1. **`<datalist>`**：规定输入控件的预定义选项列表。
+- **`<datalist>`**：规定输入控件的预定义选项列表。
     - 默认 CSS 值：
         ```css
         datalist {
@@ -517,7 +521,7 @@
             <option value="Safari"></option>
         </datalist>
         ```
-1. **`<output>`**：定义计算的结果。
+- **`<output>`**：定义计算的结果。
     - for="*elementId*"：规定计算结果与计算中使用的元素之间的关系。
     - form="*formId*"：规定 output 元素所属的表单。
     - name="*txt*"：规定 output 元素的名称。
@@ -538,9 +542,10 @@
         </form>
         ```
 
-## 框架
+## 4. 框架
 
-1. **`<iframe>`**：定义内联框架。
+- **`<iframe>`**：定义内联框架。
+
     - allow：规定 iframe 的功能策略。
     - allowfullscreen="true | false"：如果 iframe 可以通过调用 requestFullscreen() 方法激活全屏模式，则设置为 true。
     - allowpaymentrequest="true | false"：如果允许跨源 iframe 调用 Payment Request API，则设置为 true。
@@ -562,9 +567,10 @@
         }
         ```
 
-## 图像
+## 5. 图像
 
-1. **`<img>`**：定义图像。
+- **`<img>`**：定义图像。
+
     - alt="*txt*"：规定图像的替代文本。
     - crossorigin="anonymous | use-credentials"：允许使用来自允许跨域访问的第三方网站的图像与画布（canvas）一起使用。
     - height="*px*"：规定图像的高度。
@@ -583,7 +589,7 @@
             display: inline-block;
         }
         ```
-1. **`<map>`**：定义图像映射。
+- **`<map>`**：定义图像映射。
     - name="*txt*"：必需。规定图像地图的名称。
     - 默认 CSS 值：
         ```css
@@ -600,7 +606,7 @@
             <area shape="circle" coords="570,291,75" alt="Coffee" href="coffee.html" />
         </map>
         ```
-1. **`<area>`**：定义图像地图内部的区域。
+- **`<area>`**：定义图像地图内部的区域。
     - alt="*txt*"：规定区域的替代文本。如果存在 href 属性则为必需。
     - coords="*坐标值*"：规定区域的坐标。
     - download="*文件名*"：规定当用户单击超链接时将下载目标。
@@ -618,7 +624,7 @@
             display: none;
         }
         ```
-1. **`<canvas>`**：用于通过脚本（通常是 JavaScript）动态绘制图形。在禁用 JavaScript 的浏览器和不支持 canvas 的浏览器中，会显示出 canvas 元素内部的任何文本。
+- **`<canvas>`**：用于通过脚本（通常是 JavaScript）动态绘制图形。在禁用 JavaScript 的浏览器和不支持 canvas 的浏览器中，会显示出 canvas 元素内部的任何文本。
     - height="*px*"：规定画布的高度。默认值为 150。
     - width="*px*"：规定画布的宽度。默认值为 300。
     - 默认 CSS 值：
@@ -628,14 +634,14 @@
             width: 300px;
         }
         ```
-1. **`<figcaption>`**：定义 figure 元素的标题。
+- **`<figcaption>`**：定义 figure 元素的标题。
     - 默认 CSS 值：
         ```css
         figcaption {
             display: block;
         }
         ```
-1. **`<figure>`**：规定自包含的内容。
+- **`<figure>`**：规定自包含的内容。
     - 默认 CSS 值：
         ```css
         figure {
@@ -646,7 +652,7 @@
             margin-right: 40px;
         }
         ```
-1. **`<picture>`**：定义多个图像资源的容器。img 元素作为 picture 元素的最后一个子元素是必需的，用作当没有任何 source 标签匹配时的备用选项。
+- **`<picture>`**：定义多个图像资源的容器。img 元素作为 picture 元素的最后一个子元素是必需的，用作当没有任何 source 标签匹配时的备用选项。
     - 例子：
         ```html
         <picture>
@@ -655,11 +661,12 @@
             <img src="flowers-3.jpg" alt="Flowers" style="width:auto;" />
         </picture>
         ```
-1. **`<svg>`**：定义 SVG 图形的容器。
+- **`<svg>`**：定义 SVG 图形的容器。
 
-## 2.6 音频/视频
+## 6. 音频/视频
 
-1. **`<audio>`**：定义嵌入的声音内容。
+- **`<audio>`**：定义嵌入的声音内容。
+
     - autoplay="autoplay"：规定音频将在准备就绪后立即开始播放。
     - controls="controls"：规定应显示音频控件（例如播放/暂停按钮等）。
     - loop="loop"：规定音频将在每次结束后重新开始。
@@ -674,13 +681,13 @@
             您的浏览器不支持 audio 标签。
         </audio>
         ```
-1. **`<source>`**：定义媒体元素（如 video、audio 和 picture）的多个媒体资源。
+- **`<source>`**：定义媒体元素（如 video、audio 和 picture）的多个媒体资源。
     - media="*媒体查询*"：接受任何有效的媒体查询，通常在 CSS 中定义。
     - sizes：为不同的页面布局指定图像大小。
     - src="*URL*"：用于指定媒体文件的 URL。当 source 用于 audio 和 video 时，此属性是必需的。
     - srcset="*URL*"：用于指定在不同情况下使用的图像的 URL。当 source 用于 picture 时，此属性是必需的。
     - type="*MIME 类型*"：规定资源的 MIME 类型。
-1. **`<track>`**：定义用在媒体播放器中的文本轨道。
+- **`<track>`**：定义用在媒体播放器中的文本轨道。
     - default="default"：规定如果用户的首选项不指示其他轨道更合适，则启用该轨道。
     - kind="captions | chapters | descriptions | metadata | subtitles"：规定文本轨道的类型。
     - label="*txt*"：规定文本轨道的标题。
@@ -695,7 +702,7 @@
             <track src="fgsubtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian" />
         </video>
         ```
-1. **`<video>`**：定义嵌入的视频内容。
+- **`<video>`**：定义嵌入的视频内容。
     - autoplay="autoplay"：规定视频准备就绪后立即开始播放。
     - controls="controls"：规定应显示的视频控件（例如播放/暂停按钮等）。
     - height="*px*"：设置视频播放器的高度。
@@ -706,9 +713,10 @@
     - src="*URL*"：规定视频文件的 URL。
     - width="*px*"：设置视频播放器的宽度。
 
-## 链接
+## 7. 链接
 
-1. **`<a>`**：定义超链接。
+- **`<a>`**：定义超链接。
+
     - download="*文件名*"：规定当用户单击超链接时将下载目标。
     - href="*URL*"：规定链接指向的页面的 URL。
     - hreflang="*语言代码*"：规定被链接文档的语言。
@@ -729,7 +737,7 @@
             color: (internal value);
         }
         ```
-1. **`<link>`**：定义文档与外部资源的关系（最常用于链接样式表）。
+- **`<link>`**：定义文档与外部资源的关系（最常用于链接样式表）。
     - crossorigin="anonymous | use-credentials"：规定元素如何处理跨源请求。
     - href="*URL*"：规定被链接文档的位置。
     - hreflang="*语言代码*"：规定被链接文档中文本的语言。
@@ -745,7 +753,7 @@
             display: none;
         }
         ```
-1. **`<nav>`**：定义导航链接。
+- **`<nav>`**：定义导航链接。
     - 默认 CSS 值：
         ```css
         nav {
@@ -753,9 +761,10 @@
         }
         ```
 
-## 列表
+## 8. 列表
 
-1. **`<menu>`**：定义无序列表。
+- **`<menu>`**：定义无序列表。
+
     - 默认 CSS 值：
         ```css
         menu {
@@ -768,7 +777,7 @@
             padding-inline-start: 40px;
         }
         ```
-1. **`<ul>`**：定义无序列表。
+- **`<ul>`**：定义无序列表。
     - 默认 CSS 值：
         ```css
         ul {
@@ -781,7 +790,7 @@
             padding-left: 40px;
         }
         ```
-1. **`<ol>`**：定义有序列表。
+- **`<ol>`**：定义有序列表。
     - reversed="reversed"：规定列表顺序应该反转（9,8,7 ...）。
     - start="*num*"：规定有序列表的起始值。
     - type="1 | A | a | I | i"：规定要在列表中使用的标记类型。
@@ -797,7 +806,7 @@
             padding-left: 40px;
         }
         ```
-1. **`<li>`**：定义列表的项目。
+- **`<li>`**：定义列表的项目。
     - value="*num*"：仅适用于 ol 列表。规定列表项的起始值。随后的列表项将从该数字递增。
     - 默认 CSS 值：
         ```css
@@ -805,7 +814,7 @@
             display: list-item;
         }
         ```
-1. **`<dl>`**：定义描述列表。
+- **`<dl>`**：定义描述列表。
     - 默认 CSS 值：
         ```css
         dl {
@@ -816,14 +825,14 @@
             margin-right: 0;
         }
         ```
-1. **`<dt>`**：定义描述列表中的术语/名称。
+- **`<dt>`**：定义描述列表中的术语/名称。
     - 默认 CSS 值：
         ```css
         dt {
             display: block;
         }
         ```
-1. **`<dd>`**：定义描述列表中术语的描述/值。
+- **`<dd>`**：定义描述列表中术语的描述/值。
     - 默认 CSS 值：
         ```css
         dd {
@@ -832,9 +841,10 @@
         }
         ```
 
-## 表格
+## 9. 表格
 
-1. **`<table>`**：定义表格。
+- **`<table>`**：定义表格。
+
     - 默认 CSS 值：
         ```css
         table {
@@ -877,7 +887,7 @@
             </tfoot>
         </table>
         ```
-1. **`<caption>`**：定义表格标题。
+- **`<caption>`**：定义表格标题。
     - 默认 CSS 值：
         ```css
         caption {
@@ -885,7 +895,7 @@
             text-align: center;
         }
         ```
-1. **`<th>`**：定义表格中的表头单元格。
+- **`<th>`**：定义表格中的表头单元格。
     - abbr="*txt*"：规定标题单元格中内容的缩写版本。
     - colspan="*num*"：规定标题单元格应跨越的列数。
     - headers="*headerId*"：规定一个或多个与单元格相关的标题单元格。
@@ -900,7 +910,7 @@
             text-align: center;
         }
         ```
-1. **`<tr>`**：定义表格中的行。
+- **`<tr>`**：定义表格中的行。
     - 默认 CSS 值：
         ```css
         tr {
@@ -909,7 +919,7 @@
             border-color: inherit;
         }
         ```
-1. **`<td>`**：定义表格中的单元。
+- **`<td>`**：定义表格中的单元。
     - colspan="*num*"：规定单元格应跨越的列数。
     - headers="*headerId*"：规定一个或多个与单元格相关的标题单元格。
     - rowspan="*num*"：设置单元格应跨越的行数。
@@ -920,7 +930,7 @@
             vertical-align: inherit;
         }
         ```
-1. **`<thead>`**：定义表格中的表头内容。
+- **`<thead>`**：定义表格中的表头内容。
     - 默认 CSS 值：
         ```css
         thead {
@@ -929,7 +939,7 @@
             border-color: inherit;
         }
         ```
-1. **`<tbody>`**：定义表格中的主体内容。
+- **`<tbody>`**：定义表格中的主体内容。
     - 默认 CSS 值：
         ```css
         tbody {
@@ -938,7 +948,7 @@
             border-color: inherit;
         }
         ```
-1. **`<tfoot>`**：定义表格中的表注内容（脚注）。
+- **`<tfoot>`**：定义表格中的表注内容（脚注）。
     - 默认 CSS 值：
         ```css
         tfoot {
@@ -947,7 +957,7 @@
             border-color: inherit;
         }
         ```
-1. **`<col>`**：规定 colgroup 元素中每列的列属性。
+- **`<col>`**：规定 colgroup 元素中每列的列属性。
     - span="*num*"：规定 col 元素应跨越的列数。
     - 默认 CSS 值：
         ```css
@@ -955,7 +965,7 @@
             display: table-column;
         }
         ```
-1. **`<colgroup>`**：规定表格中供格式化的列组。
+- **`<colgroup>`**：规定表格中供格式化的列组。
     - span="*num*"：规定列组应跨越的列数。
     - 默认 CSS 值：
         ```css
@@ -964,9 +974,10 @@
         }
         ```
 
-## 2.10 样式和语义
+## 10. 样式和语义
 
-1. **`<style>`**：定义文档的样式信息。
+- **`<style>`**：定义文档的样式信息。
+
     - media="*媒体查询*"：规定样式使用的媒体。
     - type="text/css"：规定 style 标签的媒体类型。
     - 默认 CSS 值：
@@ -975,65 +986,65 @@
             display: none;
         }
         ```
-1. **`<div>`**：定义文档中的节（片段）。
+- **`<div>`**：定义文档中的节（片段）。
     - 默认 CSS 值：
         ```css
         div {
             display: block;
         }
         ```
-1. **`<span>`**：定义文本的一部分，或文档的一部分。
-1. **`<header>`**：定义文档或小节的页眉。
+- **`<span>`**：定义文本的一部分，或文档的一部分。
+- **`<header>`**：定义文档或小节的页眉。
     - 默认 CSS 值：
         ```css
         div {
             display: block;
         }
         ```
-1. **`<hgroup>`**：定义标题和相关内容。
+- **`<hgroup>`**：定义标题和相关内容。
     - 默认 CSS 值：
         ```css
         div {
             display: block;
         }
         ```
-1. **`<footer>`**：定义文档或小节的页脚。
+- **`<footer>`**：定义文档或小节的页脚。
     - 默认 CSS 值：
         ```css
         div {
             display: block;
         }
         ```
-1. **`<main>`**：定义文档的主要内容。
-1. **`<section>`**：定义文档中的一个部分。
+- **`<main>`**：定义文档的主要内容。
+- **`<section>`**：定义文档中的一个部分。
     - 默认 CSS 值：
         ```css
         div {
             display: block;
         }
         ```
-1. **`<search>`**：定义搜索部分。
+- **`<search>`**：定义搜索部分。
     - 默认 CSS 值：
         ```css
         div {
             display: block;
         }
         ```
-1. **`<article>`**：定义文章。
+- **`<article>`**：定义文章。
     - 默认 CSS 值：
         ```css
         div {
             display: block;
         }
         ```
-1. **`<aside>`**：定义页面内容之外的内容。
+- **`<aside>`**：定义页面内容之外的内容。
     - 默认 CSS 值：
         ```css
         div {
             display: block;
         }
         ```
-1. **`<details>`**：定义用户可查看或隐藏的其他详细信息。
+- **`<details>`**：定义用户可查看或隐藏的其他详细信息。
     - open="open"：规定详细信息应该对用户可见（打开）。
     - 默认 CSS 值：
         ```css
@@ -1041,16 +1052,16 @@
             display: block;
         }
         ```
-1. **`<dialog>`**：定义对话框或窗口。
+- **`<dialog>`**：定义对话框或窗口。
     - open="open"：规定 dialog 元素处于活动状态，并且用户可以与之交互。
-1. **`<summary>`**：定义 details 元素的可见标题。
+- **`<summary>`**：定义 details 元素的可见标题。
     - 默认 CSS 值：
         ```css
         div {
             display: block;
         }
         ```
-1. **`<data>`**：添加给定内容的机器可读的翻译。
+- **`<data>`**：添加给定内容的机器可读的翻译。
     - value="*machine-readable format*"：规定元素内容的机器可读翻译。
     - 例子：
         ```html
@@ -1061,16 +1072,17 @@
         </ul>
         ```
 
-## 元信息
+## 11. 元信息
 
-1. **`<head>`**：包含文档的元数据/信息。
+- **`<head>`**：包含文档的元数据/信息。
+
     - 默认 CSS 值：
         ```css
         head {
             display: none;
         }
         ```
-1. **`<meta>`**：定义关于 HTML 文档的元数据。
+- **`<meta>`**：定义关于 HTML 文档的元数据。
     - charset="*字符集*"：规定 HTML 文档的字符编码。
     - content="*txt*"：规定与 http-equiv 或 name 属性关联的值。
     - http-equiv="content-security-policy | content-type | default-style | refresh"：为 content 属性的信息/值提供 HTTP 标头。
@@ -1085,13 +1097,14 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </head>
         ```
-1. **`<base>`**：规定文档中所有相对 URL、/ 或目标的基准 URL。一份文档中只能有一个 base 元素，而且它必须位于 head 元素内部。
+- **`<base>`**：规定文档中所有相对 URL、/ 或目标的基准 URL。一份文档中只能有一个 base 元素，而且它必须位于 head 元素内部。
     - href="*URL*"：规定页面中所有相对 URL 的基本 URL。
     - target="_blank | _parent | _self | _top"：规定页面中所有超链接和表单的默认目标。
 
-## 编程
+## 12. 编程
 
-1. **`<script>`**：定义客户端脚本。script 元素要么包含脚本语句，要么通过 src 属性指向外部脚本文件。script 元素所属类型，位于 head 元素中的 script 元素属于元数据元素，位于其他元素（如 body 或 section）中的则属于短语元素。
+- **`<script>`**：定义客户端脚本。script 元素要么包含脚本语句，要么通过 src 属性指向外部脚本文件。script 元素所属类型，位于 head 元素中的 script 元素属于元数据元素，位于其他元素（如 body 或 section）中的则属于短语元素。
+
     - async="async"：规定脚本在解析页面的同时进行并行下载，并在可用时立即执行（在解析完成之前）（仅适用于外部脚本）。
     - crossorigin="anonymous | use-credentials"：将请求的模式设置为 HTTP CORS 请求。
     - defer="defer"：规定脚本在解析页面的同时进行并行下载，并在页面完成解析后执行（仅适用于外部脚本）。
@@ -1106,8 +1119,8 @@
             display: none;
         }
         ```
-1. **`<noscript>`**：定义针对不支持客户端脚本的用户的替代内容。当在 head 中使用时，noscript 元素只能包含 link、style 和 meta 元素。
-1. **`<embed>`**：单标签。定义外部资源的容器。例如网页、图片、媒体播放器或插件应用程序。
+- **`<noscript>`**：定义针对不支持客户端脚本的用户的替代内容。当在 head 中使用时，noscript 元素只能包含 link、style 和 meta 元素。
+- **`<embed>`**：单标签。定义外部资源的容器。例如网页、图片、媒体播放器或插件应用程序。
     - height="*px*"：规定嵌入内容的高度。
     - src="*URL*"：规定要嵌入的外部文件的地址。
     - type="*媒体类型*"：规定嵌入内容的媒体类型。
@@ -1118,7 +1131,7 @@
             outline: none;
         }
         ```
-1. **`<object>`**：定义外部资源的容器。最初是为了嵌入浏览器插件而设计的。
+- **`<object>`**：定义外部资源的容器。最初是为了嵌入浏览器插件而设计的。
     - data="*URL*"：规定要由对象使用的资源的 URL。
     - form="*formId*"：规定对象所属的表单。
     - height="*px*"：规定对象的高度。
@@ -1133,7 +1146,7 @@
             outline: none;
         }
         ```
-1. **`<param>`**：单标签。用于定义 object 元素的参数。
+- **`<param>`**：单标签。用于定义 object 元素的参数。
     - name="*名称*"：规定参数的名称。
     - value="*值*"：规定参数的值。
     - 默认 CSS 值：
@@ -1143,8 +1156,7 @@
         }
         ```
 
-
-# 全局属性
+# 三、全局属性
 
 
 1. **accesskey**="*character*"：规定激活元素的快捷键。属性的值必须是单字符（一个字母或一个数字）。
@@ -1217,97 +1229,96 @@
 1. **title**="*text*"：规定有关元素的额外信息。
 1. **translate**="yes | no"：规定是否应该翻译元素内容。
 
+# 四、事件
 
-# 事件
+## 1. Windows 事件
 
+- **onafterprint**：文档打印之后运行的脚本。
+- **onbeforeprint**：文档打印之前运行的脚本。
+- **onbeforeunload**：文档卸载之前运行的脚本。
+- **onerror**：在错误发生时运行的脚本。
+- **onhaschange**：当文档已改变时运行的脚本。
+- **onload**：页面结束加载之后触发。一旦完全加载所有内容（包括图像、脚本文件、CSS 文件等），就执行一段脚本。
+- **onmessage**：在消息被触发时运行的脚本。
+- **onoffline**：当文档离线时运行的脚本。
+- **ononline**：当文档上线时运行的脚本。
+- **onpagehide**：当窗口隐藏时运行的脚本。
+- **onpageshow**：当窗口成为可见时运行的脚本。
+- **onpopstate**：当窗口历史记录改变时运行的脚本。
+- **onredo**：当文档执行撤销（redo）时运行的脚本。
+- **onresize**：当浏览器窗口被调整大小时触发。
+- **onstorage**：在 Web Storage 区域更新后运行的脚本。
+- **onundo**：在文档执行 undo 时运行的脚本。
+- **onunload**：一旦页面已下载时触发（或者浏览器窗口已被关闭）。
+- **onhashchange**：URL 中 # 后部分改变时触发。
 
-## Windows 事件
+## 2. Form 事件
 
-1. **onafterprint**：文档打印之后运行的脚本。
-1. **onbeforeprint**：文档打印之前运行的脚本。
-1. **onbeforeunload**：文档卸载之前运行的脚本。
-1. **onerror**：在错误发生时运行的脚本。
-1. **onhaschange**：当文档已改变时运行的脚本。
-1. **onload**：页面结束加载之后触发。一旦完全加载所有内容（包括图像、脚本文件、CSS 文件等），就执行一段脚本。
-1. **onmessage**：在消息被触发时运行的脚本。
-1. **onoffline**：当文档离线时运行的脚本。
-1. **ononline**：当文档上线时运行的脚本。
-1. **onpagehide**：当窗口隐藏时运行的脚本。
-1. **onpageshow**：当窗口成为可见时运行的脚本。
-1. **onpopstate**：当窗口历史记录改变时运行的脚本。
-1. **onredo**：当文档执行撤销（redo）时运行的脚本。
-1. **onresize**：当浏览器窗口被调整大小时触发。
-1. **onstorage**：在 Web Storage 区域更新后运行的脚本。
-1. **onundo**：在文档执行 undo 时运行的脚本。
-1. **onunload**：一旦页面已下载时触发（或者浏览器窗口已被关闭）。
-1. **onhashchange**：URL 中 # 后部分改变时触发。
-
-## Form 事件
-
-1. **onblur**：元素失去焦点时运行的脚本。
-1. **onchange**：在元素值被改变时运行的脚本。
+- **onblur**：元素失去焦点时运行的脚本。
+- **onchange**：在元素值被改变时运行的脚本。
     - 例子：
         ```html
         <input type="text" name="txt" value="Hello" onchange="checkField(this.value)" />
         ```
-1. **oncontextmenu**：当上下文菜单被触发时运行的脚本。
-1. **onfocus**：当元素获得焦点时运行的脚本。
-1. **onformchange**：在表单改变时运行的脚本。
-1. **onforminput**：当表单获得用户输入时运行的脚本。
-1. **oninput**：当元素获得用户输入时运行的脚本。
-1. **oninvalid**：当元素无效时运行的脚本。
-1. **onselect**：在元素中文本被选中后触发。
-1. **onsubmit**：在提交表单时触发。
+- **oncontextmenu**：当上下文菜单被触发时运行的脚本。
+- **onfocus**：当元素获得焦点时运行的脚本。
+- **onformchange**：在表单改变时运行的脚本。
+- **onforminput**：当表单获得用户输入时运行的脚本。
+- **oninput**：当元素获得用户输入时运行的脚本。
+- **oninvalid**：当元素无效时运行的脚本。
+- **onselect**：在元素中文本被选中后触发。
+- **onsubmit**：在提交表单时触发。
 
-## Keyboard 事件
+## 3. Keyboard 事件
 
-1. **onkeydown**：在用户按下按键时触发。事件次序：onkeydown，onkeypress，onkeyup。
-1. **onkeypress**：在用户敲击按钮时触发。不会被所有按键触发（例如 ALT、CTRL、SHIFT、ESC）。
-1. **onkeyup**：当用户释放按键时触发。
+- **onkeydown**：在用户按下按键时触发。事件次序：onkeydown，onkeypress，onkeyup。
+- **onkeypress**：在用户敲击按钮时触发。不会被所有按键触发（例如 ALT、CTRL、SHIFT、ESC）。
+- **onkeyup**：当用户释放按键时触发。
 
-## Mouse 事件
+## 4. Mouse 事件
 
-1. **onclick**：元素上发生鼠标点击时触发。
-1. **ondblclick**：元素上发生鼠标双击时触发。
-1. **ondrag**：元素被拖动时运行的脚本。
-1. **ondragend**：在拖动操作末端运行的脚本。
-1. **ondragenter**：当元素已被拖动到有效拖放区域时运行的脚本。
-1. **ondragleave**：当元素离开有效拖放目标时运行的脚本。
-1. **ondragover**：当元素在有效拖放目标上正在被拖动时运行的脚本。
-1. **ondragstart**：在拖动操作开端运行的脚本。
-1. **ondrop**：当被拖元素正在被拖放时运行的脚本。
-1. **onmousedown**：当元素上按下鼠标按钮时触发。
+- **onclick**：元素上发生鼠标点击时触发。
+- **ondblclick**：元素上发生鼠标双击时触发。
+- **ondrag**：元素被拖动时运行的脚本。
+- **ondragend**：在拖动操作末端运行的脚本。
+- **ondragenter**：当元素已被拖动到有效拖放区域时运行的脚本。
+- **ondragleave**：当元素离开有效拖放目标时运行的脚本。
+- **ondragover**：当元素在有效拖放目标上正在被拖动时运行的脚本。
+- **ondragstart**：在拖动操作开端运行的脚本。
+- **ondrop**：当被拖元素正在被拖放时运行的脚本。
+- **onmousedown**：当元素上按下鼠标按钮时触发。
     - 相对于 onmousedown 事件的事件次序（限于鼠标左/中键）：onmousedown，onmouseup，onclick。
     - 相对于 onmousedown 事件的事件次序（限于鼠标右键）：onmousedown，onmouseup，oncontextmenu。
-1. **onmousemove**：当鼠标指针移动到元素上时触发。
-1. **onmouseout**：当鼠标指针移出元素时触发。
-1. **onmouseover**：当鼠标指针移动到元素上时触发。
-1. **onmouseup**：当在元素上释放鼠标按钮时触发。
-1. **onmousewheel**：当鼠标滚轮正在被滚动时运行的脚本。
-1. **onscroll**：当元素滚动条被滚动时运行的脚本。
+- **onmousemove**：当鼠标指针移动到元素上时触发。
+- **onmouseout**：当鼠标指针移出元素时触发。
+- **onmouseover**：当鼠标指针移动到元素上时触发。
+- **onmouseup**：当在元素上释放鼠标按钮时触发。
+- **onmousewheel**：当鼠标滚轮正在被滚动时运行的脚本。
+- **onscroll**：当元素滚动条被滚动时运行的脚本。
 
-## Media 事件
+## 5. Media 事件
 
-1. **onabort**：在退出时运行的脚本。
-1. **oncanplay**：当文件就绪可以开始播放时运行的脚本（缓冲已足够开始时）。
-1. **oncanplaythrough**：当媒介能够无需因缓冲而停止即可播放至结尾时运行的脚本。
-1. **ondurationchange**：当媒介长度改变时运行的脚本。
-1. **onemptied**：当发生故障并且文件突然不可用时运行的脚本（比如连接意外断开时）。
-1. **onended**：当媒介已到达结尾时运行的脚本（可发送类似“感谢观看”之类的消息）。
-1. **onerror**：当在文件加载期间发生错误时运行的脚本。
-1. **onloadeddata**：当媒介数据已加载时运行的脚本。
-1. **onloadedmetadata**：当元数据（比如分辨率和时长）被加载时运行的脚本。
-1. **onloadstart**：在文件开始加载且未实际加载任何数据前运行的脚本。
-1. **onpause**：当媒介被用户或程序暂停时运行的脚本。
-1. **onplay**：当媒介已就绪可以开始播放时运行的脚本。
-1. **onplaying**：当媒介已开始播放时运行的脚本。
-1. **onprogress**：当浏览器正在获取媒介数据时运行的脚本。
-1. **onratechange**：每当回放速率改变时运行的脚本（比如当用户切换到慢动作或快进模式）。
-1. **onreadystatechange**：每当就绪状态改变时运行的脚本（就绪状态监测媒介数据的状态）。
-1. **onseeked**：当 seeking 属性设置为 false（指示定位已结束）时运行的脚本。
-1. **onseeking**：当 seeking 属性设置为 true（指示定位是活动的）时运行的脚本。
-1. **onstalled**：在浏览器不论何种原因未能取回媒介数据时运行的脚本。
-1. **onsuspend**：在媒介数据完全加载之前不论何种原因终止取回媒介数据时运行的脚本。
-1. **ontimeupdate**：当播放位置改变时（比如当用户快进到媒介中一个不同的位置时）运行的脚本。
-1. **onvolumechange**：每当音量改变时（包括将音量设置为静音）时运行的脚本。
-1. **onwaiting**：当媒介已停止播放但打算继续播放时（比如当媒介暂停已缓冲更多数据）运行脚本。
+- **onabort**：在退出时运行的脚本。
+- **oncanplay**：当文件就绪可以开始播放时运行的脚本（缓冲已足够开始时）。
+- **oncanplaythrough**：当媒介能够无需因缓冲而停止即可播放至结尾时运行的脚本。
+- **ondurationchange**：当媒介长度改变时运行的脚本。
+- **onemptied**：当发生故障并且文件突然不可用时运行的脚本（比如连接意外断开时）。
+- **onended**：当媒介已到达结尾时运行的脚本（可发送类似“感谢观看”之类的消息）。
+- **onerror**：当在文件加载期间发生错误时运行的脚本。
+- **onloadeddata**：当媒介数据已加载时运行的脚本。
+- **onloadedmetadata**：当元数据（比如分辨率和时长）被加载时运行的脚本。
+- **onloadstart**：在文件开始加载且未实际加载任何数据前运行的脚本。
+- **onpause**：当媒介被用户或程序暂停时运行的脚本。
+- **onplay**：当媒介已就绪可以开始播放时运行的脚本。
+- **onplaying**：当媒介已开始播放时运行的脚本。
+- **onprogress**：当浏览器正在获取媒介数据时运行的脚本。
+- **onratechange**：每当回放速率改变时运行的脚本（比如当用户切换到慢动作或快进模式）。
+- **onreadystatechange**：每当就绪状态改变时运行的脚本（就绪状态监测媒介数据的状态）。
+- **onseeked**：当 seeking 属性设置为 false（指示定位已结束）时运行的脚本。
+- **onseeking**：当 seeking 属性设置为 true（指示定位是活动的）时运行的脚本。
+- **onstalled**：在浏览器不论何种原因未能取回媒介数据时运行的脚本。
+- **onsuspend**：在媒介数据完全加载之前不论何种原因终止取回媒介数据时运行的脚本。
+- **ontimeupdate**：当播放位置改变时（比如当用户快进到媒介中一个不同的位置时）运行的脚本。
+- **onvolumechange**：每当音量改变时（包括将音量设置为静音）时运行的脚本。
+- **onwaiting**：当媒介已停止播放但打算继续播放时（比如当媒介暂停已缓冲更多数据）运行脚本。
+

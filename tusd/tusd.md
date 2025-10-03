@@ -1,4 +1,4 @@
-# Docker-Compose 安装
+# 一、Docker-Compose 安装
 
 ```yml
 services:
@@ -17,16 +17,6 @@ services:
     volumes:
       - /home/ivfzhou/volumes/tusd/data:/srv/srv/tusd-data/data:rw
     entrypoint: "tusd -expose-metrics=false -disable-cors -hooks-enabled-events="
-networks:
-  network:
-    name: ivfzhou_docker_network
-    driver: bridge
-    attachable: true
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.3.0/24
-          gateway: 172.16.3.1
 ```
 1. mkdir -p volumes/tusd/data
 1. sudo chown 1000:1000 -R volumes/tusd

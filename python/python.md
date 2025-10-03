@@ -1,21 +1,21 @@
-# 笔记
+# 一、笔记
 
-- python -h 显示帮助信息。
-- python {Enter} 进入交互式编程模式。
-- pyhton 环境变量，PYTHONPATH 表示 import 的模块的搜索路径，PYTHONSTARTUP 表示启功python 时先运行的代码。PYTHONCASEOK 表示 import 模块名不区分大小写，PYTHONHOME 模块搜索路径。
-- 使用换行和分号作为代码结束符，使用缩进区分代码块。
-- pip 路径：./Scripts。
-- 导入模块：import *module*，导入函数：from *module* import *func*，导入多个函数：from *module* import *func*,*func0*，全部导入：from *module* import *。
-- 标准数据类型：int、float、bool、complex、str、list、tuple、set、dict。
-- 单行注释 #，多行注释 """ 或者 '''。
-- 可以同行多变量赋值。
-- 变量弱类型，可以赋值不同类型的值。
-- 运算符 / 返回浮点数，// 返回整数。
-- \__name__ 等于 \__main__ 表示不是被导入的运行。
-- 文件夹下包含文件名为 \__init__.py 才会被认为一个包。
-- 类中成员名以 __ 开头表示私有成员。
+1. python -h 显示帮助信息。
+2. python {Enter} 进入交互式编程模式。
+3. pyhton 环境变量，PYTHONPATH 表示 import 的模块的搜索路径，PYTHONSTARTUP 表示启功python 时先运行的代码。PYTHONCASEOK 表示 import 模块名不区分大小写，PYTHONHOME 模块搜索路径。
+4. 使用换行和分号作为代码结束符，使用缩进区分代码块。
+5. pip 路径：./Scripts。
+6. 导入模块：import *module*，导入函数：from *module* import *func*，导入多个函数：from *module* import *func*,*func0*，全部导入：from *module* import *。
+7. 标准数据类型：int、float、bool、complex、str、list、tuple、set、dict。
+8. 单行注释 #，多行注释 """ 或者 '''。
+9. 可以同行多变量赋值。
+10. 变量弱类型，可以赋值不同类型的值。
+11. 运算符 / 返回浮点数，// 返回整数。
+12. \__name__ 等于 \__main__ 表示不是被导入的运行。
+13. 文件夹下包含文件名为 \__init__.py 才会被认为一个包。
+14. 类中成员名以 __ 开头表示私有成员。
 
-# pip 下载代理源配置
+# 二、pip 下载代理源配置
 
 `pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple`  
 文件路径 [pip.ini](./pip.ini)：C:\Users\you\AppData\Remoting\pip\pip.ini  
@@ -26,19 +26,19 @@
 山东理工大学：http://pypi.sdutlinux.org  
 豆瓣：http://pypi.douban.com/simple
 
-- 卸载 pip：`python.exe -m pip uninstall pip`
-- 安装 pip：`python.exe -m ensurepip --default-pip`
-- 下载依赖：`pip install pywinauto`
+1. 卸载 pip：`python.exe -m pip uninstall pip`
+2. 安装 pip：`python.exe -m ensurepip --default-pip`
+3. 下载依赖：`pip install pywinauto`
 
-# 运算符
+# 三、运算符
 
-- 算数运算符 `+ - * / // ** %`
-- 比较运算符 `== != > < >= <= and or not`
-- 位运算符 `& | ^ ~按位取反 << >>`
-- 赋值运算符 `= += -= /= *= //= %= **=`
-- 成员运算符 `in not in`
-- 身份运算符 `is is not `
-- 优先级
+1. 算数运算符 `+ - * / // ** %`
+2. 比较运算符 `== != > < >= <= and or not`
+3. 位运算符 `& | ^ ~按位取反 << >>`
+4. 赋值运算符 `= += -= /= *= //= %= **=`
+5. 成员运算符 `in not in`
+6. 身份运算符 `is is not `
+7. 优先级
     - `(expressions...), [expressions...], {key: value...}, {expressions...}` 圆括号的表达式
     - `x[index], x[index:index], x(arguments...), x.attribute` 读取，切片，调用，属性引用
     - `await x`	await 表达式
@@ -58,7 +58,7 @@
     - `lambda` lambda 表达式
     - `:=` 赋值表达式
 
-# Debian 12 编译安装
+# 四、Debian 编译安装
 
 1. 下载源码：https://github.com/python/cpython
 2. 运行：./configure --enable-optimizations --with-ensurepip=install --prefix=/home/ivfzhou/programs/python

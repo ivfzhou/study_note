@@ -10,7 +10,7 @@
 
 5. 数据卷有文件就覆盖容器的，没有就复制容器的。
 
-6. 配置文件增加字段 "insecure-registries":[ *host* ]，表示 push 时不使用 ssl。
+6. 配置文件增加字段 "insecure-registries":[ *host* ]，表示 push 时不使用 SSL。
 
 7. [docker-compose.yml](./docker-compose.yml)
 
@@ -56,7 +56,7 @@
     - --no-trunc：不要截断输。
 4. docker pull *image*:*version*：下载镜像。
 5. docker images：显示已安装的镜像。
-    - -q：只显示 Id。
+    - -q：只显示 ID。
 6. docker rmi <*imagename*:*tag | imageId*>：删除镜像。
     - -f：强制删除。
 7. docker rm *containerName*：删除容器。
@@ -64,12 +64,12 @@
 8. docker rm -f ${docker ps -qa}：删除所有容器。
 9. docker ps：查看运行的容器，默认显示运行的容器。
     - -a：查看所有容器。
-    - -q：只显示 Id。
+    - -q：只显示 ID。
 10. docker <start | stop | restart> *imamgName*：开启关闭重启容器。
     - -i：实时交互，控制台打印信息。
 11. docker inspect *imageName*：检查镜像元数据。
-12. docker inspect -f '{{.NetworkSettings.IPAddress}}' *id*：查看容器 IP。
-13. docker exec *参数* *containerName* bash：进去运行中的容器。args：表示进入容器后执行的命令，如果需要和容器进行交互式访问，需要配置参数为 -it，并且命令设置为 bash（表示通过命令行的方式交互访问容器）。
+12. docker inspect -f '{{.NetworkSettings.IPAddress}}' *ID*：查看容器 IP。
+13. docker exec *参数* *containerName* *args*：进去运行中的容器。args 表示进入容器后执行的命令，如果需要和容器进行交互式访问，需要配置参数为 -it，并且命令设置为 bash（表示通过命令行的方式交互访问容器）。
     - -i：保持和 docker 容器内的交互。
     - -t：为容器的标准输入，虚拟一个 tty。
     - -w：指定进入容器后的工作路径。

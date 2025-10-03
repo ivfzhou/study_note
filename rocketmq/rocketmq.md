@@ -1,4 +1,4 @@
-# Docker-Compose 配置
+# 一、Docker-Compose 配置
 
 ```yaml
 version: "3.9"
@@ -6,11 +6,11 @@ services:
   rocketmq_name_server_0:
     image: apache/rocketmq:4.9.4
     container_name: rocketmq_name_server_0
-    hostname: rocketmq_name_server_0
+    hostname: ivfzhoudockerrocketmqnameserver0
     privileged: true
     networks:
       network:
-        ipv4_address: 220.254.1.18
+        ipv4_address: 173.16.3.158
     volumes:
       - /home/ivfzhou/volumes/rocketmq/logs_name_0:/home/rocketmq/logs/rocketmqlogs:rw
       - /home/ivfzhou/volumes/rocketmq/runserver.sh:/home/rocketmq/bin/runserver.sh:rw
@@ -20,11 +20,11 @@ services:
   rocketmq_name_server_1:
     image: apache/rocketmq:4.9.4
     container_name: rocketmq_name_server_1
-    hostname: rocketmq_name_server_1
+    hostname: ivfzhoudockerrocketmqnameserver1
     privileged: true
     networks:
       network:
-        ipv4_address: 220.254.1.19
+        ipv4_address: 173.16.3.159
     volumes:
       - /home/ivfzhou/volumes/rocketmq/logs_name_1:/home/rocketmq/logs/rocketmqlogs:rw
       - /home/ivfzhou/volumes/rocketmq/runserver.sh:/home/rocketmq/bin/runserver.sh:rw
@@ -34,11 +34,11 @@ services:
   rocketmq_broker_0:
     image: apache/rocketmq:4.9.4
     container_name: rocketmq_broker_0
-    hostname: rocketmq_broker_0
+    hostname: ivfzhoudockerrocketmqbroker0
     privileged: true
     networks:
       network:
-        ipv4_address: 220.254.1.20
+        ipv4_address: 173.16.3.160
     volumes:
       - /home/ivfzhou/volumes/rocketmq/config/broker-a.properties:/home/rocketmq/rocketmq-4.9.4/conf/2m-2s-async/broker-a.properties
       - /home/ivfzhou/volumes/rocketmq/logs_broker_0:/home/rocketmq/logs/rocketmqlogs:rw
@@ -55,11 +55,11 @@ services:
   rocketmq_broker_1:
     image: apache/rocketmq:4.9.4
     container_name: rocketmq_broker_1
-    hostname: rocketmq_broker_1
+    hostname: ivfzhoudockerrocketmqbroker1
     privileged: true
     networks:
       network:
-        ipv4_address: 220.254.1.21
+        ipv4_address: 173.16.3.161
     environment:
       - JVM_XMX=512m
     ports:
@@ -78,11 +78,11 @@ services:
   rocketmq_broker_2:
     image: apache/rocketmq:4.9.4
     container_name: rocketmq_broker_2
-    hostname: rocketmq_broker_2
+    hostname: ivfzhoudockerrocketmqbroker2
     privileged: true
     networks:
       network:
-        ipv4_address: 220.254.1.22
+        ipv4_address: 173.16.3.162
     ports:
       - "10916:10916"
       - "10917:10917"
@@ -99,11 +99,11 @@ services:
   rocketmq_broker_3:
     image: apache/rocketmq:4.9.4
     container_name: rocketmq_broker_3
-    hostname: rocketmq_broker_3
+    hostname: ivfzhoudockerrocketmqbroker3
     privileged: true
     networks:
       network:
-        ipv4_address: 220.254.1.23
+        ipv4_address: 173.16.3.163
     ports:
       - "10919:10919"
       - "10920:10920"
@@ -120,9 +120,10 @@ services:
   rocketmq_dashboard:
     image: apacherocketmq/rocketmq-dashboard:1.0.0
     container_name: rocketmq_dashboard
+    hostname: ivfzhoudockerrocketmqd
     networks:
       network:
-        ipv4_address: 220.254.1.24
+        ipv4_address: 173.16.3.164
     environment:
       JAVA_OPTS: "-Drocketmq.namesrv.addr=220.254.1.18:9876;220.254.1.19:9876"
     ports:
@@ -130,12 +131,4 @@ services:
     depends_on:
       - rocketmq_name_server_0
       - rocketmq_name_server_1
-networks:
-  network:
-    driver: bridge
-    attachable: true
-    ipam:
-      config:
-        - subnet: 220.254.1.0/24
-          gateway: 220.254.1.1
 ```

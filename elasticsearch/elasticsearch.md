@@ -1,28 +1,28 @@
-# 虚拟机内存大小
+# 一、虚拟机内存大小
 
 修改文件位置 /etc/sysctl.conf，添加 vm.max_map_count=262144，执行 sudo sysctl -p。
 
-# 分词器
+# 二、分词器
 
 WhitespaceAnalyzer（去除空格）、SimpleAnalyzer（字母小写）、StopAnalyzer（去除停顿词）、StandardAnalyzer（中文单字切割）、CJKAnalyzer、SmartChineseAnalyzer、IKAnalyzer。
 
-# ES 特点
+# 三、ES 特点
 
 处理多租户不需要特殊配置、实时索引建立、自动分配分片副本、自动管理请求负载、自动迁移扩展分片、也就是保证了高可用、事务日志记录会复制到多个节点上、RestfulAPI 风格操作。
 
-# 每个节点的分片数量
+# 四、每个节点的分片数量
 
 低于每 GB 堆内存 20～25 个分片。
 
-# 用户资源控制
+# 五、用户资源控制
 
-- vim /etc/security/limits.conf
+1. vim /etc/security/limits.conf
     - soft nofile 65536
     - hard nofile 131072
     - soft nproc 4096
     - hard nproc 4096
 
-# 数据类型
+# 六、数据类型
 
 1. text, keyword
 1. long(-2^63~2^63-1), integer(-2^31-2^31), short(-32768-32,767), byte(-128~127), double, float, half_float, scaled_float
@@ -33,7 +33,7 @@ WhitespaceAnalyzer（去除空格）、SimpleAnalyzer（字母小写）、StopAn
 1. object, nested
 1. geo_point, geo_shape, ip, completion, token_count, murmur3, annotated-text, shape, histogram
 
-# 命令
+# 七、命令
 
 1. elasticsearch
     - -E *键值对*：配置设置。
@@ -65,7 +65,7 @@ WhitespaceAnalyzer（去除空格）、SimpleAnalyzer（字母小写）、StopAn
     - ca：生成本地证书授权。
     - http：生成 http 接口的证书。
 1. kibana
-    - -e、--elasticsearch *url1*,**url2*...：设置 EL 的 URL。
+    - -e、--elasticsearch *url1*,*url2*...：设置 EL 的 URL。
     - -c、--config *路径*：设置配置文件。
     - -p、--port *端口号*：设置端口号。
     - -q、--quiet：只打印 error 级别日至信息。
@@ -78,7 +78,7 @@ WhitespaceAnalyzer（去除空格）、SimpleAnalyzer（字母小写）、StopAn
     - --optimize：运行插件优化器，然后停止服务。
     - -h、--help：显示帮助信息。
 
-# Docker-Compose 安装
+# 八、Docker-Compose 安装
 
 ```yml
 services:
@@ -163,7 +163,7 @@ networks:
 1. docker-compose -f src/note/docker/docker-compose.yml up -d elasticsearch kibana
 1. docker exec -it elasticsearch /usr/share/elasticsearch/bin/elasticsearch-reset-password -u kibana_system -i
 
-# Docker kibana 安装
+# 九、Docker kibana 安装
 
 1. docker run -v volumes/kibana/config:/usr/share/kibana/config --hostname ivfzhoudockerkibana -v 5601:5601 --name kibana kibana:9.0.2
 1. 复制配置文件到数据卷。
@@ -172,7 +172,7 @@ networks:
     - xpack.security.encryptionKey: "woyaocouqi32weizifu+++++++++++++"
     - xpack.reporting.encryptionKey: "woyaocouqi32weizifu+++++++++++++"
 
-# 集群搭建
+# 十、集群搭建
 
 1. 使用解压缩版本，本地位置 /opt/elasticsearch/ 下。
 1. 修改本地 /etc/hosts 文件，添加键值对：172.16.3.1 ivfzhoudebian、172.16.3.146 ivfzhoudockerelasticsearch。

@@ -1,4 +1,4 @@
-# 笔记
+# 一、笔记
 
 1. https://cn.vuejs.org/guide/introduction.html
 1. 模板和大胡子表达式中的 Javascript 表达式解析有限制，不能访问用户添加给 window 的变量。
@@ -9,7 +9,7 @@
 1. 子组件不能修改父组件传递的 props，父组件可修改传递的 props，并在子组件中可见。
 1. defineProps 等宏，不能访问外部 js 变量。
 
-# 例子
+# 二、例子
 
 1. 选项式与组合式 API：
     ```html
@@ -115,77 +115,77 @@
     ```vue
     <!-- 文本插值 -->
     <span>{{ msg }}</span>
-
+    
     <!-- 将内容以 HTML 格式填充到 span 标签中 -->
     <span v-html="rawHtml"></span>
-
+    
     <!-- 属性绑定 -->
     <div v-bind:id="dynamicId"></div>
-
+    
     <!-- js 变量值是 null/undefined，则移除属性 -->
     <div :id="dynamicId"></div>
-
+    
     <!-- 绑定属性 id，值为 js 变量 id 的值 -->
     <div :id></div>
     <div v-bind:id></div>
-
+    
     <!-- js 变量是真值或者空串时，渲染属性 -->
     <button :disabled="isButtonDisabled"></button>
-
+    
     <!-- js 对象变量展开，键是属性名，值是属性值 -->
     <div v-bind="objectOfAttrs"></div>
-
+    
     <!-- 绑定事件 -->
     <a v-on:click="doSomething"></a>
     <a @click="doSomething"></a>
-
+    
     <!-- 传递原生事件对象 -->
     <button @click="doSomething($event)"></button>
     <button @click="(event) => doSomething(event)"></button>
-
+    
     <!-- 动态参数，绑定的属性名是 js 变量 attributeName 的值。如果值是 null，则移除属性 -->
     <a v-bind:[attributeName]="url"></a>
     <a :[attributeName]="url"></a>
     <a v-on:[eventName]="doSomething"></a>
     <a @[eventName]="doSomething"></a>
-
+    
     <!-- 双向数据绑定 -->
     <input v-model="text" />
-
+    
     <!-- 事件修饰符 -->
     <form @submit.prevent="doSomething"></form>
     <!-- 可省略值 -->
     <form @submit.prevent></form>
     <!-- 修饰语可以使用链式书写，相关代码是以相同的顺序生成 -->
     <a @click.stop.prevent="doSomething"></a>
-
+    
     <!-- 指令 -->
     <!-- 在同一元素中 v-if 比 v-for 优先处理，因此 v-if 不能使用 v-for 中产生的变量 -->
     <p v-if="seen"></p>
     <p v-else-if="seen"></p>
     <p v-else></p>
-
+    
     <!-- template 中使用比较特殊，会移除 template 元素包裹 -->
     <template v-if></template>
-
+    
     <!-- 切换 css display 属性 -->
     <h1 v-show="seen"></h1>
-
+    
     <!-- 提供 key 值方便 vue 识别管理 -->
     <li v-for="(value, index) in array" :key="index"></li>
-
+    
     <!-- template 中使用比较特殊，会移除 template 元素包裹 -->
     <template v-for></template>
-
+    
     <!-- 可使用解构语法 -->
     <li v-for="({ message }, index) in items"></li>
-
+    
     <!-- 使用 of 代替 in -->
     <li v-for="(value, index) of array"></li>
-
+    
     <!-- 可遍历对象 -->
     <li v-for="(value, key, index) in object"></li>
-
+    
     <!-- n = [1, 10] -->
     <span v-for="n in 10"></span>
     ```
@@ -193,15 +193,15 @@
     ```vue
     <script setup>
         import { ref, onMounted } from "vue";
-
+    
         // 声明一个 ref 来存放该元素的引用
         const input = ref(null);
-
+    
         onMounted(() => {
             input.value.focus(); // 在组件挂载后才能访问模板引用，否则为 null
         });
     </script>
-
+    
     <template>
         <input ref="input" />
     </template>
@@ -210,12 +210,12 @@
     <!-- 获取 DOM 对象数组，ref 数组并不保证与源数组相同的顺序 -->
     <script setup>
         import { ref, onMounted } from "vue";
-
+    
         const itemRefs = ref([]);
-
+    
         onMounted(() => console.log(itemRefs.value));
     </script>
-
+    
     <template>
         <ul>
             <li v-for="item in list" ref="itemRefs">
@@ -241,7 +241,7 @@
     <template>
         <child ref="child"></child>
     </template>
-
+    
     <!-- 子组件 -->
     <script setup>
         import { ref } from "vue";
@@ -258,15 +258,15 @@
     ```vue
     <!-- js 变量 isActive 值的真假决定是否应用 active 类 -->
     <div :class="{ active: isActive }"></div>
-
+    
     <!-- 与 class 共存，最后合并结果 -->
     <div class="static" :class="{ active: isActive, 'text-danger': hasError }"></div>
-
+    
     <!-- 类为字符串数组元素的值 -->
     <div :class="[activeClass, errorClass]"></div>
     <div :class="[isActive ? activeClass : '', errorClass]"></div>
     <div :class="[{ activeClass: isActive }, errorClass]"></div>
-
+    
     <!-- 在组件上使用，将同组件根元素 class 值合并 -->
     <MyComponent class="baz boo"></MyComponent>
     ```
@@ -294,10 +294,10 @@
     ```vue
     <!-- change 事件后更新 msg -->
     <input v-model.lazy="msg" />
-
+    
     <!-- 输入的数据将被 parseFloat() 处理。type="number" 时自动启用 -->
     <input v-model.number="age" />
-
+    
     <!-- 自动去除输入数据的两端空格 -->
     <input v-model.trim="msg" />
     ```
@@ -322,21 +322,21 @@
     <script>
         const x = ref(0);
         const y = ref(0);
-
+    
         // 单个 ref
         watch(x, (newX) => {});
-
+    
         // getter 函数
         watch(
             () => x.value + y.value,
             (sum) => {}
         );
-
+    
         // 多个来源组成的数组
         watch([x, () => y.value], ([newX, newY]) => {
             console.log(`x is ${newX} and y is ${newY}`);
         });
-
+    
         // getter 用法只会在返回值变了时才触发监听，加上 deep 参数转成深层监听。
         watch(
             () => state.someObject,
@@ -346,7 +346,7 @@
             },
             { deep: true }
         );
-
+    
         // 立即执行一次监听
         watch(
             source,
@@ -355,7 +355,7 @@
             },
             { immediate: true }
         );
-
+    
         // 一次性监听
         watch(
             source,
@@ -364,13 +364,13 @@
             },
             { once: true }
         );
-
+    
         // 侦听器回调会在父组件更新 (如有) 之后、所属组件的 DOM 更新之前被调用。
         // 使用该参数，在侦听器回调中能访问被 Vue 更新之后的所属组件的 DOM。
         watch(source, callback, {
             flush: "post",
         });
-
+    
         // 同步侦听器，在 Vue 进行任何更新之前触发
         watch(source, callback, {
             flush: "sync",
@@ -388,7 +388,7 @@
             );
             data.value = await response.json();
         });
-
+    
         // 侦听器回调会在父组件更新 (如有) 之后、所属组件的 DOM 更新之前被调用。
         // 使用该参数，在侦听器回调中能访问被 Vue 更新之后的所属组件的 DOM
         watchEffect(callback, {
@@ -397,7 +397,7 @@
         watchPostEffect(() => {
             /* 在 Vue 更新后执行 */
         });
-
+    
         // 同步侦听器，在 Vue 进行任何更新之前触发
         watchEffect(callback, {
             flush: "sync",
@@ -405,7 +405,7 @@
         watchSyncEffect(() => {
             /* 在响应式数据变化时同步执行 */
         });
-
+    
         // 停止监听
         const unwatch = watchEffect(() => {});
         unwatch();
@@ -420,7 +420,7 @@
     <template>
         <button @click="$emit('enlarge-text')">Enlarge text</button>
     </template>
-
+    
     <!-- 父组件 -->
     <blog-post @enlarge-text="postFontSize += 0.1"></blog-post>
     ```
@@ -434,7 +434,7 @@
     <template>
         <child v-model="msg"></child>
     </template>
-
+    
     <!-- 子组件 -->
     <script setup>
         const msg = defineModel({ required: true });
@@ -447,7 +447,7 @@
     <script setup>
         const title = defineModel("title"， {});
     </script>
- 
+     
     <!-- 父组件 -->
     <template>
         <child v-model:title="xxx"></child>
@@ -466,7 +466,7 @@
             },
         });
     </script>
-
+    
     <!-- 父组件 -->
     <my-component v-model:xxx.capitalize="myText"></my-component>
     ```
@@ -515,7 +515,7 @@
         function buttonClick() {
             emit("submit");
         }
-
+    
         // 事件校验
         const emit = defineEmits({
             // 没有校验
@@ -524,7 +524,7 @@
             submit: ({ email, password }) => {},
         });
     </script>
-
+    
     <!-- 父组件 -->
     <template>
         <my-button @increase-by="(n) => (count += n)"></my-button>
@@ -537,12 +537,12 @@
         defineOptions({
             inheritAttrs: false,
         });
-
+    
         // 访问所有透传的 attr
         import { useAttrs } from "vue";
         const attrs = useAttrs();
     </script>
-
+    
     <!-- $attr 能访问所有透传的 attr -->
     <button class="btn" v-bind="$attrs">Click Me</button>
     ```
@@ -553,7 +553,7 @@
         <!-- 被父组件给的内容替换 -->
         <slot>如果父组件没提供，slot 标签内的数据将是默认的内容</slot>
     </template>
-
+    
     <!-- 父组件 -->
     <child>
         Somthing
@@ -566,7 +566,7 @@
         <solt name="header"></solt>
         <solt></solt>
     </template>
-
+    
     <!-- 父组件 -->
     <child>
         Somthing <!-- 隐式默认插槽内容 -->
@@ -590,7 +590,7 @@
     <template>
         <slot name="header" age="18"></slot>
     </template>
-
+    
     <!-- 父组件 -->
     <template>
         <child>
@@ -616,7 +616,7 @@
      <script setup>
         import { createApp } from "vue";
         import MyComponent from "./App.vue";
-
+     
         const app = createApp({});
         // 全局组件可以在应用中的组件模板中使用
         app.component("MyComponent", MyComponent);
@@ -634,12 +634,12 @@
     ```vue
     <script setup>
     import { defineAsyncComponent } from "vue";
-
+    
     const AdminPage = defineAsyncComponent(() =>
         import("./components/AdminPageComponent.vue")
     );
     </script>
-
+    
     <template>
         <admin-page></admin-page>
     </template>
@@ -651,16 +651,16 @@
         "MyComponent",
         defineAsyncComponent(() => import("./components/MyComponent.vue"))
     );
-
+    
     const AsyncComp = defineAsyncComponent({
         // 加载函数
         loader: () => import("./Foo.vue"),
-
+    
         // 加载异步组件时使用的组件
         loadingComponent: LoadingComponent,
         // 展示加载组件前的延迟时间，默认为 200ms
         delay: 200,
-
+    
         // 加载失败后展示的组件
         errorComponent: ErrorComponent,
         // 如果提供了一个 timeout 时间限制，并超时了
@@ -677,7 +677,7 @@
         mounted: (el) => el.focus(),
     };
     </script>
-
+    
     <template>
         <input v-focus />
     </template>
@@ -685,9 +685,9 @@
 1. 插件的使用：
     ```javascript
     import { createApp } from "vue";
-
+    
     const app = createApp({});
-
+    
     app.use((app, options) => {}, {
       /* 可选的选项 */
     });
@@ -711,7 +711,7 @@
         { path: "/users/:id", component: User },
     ];
     </script>
-
+    
     <!-- 组件中使用 -->
     <script setup>
     const route = useRoute();

@@ -1,46 +1,46 @@
-# 笔记
+# 一、笔记
 
 1. CORS 响应头：
-    1. Access-Control-Allow-Origin：这个头指定了哪些源可以访问这个资源。它可以包含一个具体的源，或者 "*" 表示允许任何源。
-    1. Access-Control-Allow-Methods：这个头指定了哪些 HTTP 方法可以用来访问资源，例如 GET、POST、PUT。
-    1. Access-Control-Allow-Headers：这个头指定了哪些 HTTP 头可以在请求中使用。
-    1. Access-Control-Allow-Credentials：这个头指定了是否允许发送 Cookie。如果这个头的值是 "true"，那么响应的 Access-Control-Allow-Origin 头不能为 "*"。
-    1. Access-Control-Max-Age：这个头指定了预检请求的结果（即服务器对特定跨域请求的允许状态）可以被缓存多久。
-    1. Access-Control-Expose-Headers：这个头让服务器把允许浏览器访问的头放入白名单，否则默认情况下，浏览器只能访问6个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。
+    - Access-Control-Allow-Origin：这个头指定了哪些源可以访问这个资源。它可以包含一个具体的源，或者 "*" 表示允许任何源。
+    - Access-Control-Allow-Methods：这个头指定了哪些 HTTP 方法可以用来访问资源，例如 GET、POST、PUT。
+    - Access-Control-Allow-Headers：这个头指定了哪些 HTTP 头可以在请求中使用。
+    - Access-Control-Allow-Credentials：这个头指定了是否允许发送 Cookie。如果这个头的值是 "true"，那么响应的 Access-Control-Allow-Origin 头不能为 "*"。
+    - Access-Control-Max-Age：这个头指定了预检请求的结果（即服务器对特定跨域请求的允许状态）可以被缓存多久。
+    - Access-Control-Expose-Headers：这个头让服务器把允许浏览器访问的头放入白名单，否则默认情况下，浏览器只能访问6个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。
 
-# 方法
+# 二、方法
 
-- GET
+1. GET
     - 用于从指定资源请求数据。
-    - 请求可被缓存
-    - 请求保留在浏览器历史记录中
-    - 请求可被收藏为书签
-    - 请求不应在处理敏感数据时使用
-    - 请求有长度限制
-    - 请求只应当用于取回数据（不修改）
-- POST
+    - 请求可被缓存。
+    - 请求保留在浏览器历史记录中。
+    - 请求可被收藏为书签。
+    - 请求不应在处理敏感数据时使用。
+    - 请求有长度限制。
+    - 请求只应当用于取回数据（不修改）。
+2. POST
     - 用于将数据发送到服务器来创建/更新资源。
-    - 请求不会被缓存
-    - 请求不会保留在浏览器历史记录中
-    - 不能被收藏为书签
-    - 请求对数据长度没有要求
-- PUT
+    - 请求不会被缓存。
+    - 请求不会保留在浏览器历史记录中。
+    - 不能被收藏为书签。
+    - 请求对数据长度没有要求。
+3. PUT
     - 用于将数据发送到服务器来创建/更新资源。
     - POST 和 PUT 之间的区别在于 PUT 请求是幂等的（idempotent）。也就是说，多次调用相同的 PUT 请求将始终产生相同的结果。相反，重复调用POST请求具有多次创建相同资源的副作用。
-- HEAD
+4. HEAD
     - HEAD 与 GET 几乎相同，但没有响应主体。
     - 换句话说，如果 GET /users 返回用户列表，那么 HEAD /users 将发出相同的请求，但不会返回用户列表。
     - HEAD 请求对于在实际发出 GET 请求之前（例如在下载大文件或响应正文之前）检查 GET 请求将返回的内容很有用。
-- DELETE
+5. DELETE
     - 删除指定的资源。
-- OPTIONS
+6. OPTIONS
     - 描述目标资源的通信选项。
-- PATCH
+7. PATCH
     - 对数据的部分更新。
 
-# 响应码
+# 三、响应码
 
-- 1xx: 信息
+1. 1xx: 信息
 
 | 消息 | 描述 |
 | :--- | :--- |

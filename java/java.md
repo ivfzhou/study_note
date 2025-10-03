@@ -1,4 +1,4 @@
-# 笔记
+# 一、笔记
 
 1. 将源码转成 HTML 格式文档：
    ```shell
@@ -47,18 +47,18 @@
     ```
 1. [Java21 语言定义](https://docs.oracle.com/javase/specs/jls/se21/html/index.html)。
 
-# 注解
+# 二、注解
 
 // 单行注解。  
 /**  
 /** @author @version @since @see @param @return
 \*/ 多行注解。
 
-# 关键字
+# 三、关键字
 
 abstract、boolean、break、byte、case、catch、char、class、const、continue、default、do、double、else、extends、final、finally、float、for、goto、if、implements、import、instanceof、int、interface、long、native、new、package、private、protected、public、return、short、static、strictfp、super、switch、synchronized、this、throw、throws、transient、try、viod、volatile、while、assert、enum。
 
-# 数据类型
+# 四、数据类型
 
 1. byte：1 个字节，范围 -128 到 127。
 1. short：2 个字节，范围 -32768 到 32767。
@@ -70,7 +70,7 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 1. boolean：不确定。
 1. 引用类型：类、接口、数组、枚举、注解。
 
-# 转义字符
+# 五、转义字符
 
 1. n 换行。
 1. r 回车。
@@ -79,7 +79,7 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 1. " 双引号。
 1. \ 斜杠。
 
-#  运算符
+#  六、运算符
 
 1. 算术运算符：+ 、 - 、 * 、 / 、 % 、 ++ 、 --
 1. 赋值运算符：= 、 += 、 -= 、 *= 、 /= 、 %=
@@ -89,7 +89,7 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 1. 字符串连接运算符：+
 1. 三目运算符：?:
 
-# 访问修饰符
+# 七、访问修饰符
 
 1. public：本类、同包类、不同包子类、不同包类。
 1. protected：本类、同包类、不同包子类。
@@ -99,13 +99,13 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 1. 类成员：都有。
 1. 局部变量：都没有。
 
-# 状态修饰符
+# 八、状态修饰符
 
 1. final：类、类成员、局部变量。
 1. static：类成员、局部变量。
 1. abstract：类、类方法。
 
-# java 命令参数
+# 九、java 命令参数
 
 1. --version：查看版本。
 1. -jar *包路径*... *arg1* *arg2* *arg3*：运行 jar 包。
@@ -115,7 +115,7 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
 1. -Xmx*3000m*：堆最大内存。
 1. -Xss*2m*：栈空间。
 
-# 成员变量和局部变量的区别
+# 十、成员变量和局部变量的区别
 
 1. 定义的位置不同：
     - 成员变量：定义于类中，作用于整个类。
@@ -131,7 +131,7 @@ abstract、boolean、break、byte、case、catch、char、class、const、contin
     - 局部变量：没有默认的初始值。
 1. 成员变量和局部变量名字相同，局部变量优先级高。就近原则。
 
-# 内部类
+# 十一、内部类
 
 1. 成员内部类：
     - 成员不能是 static。

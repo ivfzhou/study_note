@@ -1,9 +1,9 @@
-#  笔记
+#  一、笔记
 
 1. 运行 phase 时，会把生命周期上层的 phase 依次运行一遍。
 1. 非 compile 范围的依赖没有传递性。
 
-# 配置
+# 二、配置
 
 1. 路径：`$MAVEN_HOME/conf/settings.xml`。
 1. settings.xml：
@@ -131,7 +131,7 @@
     </build>
     ```
 
-# 仓库地址
+# 三、仓库地址
 
 1. Central=https://repo1.maven.org/maven2/
 1. Aliyun=http://maven.aliyun.com/nexus/content/groups/public/  
@@ -147,7 +147,7 @@
 1. JBossEA=https://repository.jboss.org/nexus/content/repositories/ea/
 1. JBoss Releases=https://repository.jboss.org/nexus/content/repositories/releases/
 
-# 命令
+# 四、命令
 
 1. **mvn** *options* *groupId:artifactId:version:goals* *phases*：goal 绑定一个 phase，当执行一个 phase 时，就将绑定的所有 goal 运行一遍。
    

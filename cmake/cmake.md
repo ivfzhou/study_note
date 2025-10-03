@@ -1,18 +1,20 @@
-# 命令
+# 一、命令
 
 1. **cmake_minimum_required**(VERSION *version*)：用于指定项目所需的最低 CMake 版本。
 
 1. **project**(*project_name* [ LANGUAGES <*lang* ...> ] [ VERSION *version* ])：定义项目的名称和版本，它会自动创建一些与项目相关的变量，如 `PROJECT_NAME`、`PROJECT_VERSION` 等。
 
 1. **message**([ *mode* ] <"*msg*" ...>)：用于在 CMake 构建过程中输出消息或变量的值。
+   
     - mode:
-        - STATUS：输出一条状态消息，通常用于显示构建过程中的进度信息。
-        - WARNING：输出一条警告消息，用于指示潜在的问题或不推荐的用法。
-        - AUTHOR_WARNING：输出一条作者警告消息，用于指示重要的问题或不兼容的更改。
-        - SEND_ERROR：输出一条错误消息，并停止 CMake 构建过程。
-        - FATAL_ERROR：输出一条致命错误消息，并终止 CMake 构建过程。
+         - STATUS：输出一条状态消息，通常用于显示构建过程中的进度信息。
+         - WARNING：输出一条警告消息，用于指示潜在的问题或不推荐的用法。
+         - AUTHOR_WARNING：输出一条作者警告消息，用于指示重要的问题或不兼容的更改。
+         - SEND_ERROR：输出一条错误消息，并停止 CMake 构建过程。
+         - FATAL_ERROR：输出一条致命错误消息，并终止 CMake 构建过程。
 
 1. **set**(*variable* <*value* ...> [ CACHE *type* "desc" [ FORCE ] ])：用于设置变量的值。
+
     - *variable*：是要设置的变量名。
     - *value*：是要为变量设置的值。可以将字符串、数字、布尔值等作为变量的值。
     - CACHE：参数是可选的，用于将变量设置为缓存变量。缓存变量的值可以在 CMake 构建过程中通过命令行或图形界面进行配置，并且会被保存在 CMake 缓存中，以便下次构建时使用。
@@ -28,6 +30,7 @@
     - `set(CMAKE_CXX_EXTENSIONS OFF)`：表示禁用编译器特定的扩展，这可以确保代码具有更好的可移植性。
 
 1. **string**(*command* *output_variable* [ *input_string* ... ])：用于处理字符串的命令，它提供了多种字符串操作和转换的功能。
+
     - *command*：是要执行的字符串操作命令。
         - LENGTH：获取字符串的长度。
         - SUBSTRING：提取字符串的子串。
@@ -89,15 +92,15 @@
 
 1. **target_include_directories**：来为特定的目标添加头文件路径。
 
-      1. `target_include_directories(MyExecutable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)`：`PRIVATE` 关键字表示这个头文件只对 `MyExecutable` 目标可见。
+      - `target_include_directories(MyExecutable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)`：`PRIVATE` 关键字表示这个头文件只对 `MyExecutable` 目标可见。
 
 1. **target_compile_features**(*target* PRIVATE cxx_std_11)：为特定的目标设置语言标准版本。
 
 1. **install**：
 
-      1. `install(TARGETS MyLibrary DESTINATION /usr/local/lib)`：安装库、头文件和可执行文件到 /usr/local。
-      1. `install(FILES include/my_header.h DESTINATION /usr/local/include)`
-      1. `install(TARGETS MyExecutable DESTINATION /usr/local/bin)`
+      - `install(TARGETS MyLibrary DESTINATION /usr/local/lib)`：安装库、头文件和可执行文件到 /usr/local。
+      - `install(FILES include/my_header.h DESTINATION /usr/local/include)`
+      - `install(TARGETS MyExecutable DESTINATION /usr/local/bin)`
 
 1. **find_package**()：用于加载和使用外部项目（通常是库）的命令。
 
@@ -122,23 +125,23 @@
       - OUTPUT_STRIP_TRAILING_WHITESPACE、ERROR_STRIP_TRAILING_WHITESPACE：去除标准输出或错误输出的末尾空白字符。
 
 1. **find_path**(*variable*  
-     NAMES *head.h*  
-     PATHS *path*  
-     NO_DEFAULT_PATH)：用于查找指定文件或目录的路径，路径储存到变量中 *variable*。NO_DEFAULT_PATH 确保只在 PATHS 下搜索。
+      NAMES *head.h*  
+      PATHS *path*  
+      NO_DEFAULT_PATH)：用于查找指定文件或目录的路径，路径储存到变量中 *variable*。NO_DEFAULT_PATH 确保只在 PATHS 下搜索。
 
 1. **find_library**(*var*  
-     NAMES *file*  
-     PATHS *path*  
-     NO_DEFAULT_PATH)：用于查找指定库文件的路径，路径储存到变量中 *variable*。
+      NAMES *file*  
+      PATHS *path*  
+      NO_DEFAULT_PATH)：用于查找指定库文件的路径，路径储存到变量中 *variable*。
 
 1. **ExternalProject_Add**(*name*  
-     PREFIX *value*  
-     GIT_REPOSITORY *value*  
-     GIT_TAG *value*  
-     CONFIGURE_COMMAND *value*  
-     BUILD_COMMAND *value*  
-     CMAKE_ARGS *value*  
-     INSTALL_COMMAND *value*)：用于在构建过程中添加外部项目作为依赖。
+      PREFIX *value*  
+      GIT_REPOSITORY *value*  
+      GIT_TAG *value*  
+      CONFIGURE_COMMAND *value*  
+      BUILD_COMMAND *value*  
+      CMAKE_ARGS *value*  
+      INSTALL_COMMAND *value*)：用于在构建过程中添加外部项目作为依赖。
 
 1. **FetchContent_Declare**(*name* GIT_REPOSITORY *value*)
 
@@ -146,52 +149,59 @@
 
 1. **target_sources**
 
-     1. `target_sources(MyExecutable PRIVATE $<TARGET_OBJECTS:${obj_name}>)`
+      - `target_sources(MyExecutable PRIVATE $<TARGET_OBJECTS:${obj_name}>)`
 
 1. **target_compile_options**
 
-     1. `target_compile_options(MyExecutable PRIVATE -Wall)`
+      - `target_compile_options(MyExecutable PRIVATE -Wall)`
 
 1. 分支语句：
-     ```cmake
-     if( ... )
-     ...
-     elseif ( ... )
-     ...
-     else()
-     ...
-     endif()
-     ```
+      ```cmake
+      if( ... )
+      ...
+      elseif ( ... )
+      ...
+      else()
+      ...
+      endif()
+      ```
 
 1. 判断表达式：
-     ```cmake
-     EQUAL
-     STREQUAL
-     NOT DEFINED
-     AND
-     MATCHES
-     VERSION_LESS
-     ```
+      ```cmake
+      EQUAL
+      STREQUAL
+      NOT DEFINED
+      AND
+      MATCHES
+      VERSION_LESS
+      ```
 
 1. 循环语句：
-     ```cmake
-     foreach(v list_var)
-     ...
-     endforeach()
-     ```
+      ```cmake
+      foreach(v list_var)
+      ...
+      endforeach()
+      ```
 
-# 变量
+# 二、变量
 
 1. CMAKE_C_COMPILER：C 代码编译器。
+
 1. CMAKE_CXX_COMPILER：C++ 代码编译器。
+
 1. CMAKE_CXX_COMPILER_VERSION：编译器版本号。
+
 1. CMAKE_SYSTEM_NAME：系统类型。
+
 1. CMAKE_BINARY_DIR：构建文件输出文件夹。
+
 1. CMAKE_SOURCE_DIR：工作区文件夹。
+
 1. CMAKE_SIZEOF_VOID_P：表示指针类型（void*）的大小，以字节为单位。
+
 1. CMAKE_CURRENT_SOURCE_DIR：是当前处理的 CMakeLists.txt 所在的目录。
 
-# 笔记
+# 三、笔记
 
 1. 构建过程：
     ```shell

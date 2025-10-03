@@ -1,4 +1,4 @@
-# 笔记
+# 一、笔记
 
 1. /ect/default/grub 的一些参数：`GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i8042.redirect i8042.dumbkbd i8042.reset=0 i915.enable_psr=0"`。
 
@@ -26,7 +26,7 @@
 
 13 UID 类型：1-999 虚拟用户，1000+ 普通用户。
 
-# 文件类型
+# 二、文件类型
 
 1. \- 普通文件
 
@@ -44,7 +44,7 @@
 
 8. f 命令管道
 
-# 文件权限
+# 三、文件权限
 
 1. 文件的权限含义：r 可以查看内容，w 可以修改内容，x 可以执行。
 
@@ -56,7 +56,7 @@
 
 5. 特殊权限 sbit1：用于目录，在该目录下创建文件和目录时，仅 root 和自己可以删除。
 
-# Debian12 软件源配置
+# 四、Debian 软件源配置
 
 1. 配置所在路径：/etc/apt/sources.list。源配置例子，把 https 协议改成 http 仍然可用。
 
@@ -99,16 +99,16 @@
     deb-src http://ftp.debian.org/debian/ bookworm-backports main contrib non-free non-free-firmware
     ```
 
-# LVM 操作案例
+# 五、LVM 操作案例
 
-## LV 扩容
+## 1. LV 扩容
 
 ```shell
 sudo lvresize -L +10GiB /dev/vg/var
 sudo resize2fs /dev/mapper/vg-var
 ```
 
-## LV 缩容
+## 2. LV 缩容
 
 ```shell
 sudo lsof | grep '/dev/mapper/vg-var' # 查看文件占用进程
@@ -120,7 +120,7 @@ sudo lvreduce -L 50G /dev/vg/var
 mount /dev/mapper/vg-var /var
 ```
 
-## PV 缩减
+## 3. PV 缩减
 
 ```shell
 sudo pvmove /dev/nvme0n1p7 # 将使用的PE转移到别的PV上去
@@ -128,7 +128,7 @@ pvmove -n /dev/vg01/lv01 /dev/sdb1 /dev/sdc1 # 将/dev/sdb1上的所有 PE 移�
 sudo vgreduce vg /dev/nvmeon1p7
 ```
 
-## PV 缩容
+## 4. PV 缩容
 
 ```shell
 sudo fdisk -l
@@ -138,14 +138,14 @@ sudo pvresize --setphysicalvolumesize 40GiB /dev/xxx
 sudo pvresize /dev/xxx
 ```
 
-## PV 增加
+## 5. PV 增加
 
 ```shell
 sudo pvcreate /dev/nvmeon1p7
 sudo vgextend vg /dev/nvmeon1p7
 ```
 
-## 删除分区
+## 6. 删除分区
 
 ```shell
 sudo parted -l
@@ -155,7 +155,7 @@ print
 rm 7
 ```
 
-## 分区缩容
+## 7. 分区缩容
 
 ```shell
 fdisk /dev/xxx
@@ -165,7 +165,7 @@ n
 w
 ```
 
-# openssl 操作案例
+# 六、openssl 操作案例
 
 1. 创建私钥：`openssl genrsa -out ivfzhou.pem.key -passout pass:123456 4096`
 
@@ -209,35 +209,35 @@ w
 
 21. 从签名数据中获取散列值：`openssl rsautl -verify -pubin -inkey <pub> -in <sign> -out <hash>`
 
-# 配置文件
+# 七、配置文件
 
-## 启动配置
+## 1. 启动配置
 
-1. /usr/lib/systemd/system  
+- /usr/lib/systemd/system  
 
-2. runlevelx.target
+- runlevelx.target
 
-## sudo 配置
+## 2. sudo 配置
 
-1. 文件所在位置：/etc/sudoers  
+- 文件所在位置：/etc/sudoers  
 
-2. 使用 visudo 编辑  
+- 使用 visudo 编辑  
 
-3. 配置格式：user host=(asuser:asgroup) NOPASSWD: command，使用 ALL 表示所有，%sudo 表示 sudo 用户组成员。
+- 配置格式：user host=(asuser:asgroup) NOPASSWD: command，使用 ALL 表示所有，%sudo 表示 sudo 用户组成员。
 
-## DNS
+## 3. DNS
 
-1. 路径：/etc/resolv.conf  
+- 路径：/etc/resolv.conf  
 
-2. 内容：nameserver 114.114.114.114
+- 内容：nameserver 114.114.114.114
 
-## gnome 桌面图标配置路径
+## 4. gnome 桌面图标配置路径
 
-1. 全用户图标位置：/usr/share/applications/
+- 全用户图标位置：/usr/share/applications/
 
-1. 用户图标位置：$HOME/.local/share/applications
+- 用户图标位置：$HOME/.local/share/applications
 
-1. 图标配置例子：
+- 图标配置例子：
 
     ```desktop
     [Desktop Entry]
@@ -253,81 +253,81 @@ w
     StartupWMClass=Code
     ``
 
-## 启动脚本目录
+## 5. 启动脚本目录
 
-1. /etc/init.d/
+- /etc/init.d/
 
-## 启动挂载配置
+## 6. 启动挂载配置
 
-1. /etc/fstab  
+- /etc/fstab  
 
-2. FileSystem Dir Type Options Dump Pass
+- FileSystem Dir Type Options Dump Pass
 
-## 定义用户文件夹名配置文件位置
+## 7. 定义用户文件夹名配置文件位置
 
-1. /home/xxx/.config/user-dirs.dirs
+- /home/xxx/.config/user-dirs.dirs
 
-## 内核配置文件路径
+## 8. 内核配置文件路径
 
-1. /boot/configxxx
+- /boot/configxxx
 
-## SELinux 配置文件路径
+## 9. SELinux 配置文件路径
 
-1. /etc/selinux/config
+- /etc/selinux/config
 
-## 用户配置文件
+## 10. 用户配置文件
 
-1. /etc/passwd 七段：名、是否需要密码、uid、gid、注释、家路径、命令解释器。  
-/etc/shadow 存贮密码。用户名、密码、最后一修改时间、最小修改时间间隔、密码有效期、密码需要更改前的警告天数、密码过期后的宽限天数、账号失效时间、保留字段。  
+- /etc/passwd 七段：名、是否需要密码、uid、gid、注释、家路径、命令解释器。  
+  /etc/shadow 存贮密码。用户名、密码、最后一修改时间、最小修改时间间隔、密码有效期、密码需要更改前的警告天数、密码过期后的宽限天数、账号失效时间、保留字段。  
 
-2. /etc/group 用户组名、组密码、gid、组内成员。
+- /etc/group 用户组名、组密码、gid、组内成员。
 
-## 网卡配置路径
+## 11. 网卡配置路径
 
-1. /etc/sysconfig/network-scripts/
-  1. BOOTPROTO=dhcp 或者 static none，动态或者静态地址 IP。
-  2. IPADDR IP 地址。
-  3. NETMASK 子网掩码。
-  4. DEVICE 网卡名。
-  5. ONBOOT=yes 或者 no 开机启动与否。
+- /etc/sysconfig/network-scripts/
+  - BOOTPROTO=dhcp 或者 static none，动态或者静态地址 IP。
+  - IPADDR IP 地址。
+  - NETMASK 子网掩码。
+  - DEVICE 网卡名。
+  - ONBOOT=yes 或者 no 开机启动与否。
 
-## 系统信息路径
+## 12. 系统信息路径
 
-1. /proc/cpuinfo 显示 cpu 信息。
+- /proc/cpuinfo 显示 cpu 信息。
 
-2. /proc/interrupts 显示中断。
+- /proc/interrupts 显示中断。
 
-3. /proc/meminfo 校验内存使用。
+- /proc/meminfo 校验内存使用。
 
-4. /proc/swaps 显示 swap 使用。
+- /proc/swaps 显示 swap 使用。
 
-5. /proc/version 显示内核版本。
+- /proc/version 显示内核版本。
 
-6. /proc/net/dev 显示网络适配器及统计。
+- /proc/net/dev 显示网络适配器及统计。
 
-7. /proc/mounts 显示已加载的文件系统。
+- /proc/mounts 显示已加载的文件系统。
 
-8. /proc/pid/fd 程序输入输出。
+- /proc/pid/fd 程序输入输出。
 
-9. /proc/pid/cwd 运行目录。
+- /proc/pid/cwd 运行目录。
 
-## 进程日志信息
+## 13. 进程日志信息
 
-1. /var/log/cron 周期性的程序日志。
+- /var/log/cron 周期性的程序日志。
 
-2. /var/log/secure 安全日志。
+- /var/log/secure 安全日志。
 
-3. /var/log/message 异常信息。
+- /var/log/message 异常信息。
 
-4. /var/log/dmesg 内核日志。
+- /var/log/dmesg 内核日志。
 
-# 导入证书
+# 八、导入证书
 
 1. 路径 /usr/local/share/ca-certificates/ivfzhou.crt  
 
 2. 运行 sudo update-ca-certificates --verbose
 
-# 添加字体
+# 九、添加字体
 
 ```shell
 sudo mkdir /usr/share/fonts/myfonts
@@ -339,7 +339,7 @@ sudo mkfontdir
 sudo fc-cache
 ```
 
-# 设置交换分区
+# 十、设置交换分区
 
 ```shell
 sudo swapoff /swapfile
@@ -358,7 +358,7 @@ free -h
 echo '/dev/sdax none swap sw 0 0' | sudo tee -a /etc/fstab
 ```
 
-# 设置时区时间
+# 十一、设置时区时间
 
 1. export TZ='Asia/Shanghai'
 
@@ -375,7 +375,7 @@ sudo systemctl enable systemd-timesyncd
 sudo systemctl start systemd-timesyncd
 ```
 
-# 设置 apt 网络代理
+# 十二、设置 apt 网络代理
 
 1. 配置 apt 网络代理，配置文件路径：/etc/apt/apt.conf.d/proxy.conf。配置内容：
 
@@ -393,7 +393,7 @@ sudo systemctl start systemd-timesyncd
     }
     ```
 
-# 配置 Debian12 网络
+# 十三、配置 Debian 网络
 
 1. ip link show：查看网络。
 
@@ -432,7 +432,7 @@ sudo systemctl start systemd-timesyncd
         wpa-psk "your_password"
     ```
 
-# 设置系统语言
+# 十四、设置系统语言
 
 ```shell
 # sudo vim /etc/locale.gen
@@ -443,7 +443,7 @@ cat /etc/default/locale
 sudo reboot
 ```
 
-# 配置 iptables
+# 十五、配置 iptables
 
 [iptables](./iptables.conf) 配置文件路径 /etc/iptables/rules.v4  
 raw > mangle > nat > filter，prerouting(r, m ,n) > input(m, f) > forward(m, f) > output(r, m, n, f) > postrouting(m, n)，table > chain > rule
@@ -461,7 +461,7 @@ sudo iptables-restore  /etc/iptables/xxx # 应用配置文件的规则。
 sudo iptables -F # 清空规则，机器重启后失效。
 ```
 
-# 设置 Grub 界面字大小和背景
+# 十六、设置 Grub 界面字大小和背景
 
 ```shell
 sudo grub-mkfont --output=/boot/grub/fonts/DejaVuSansMono28.pf2 --size=28 /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf
@@ -477,29 +477,29 @@ LANG=en_US
 sudo update-grub
 ```
 
-# 命令
+# 十七、命令
 
-## 常用命令
+## 1. 常用命令
 
-1. 查看系统信息：lscpu free fdisk top printenv
+- 查看系统信息：lscpu free fdisk top printenv
 
-2. 基础配置：localectl timedatectl date hwclock
+- 基础配置：localectl timedatectl date hwclock
 
-3. 管理用户：useradd id passwd cracklib-unpacker create-cracklib-dict usermod userdel groupadd groupmod groupdel newgrp
+- 管理用户：useradd id passwd cracklib-unpacker create-cracklib-dict usermod userdel groupadd groupmod groupdel newgrp
 
-4. 管理软件包：vi dnf createrepo
+- 管理软件包：vi dnf createrepo
 
-5. 管理服务：systemctl ln
+- 管理服务：systemctl ln
 
-6. 管理进程：who ps top kill at crontab jobs fg bg atrm atq nice renice kill killall nohub
+- 管理进程：who ps top kill at crontab jobs fg bg atrm atq nice renice kill killall nohub
 
-7. 配置网络：nmcli ip ifup ifdown modprobe modinfo ss route nslookup
+- 配置网络：nmcli ip ifup ifdown modprobe modinfo ss route nslookup
 
-8. LVM：pvcreate pvdisplay pvremove pvchange vgcreate vgdisplay vgchange vgextend vgreduce vgremove lvcreate lvresize lvextend lvreduce lvremove mkfs mount umount blkid resize2fs e2fsck lvchange
+- LVM：pvcreate pvdisplay pvremove pvchange vgcreate vgdisplay vgchange vgextend vgreduce vgremove lvcreate lvresize lvextend lvreduce lvremove mkfs mount umount blkid resize2fs e2fsck lvchange
 
-9. 其他：uptimevmstat sar ps top free lsblk lspci ethtool dmidecode
+- 其他：uptimevmstat sar ps top free lsblk lspci ethtool dmidecode
 
-## more
+## 2. more
 
 - more *参数*... *文件*...：适合屏幕查看的文件阅读输出工具。more +num
     - -d 显示帮助而非响铃。
@@ -534,7 +534,7 @@ sudo update-grub
     - :f 显示当前文件名和行号。
     - . 重复前一命令。
 
-## less
+## 3. less
 
 - less *文件*：类似于 more 命令，但是它允许在文件中和正向操作一样的反向操作，浏览多个文件时，输入:n 切换到上一个文件，输入:p 切换到下一个文件。
     - 空格键 滚动一页。
@@ -546,7 +546,7 @@ sudo update-grub
     - n 重复前一个搜索（与 / 或 ? 有关）。
     - N 反向重复前一个搜索（与 / 或 ? 有关）。
 
-## vi
+## 4. vi
 
 - vi *参数*... *文件*：编辑文件。
     - 正常模式：
@@ -617,7 +617,7 @@ sudo update-grub
         - shfit+v 进入行可视模式。
         - ctrl+v 进入块可视模式。
 
-## sed
+## 5. sed
 
 - sed：如果斜线匹配冲突可以换成别的符号作分割符。
     - -n 只输出匹配行。
@@ -644,7 +644,7 @@ sudo update-grub
     - 'N;s//\n/;P;D' 文件名 N 将下一行加入到模式空间。D 删除模式空间第一个字符到第一个换行符。P 打印模式空间第一个字符到第一个换行符。
     - '1h;1!G;$!x;$p' 文件名 h H 模式空间存放到保存空间。g G 保存空间取出到模式空间。x 交换模式空间和保存空间内容。
 
-## awk
+## 6. awk
 
 - awk *参数* *文件*
     - -F '分割符或者正则'
@@ -671,45 +671,45 @@ sudo update-grub
     - gsub(r,s,t) sub(r,s,t) substr(s,p,n) index(s,t) length(s) match(s,r) split(s,a,sep)
     - function name(params){ return result}
 
-## ulimit
+## 7. ulimit
 
 - ulimit
     - -a 查看当前用户系统资源使用限制，例如打开文件数。
     - -s 查看栈大小。单位 KB。
 
-## tar
+## 8. tar
 
 - tar
     - -zxvf xxx.tar.gzip 解压 gzip 文件
     - -Jxvf xxx.tar.xz 解压 xz 文件
 
-## ln
+## 9. ln
 
 - ln
     - ln -s lib64 /usr/local/lib：创建软连接
 
-## find
+## 10. find
 
 - find：搜索文件
     - sudo find / -name xxx -type f：搜索文件。
 
-## uname
+## 11. uname
 
 - uname
     - uname -s：Linux
     - uname -r：6.1.0-28-amd64
 
-## xprop
+## 12. xprop
 
 - WM_CLASS：点击应用窗口，获取 StartupWMClass 值（输出值的第二个）。
 
-# ss
+## 13. ss
 
  - -t：列出 tcp 的端口使用。
  - -u：列出 udp 的端口使用。
  - -p：列出线程信息。
 
-# ps
+## 14. ps
 
 - -p *pid*：指定线程 ID。
 - -o args=：显示线程命令行。

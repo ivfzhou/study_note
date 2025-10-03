@@ -1,4 +1,8 @@
-# C 笔记
+# 一、C 笔记
+
+1. [Information technology —Programming languages — C ISO/IEC 9899 2018](./ISO_IEC_9899_2018.pdf)
+
+1. [Programming languages — C++ ISO/IEC 14882 2020](./ISO_IEC_14882_2020.pdf)
 
 1. 参考网站：cppreference.com。
 
@@ -109,14 +113,14 @@
 
 1. `fopen` 字符串模式：
 
-    - `r`：以只读模式打开文件。
-    - `w`：以写模式打开文件，把现有文件的长度截断为 0，如果文件不存在，则创建一个新文件。
-    - `a`：以写模式打开文件，在现有文件的末尾添加内容，如果文件不存在，则创建一个新文件。
-    - `r+`：以更新模式打开文件，即可以读写文件。
-    - `w+`：以更新模式打开文件，即读写，如果文件存在，则将文件长度截断为 0；如果不存在，则创建一个新文件。
-    - `a+`：以更新模式打开文件，即读写，在现有文件的末尾添加内容，如果文件不存在，则创建一个新文件；可以读整个文件，但只能在末尾添加内容。
-    - `rb`、`wb`、`ab`、`ab+`、`a+b`、`wb+`、`w+b`：与上面模式类似，但是以二进制模式而不是文本模式打开文件。
-    - `wx`、`wbx`、`w+x`、`wb+x`、`w+bx`：（C11）类似非 x 模式，但是如果文件已存在或以独占模式打开文件，则打开文件失败。
+     - `r`：以只读模式打开文件。
+     - `w`：以写模式打开文件，把现有文件的长度截断为 0，如果文件不存在，则创建一个新文件。
+     - `a`：以写模式打开文件，在现有文件的末尾添加内容，如果文件不存在，则创建一个新文件。
+     - `r+`：以更新模式打开文件，即可以读写文件。
+     - `w+`：以更新模式打开文件，即读写，如果文件存在，则将文件长度截断为 0；如果不存在，则创建一个新文件。
+     - `a+`：以更新模式打开文件，即读写，在现有文件的末尾添加内容，如果文件不存在，则创建一个新文件；可以读整个文件，但只能在末尾添加内容。
+     - `rb`、`wb`、`ab`、`ab+`、`a+b`、`wb+`、`w+b`：与上面模式类似，但是以二进制模式而不是文本模式打开文件。
+     - `wx`、`wbx`、`w+x`、`wb+x`、`w+bx`：（C11）类似非 x 模式，但是如果文件已存在或以独占模式打开文件，则打开文件失败。
 
 1. 输出占位符格式：%\[flags]\[width]\[.precision][length]specifier。
 
@@ -164,30 +168,30 @@
     \0-\177 \x00-\x7f
     ```
 
-# C 语言标准
+# 二、C 语言标准
 
-- K&R
-- ANSI、C89、C90：ISO/IEC 9899:1990
-- C99：ISO/IEC 9899:1999
-- C11：ISO/IEC 9899:2011
-- C18：ISO/IEC 9899:2018
+1. K&R
+2. ANSI、C89、C90：ISO/IEC 9899:1990
+3. C99：ISO/IEC 9899:1999
+4. C11：ISO/IEC 9899:2011
+5. C18：ISO/IEC 9899:2018
 
-# C 关键字
+# 三、C 关键字
 
 `auto`、`extern`、`short`、`while`、`break`、`float`、`case`、`for`、`sizeof`、`char`、`goto`、`static`、`if`、`struct`、`continue`、`inline`、`switch`、`default`、`int`、`typedef`、`do`、`long`、`union`、`double`、`register`、`unsigned`、`else`、`restrict`、`void`、`return`  
 C90 新增：`signed`、`const`、`enum`、`volatile`  
 C11 新增：`_Alignas`、`_Alignof`、`_Atomic`、`_Bool`、`_Complex`、`_Generic`、`_Imaginary`、`_Noreturn`、`_Static_assert`、`_Thread_local`
 
-# C 整数浮点数尾部表示
+# 四、C 整数浮点数尾部表示
 
-- unsigned int 无符号整数 `U`
-- unsigned long 无符号长整数 `UL`
-- unsigned long long 无符号长长整数 `ULL`
-- long 长整数或者长双精度浮点数 `L`
-- long long 长长整数 `LL`
-- float 单浮点数 `F`
+1. unsigned int 无符号整数 `U`
+2. unsigned long 无符号长整数 `UL`
+3. unsigned long long 无符号长长整数 `ULL`
+4. long 长整数或者长双精度浮点数 `L`
+5. long long 长长整数 `LL`
+6. float 单浮点数 `F`
 
-# C 运算符
+# 五、C 运算符
 
 | 运算符，优先级从高到低                                       | 结合律 |
 | :----------------------------------------------------------- | :----: |
@@ -211,7 +215,7 @@ C11 新增：`_Alignas`、`_Alignof`、`_Atomic`、`_Bool`、`_Complex`、`_Gene
 左结合（left-associative）和 右结合（right-associative）指的是当一个表达式中有多个同级运算符时，运算的顺序。  
 也就是说，左结合意味着从左到右依次执行运算。如果有多个相同优先级的运算符，它们会从左边开始进行计算，直到最后。
 
-# C 存储类别
+# 六、C 存储类别
 
 | 存储类别       | 存储器 | 作用域 | 链接 | 如何声明                                             |
 | :------------- | :----- | :----- | :--- | :--------------------------------------------------- |
@@ -224,7 +228,7 @@ C11 新增：`_Alignas`、`_Alignof`、`_Atomic`、`_Bool`、`_Complex`、`_Gene
 | 线程，内部链接 | 线程   | 文件   | 内部 | 在所有块外部，使用关键字 `_Thread_local` 和 `static` |
 | 线程，无链接   | 线程   | 块     | 无   | 在块中，使用关键字 `static` 和 `_Thread_local`       |
 
-# C 标准头文件
+# 七、C 标准头文件
 
 1. C89/C90 标准头文件：
     - assert.h：断言宏。
@@ -256,7 +260,7 @@ C11 新增：`_Alignas`、`_Alignof`、`_Atomic`、`_Bool`、`_Complex`、`_Gene
     - threads.h：线程支持。
     - uchar.h：Unicode 字符类型。
 
-# C++ 笔记
+# 八、C++ 笔记
 
 1. `const` 值不能赋值给非 `const` 指针，非 `const` 指针不能赋值给 `const` 指针。
     ```c++
@@ -323,7 +327,7 @@ C11 新增：`_Alignas`、`_Alignof`、`_Atomic`、`_Bool`、`_Complex`、`_Gene
     
 - 复制构造函数加了 `explicit` 修饰，将导致无法 `return` 该类变量。
 
-# C++ 标准
+# 九、C++ 标准
 
 - C++98：ISO/IEC 14882:1998
 - C++03：ISO/IEC 14882:2003
@@ -332,7 +336,7 @@ C11 新增：`_Alignas`、`_Alignof`、`_Atomic`、`_Bool`、`_Complex`、`_Gene
 - C++17：ISO/IEC 14882:2017
 - C++20：ISO/IEC 14882:2020
 
-# C++ 运算符
+# 十、C++ 运算符
 
 | 运算符 | 结合性 |
 |:--|:-:|
@@ -355,7 +359,7 @@ C11 新增：`_Alignas`、`_Alignof`、`_Atomic`、`_Bool`、`_Complex`、`_Gene
 | `throw` | L-R |
 | `,` | L-R |
 
-# C++ 成员函数属性
+# 十一、C++ 成员函数属性
 
 | 函数 | 能够继承 | 成员还是友元 | 默认能否生成 | 能否为虚函数 | 是否可以有返回值类型 |
 |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -374,7 +378,7 @@ C11 新增：`_Alignas`、`_Alignof`、`_Atomic`、`_Bool`、`_Complex`、`_Gene
 | 其他成员 | 能 | 成员 | 否 | 能 | 能 |
 | 友元 | 否 | 友元 | 否 | 否 | 能 |
 
-# C++ 继承方式
+# 十二、C++ 继承方式
 
 |特征|公有继承|保护继承|私有继承|
 |:-:|:-:|:-:|:-:|
@@ -383,7 +387,7 @@ C11 新增：`_Alignas`、`_Alignof`、`_Atomic`、`_Bool`、`_Complex`、`_Gene
 |私有成员变成|只能通过基类接口访问|只能通过基类接口访问 | 只能通过基类接口访问 |
 |能否隐式向上转换|是|是，只能在派生类中  | 否 |
 
-# C++ 标准头文件
+# 十三、C++ 标准头文件
 
 1. C++98/C++03 标准头文件
     - algorithm：常用算法

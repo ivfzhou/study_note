@@ -34,6 +34,7 @@
 1. [Oracle](./oracle/oracle.md)
 1. [Other](./other/other.md)
 1. [PowerShell](./powershell/powershell.md)
+1. [Prometheus](./prometheus/prometheus.md)
 1. [Protobuf](./protobuf/protobuf.md)
 1. [Python](./python/python.md)
 1. [RabbitMQ](./rabbitmq/rabbitmq.md)

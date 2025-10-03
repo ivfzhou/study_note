@@ -1,9 +1,9 @@
-# 笔记
+# 一、笔记
 
 1. ${nexus.home}/sonatype-work/nexus3/admin.password 第一次启动后初始密码所在文件。
 2. 必须要 jdk8，且必须在 ${nexus}/etc/nexus 文件里指定 jdk 路径。
 
-# 命令
+# 二、命令
 
 1. Linux：
     1. start：启动。
@@ -24,7 +24,7 @@
     7. /run：启动。
     8. /run-redirect：目标启动。
 
-# 配置 https
+# 三、配置 https
 
 1. /nacos-data/etc/nexus.properties 里面修改配置，放开 ssl 端口，添加 jetty-https.xml。
 2. jetty-https.xml 中修改证书信息。
@@ -38,9 +38,9 @@
 10. 将 nexus.jks 复制到 /opt/nexus/etc/ssl/ 下。
 11. [http.zip](./https.zip)
 
-# 安装
+# 四、安装
 
-## Docker-Compose 安装
+## 1. Docker-Compose 安装
 
 ```yaml
 version: "3.9"
@@ -69,18 +69,18 @@ networks:
           gateway: 172.16.3.1
 ```
 
-1. sudo tee -a /etc/hosts <<EOF
+- sudo tee -a /etc/hosts <<EOF
    172.16.3.142 ivfzhoudockernexus
    EOF
-2. docker-compose -f src/note/docker/docker-compose.yml up -d nexus
-3. docker cp nexus:/nexus-data/ volumes/nexus
-4. docker stop nexus
-5. sudo chown -R 200:200 volumes/nexus
-6. docker-compose -f src/note/docker/docker-compose.yml down nexus
-7. docker-compose -f src/note/docker/docker-compose.yml up -d nexus
-8. cat volumes/nexus/admin.password
+- docker-compose -f src/note/docker/docker-compose.yml up -d nexus
+- docker cp nexus:/nexus-data/ volumes/nexus
+- docker stop nexus
+- sudo chown -R 200:200 volumes/nexus
+- docker-compose -f src/note/docker/docker-compose.yml down nexus
+- docker-compose -f src/note/docker/docker-compose.yml up -d nexus
+- cat volumes/nexus/admin.password
 
-## Docker 安装
+## 2. Docker 安装
 
 1. mkdir volumes/nexus
 2. chown -R 200:200 volumes/nexus

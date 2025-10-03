@@ -1,4 +1,4 @@
-# 笔记
+# 一、笔记
 
 1. 运行 JavaScript 文件：node *path-to-\*.js*
 1. 更新源：

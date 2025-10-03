@@ -1,12 +1,11 @@
-# 笔记
+# 一、笔记
 
 
 1. 强类型、变量大小写不敏感。
 1. \$ 开头表示变量。
 1. \# 注释。
 
-
-# 常用的 vere-Noun
+# 二、常用的 vere-Noun
 
 1. Get-Command：获取所有 cmdlets。
 1. Get-Verb：获取所有动词。
@@ -22,7 +21,7 @@
 1. Get-AppxPackage *pattern*：查询系统组件。
 1. Remove-AppxPackage *packageFullName*：卸载系统组件。
 
-# 内置变量
+# 三、内置变量
 
 1. \$PSVersionTable
 1. \$IsLinux

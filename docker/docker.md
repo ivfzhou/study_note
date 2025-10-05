@@ -180,25 +180,7 @@ sudo systemctl restart docker
 
 3. 运行 chmod +x ~/bin/docker-compose。
 
-# 七、镜像版本
-
-1. mysql:8.4.5
-2. grafana/grafana:10.1.2
-3. elasticsearch:9.0.2
-4. kibana:9.0.2
-5. zookeeper:3.9.0
-6. nginx:1.25.2
-7. nacos/nacos-server:v2.2.3
-8. apache/rocketmq:5.1.3
-9. openzipkin/zipkin:2.24.3
-10. sonatype/nexus3:3.80.0
-11. redis:8.0.2
-12. rabbitmq:4.1.1-management
-13. tusproject/tusd:v2.8
-14. jaspeen/oracle-11g:latest
-15. openzipkin/zipkin:3.5
-
-# 八、网络代理配置
+# 七、网络代理配置
 
 1. 在 /etc/docker/daemon.json 里添加：
 

@@ -286,8 +286,8 @@
 
 ## 14. 用户
 
-- mysql -u *用户名* -p *密码* -h *主机*名 -A <small>表示选择数据库时关闭预读表和字段信息</small> -P *端口号*：登陆 mysql。
-- mysql -u *用户名* -p *密码* -h *主机名* -A -P *端口号* *数据库名* < *备份文件*：恢复备份。
+- mysql -u*用户名* -p*密码* -h *主机*名 -A <small>表示选择数据库时关闭预读表和字段信息</small> -P *端口号*：登陆 mysql。
+- mysql -u*用户名* -p*密码* -h *主机名* -A -P *端口号* *数据库名* < *备份文件*：恢复备份。
 - CREATE USER *用户名*@*主机名* | % <small>表示所有</small> IDENTIFIED WITH mysql_native_password BY '*密码*'：创建用户。
 - GRANT *权限类型* [ (*字段*), ... ] ON *数据库名*.*表名* <small>\*号代表所有</small> TO *用户名*@*主机名*：给用户授权。
     权限类型：SELECT、INSERT、DELETE、UPDATE、REFERENCES(外键权限)、CREATE、ALTER、INDEX、DROP、SHOW VIEW、CREATE ROUTINE、ALTER ROUTINE、CREATE TEMPORARY TABLES CREATE VIEW、LOCK TABLES、ALL(ALL PRIVILEGES)、CREATE USER、SHOW DATABASES、REPLICATION SLAVE、REPLICATION CLIENT。

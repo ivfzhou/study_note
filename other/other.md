@@ -80,10 +80,7 @@ e=2+1023=1025=10000000001
 # 七、停用 Windows Defender
 
 ```cmd
-REM 在策略项下添加 DisableAntiSpyware=1（常用方法）
+REM 在策略项下添加 DisableAntiSpyware=1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f
-
-REM 关闭实时保护（Real-Time Monitoring）
-reg add "HKLM\SOFTWARE\Microsoft\Windows Defender\Real-Time Protection" /v DisableRealtimeMonitoring /t REG_DWORD /d 1 /f
 ```
 

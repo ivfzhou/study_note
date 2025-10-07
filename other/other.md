@@ -76,3 +76,14 @@ e=2+1023=1025=10000000001
 每三位二进制数转成一位八进制数。
 
 每四位二进制数转成一位十六进制数。
+
+# 七、停用 Windows Defender
+
+```cmd
+REM 在策略项下添加 DisableAntiSpyware=1（常用方法）
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f
+
+REM 关闭实时保护（Real-Time Monitoring）
+reg add "HKLM\SOFTWARE\Microsoft\Windows Defender\Real-Time Protection" /v DisableRealtimeMonitoring /t REG_DWORD /d 1 /f
+```
+

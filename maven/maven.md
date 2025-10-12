@@ -150,8 +150,8 @@
 # 四、命令
 
 1. **mvn** *options* *groupId:artifactId:version:goals* *phases*：goal 绑定一个 phase，当执行一个 phase 时，就将绑定的所有 goal 运行一遍。
-   
-    1. options：
+
+    - options：
         - --am、--also-make：同时编译依赖的项目。
         - --amd、--also-make-dependents：同时编译依赖了这个项目的项目。
         - -N、--non-recursive：不编译子项目。
@@ -169,41 +169,42 @@
         - -V、--show-version：打印版本信息并编译。
         - -P、--activate-profiles *args*：指定环境文件，逗号分隔。
         - -D、--define *arg*：指定参数。
-    1. lifecycle 的 phases，和 phase 下的默认 goals：
-        - clean
-            - pre-clean
-            - clean：maven-clean-plugin:clean
-            - post-clean
-        - default
-            - validate：校验项目是否正确，POM 是否完整。
-            - initialize：初始化构建状态。
-            - generate-sources：生成源码。
-            - process-sources：处理源码，例如过滤。
-            - generate-resources：生成资源文件。
-            - process-resources：maven-resources-plugin:resources，复制和过滤资源到 target/classes。
-            - compile：maven-compiler-plugin:compile → 编译 main 源码
-            - process-classes：对编译过的字节码做处理，例如字节码增强。
-            - generate-test-sources：生成测试源码
-            - process-test-sources：处理测试源码。
-            - generate-test-resources：生成测试资源。
-            - process-test-resources：maven-resources-plugin:testResources，复制测试资源到 target/test-classes。
-            - test-compile：maven-compiler-plugin:testCompile，编译测试源码。
-            - process-test-classes
-            - test：maven-surefire-plugin:test，运行单元测试。
-            - prepare-package：在打包前做一些处理，比如 OSGi manifest 生成。
-            - package：maven-jar-plugin:jar（打 jar 包，普通项目）。maven-war-plugin:war（web 项目）。
-            - pre-integration-test
-            - integration-test：通常绑定一些集成测试插件。
-            - post-integration-test
-            - verify：通常执行检查任务。
-            - install：maven-install-plugin:install，把构建好的包安装到本地仓库。
-            - deploy：maven-deploy-plugin:deploy，把构建好的包部署到远程仓库。
-        - site
-            - pre-site
-            - site：maven-site-plugin:site，生成站点文档。
-            - post-site
-            - site-deploy：maven-site-plugin:deploy，部署站点到服务器。
-    
+
+1. lifecycle 的 phases，和 phase 下的默认 goals：
+    - clean
+        - pre-clean
+        - clean：maven-clean-plugin:clean
+        - post-clean
+    - default
+        - validate：校验项目是否正确，POM 是否完整。
+        - initialize：初始化构建状态。
+        - generate-sources：生成源码。
+        - process-sources：处理源码，例如过滤。
+        - generate-resources：生成资源文件。
+        - process-resources：maven-resources-plugin:resources，复制和过滤资源到 target/classes。
+        - compile：maven-compiler-plugin:compile → 编译 main 源码
+        - process-classes：对编译过的字节码做处理，例如字节码增强。
+        - generate-test-sources：生成测试源码
+        - process-test-sources：处理测试源码。
+        - generate-test-resources：生成测试资源。
+        - process-test-resources：maven-resources-plugin:testResources，复制测试资源到 target/test-classes。
+        - test-compile：maven-compiler-plugin:testCompile，编译测试源码。
+        - process-test-classes
+        - test：maven-surefire-plugin:test，运行单元测试。
+        - prepare-package：在打包前做一些处理，比如 OSGi manifest 生成。
+        - package：maven-jar-plugin:jar（打 jar 包，普通项目）。maven-war-plugin:war（web 项目）。
+        - pre-integration-test
+        - integration-test：通常绑定一些集成测试插件。
+        - post-integration-test
+        - verify：通常执行检查任务。
+        - install：maven-install-plugin:install，把构建好的包安装到本地仓库。
+        - deploy：maven-deploy-plugin:deploy，把构建好的包部署到远程仓库。
+    - site
+        - pre-site
+        - site：maven-site-plugin:site，生成站点文档。
+        - post-site
+        - site-deploy：maven-site-plugin:deploy，部署站点到服务器。
+
 1. **mvn clean complie**
 
 1. **mvn clean install -Dmaven.test.skip=true**
@@ -216,4 +217,4 @@
 
 1. **mvn tree**：打印依赖信息。
 
-     
+      

@@ -18,3 +18,7 @@ services:
 1. sudo tee -a /etc/hosts <<EOF
    172.16.3.143 ivfzhoudockerzipkin
    EOF
+
+# 二、笔记
+
+1. 控制台地址 http://ivfzhoudockerzipkin:9411/zipkin/。

@@ -246,7 +246,7 @@ services:
     extra_hosts:
       - "ivfzhoudebian:172.16.3.1"
     volumes:
-      - /home/ivfzhou/volumes/tusd/data:/srv/srv/tusd-data/data:rw
+      - /home/ivfzhou/volumes/tusd/data:/srv/tusd-data/data:rw
     entrypoint: "tusd -expose-metrics=false -disable-cors -hooks-enabled-events="
   nexus:
     image: sonatype/nexus3:3.80.0
